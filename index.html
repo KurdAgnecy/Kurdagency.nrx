@@ -520,6 +520,24 @@
         }
 
         .footer-note { text-align: center; font-size: 0.75rem; color: #475569; margin-top: 25px; }
+
+        /* Order Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 100;
+            display: none;
+        }
+        .modal-overlay.show { display: block; }
+        
+        select.form-input option {
+            background-color: #0f172a;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -576,6 +594,33 @@
             <span>➔</span>
         </a>
 
+    </div>
+
+    <!-- فۆڕمی داواکاری فەیسبووک و ئینستاگرام -->
+    <div class="modal-overlay" id="order-modal-overlay" onclick="closeOrderModal()"></div>
+    <div class="content-section" id="order-modal" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: 90%; max-width: 400px; background: #0f172a; border: 1px solid rgba(56, 189, 248, 0.3);">
+        <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 15px;">
+            <h3 style="color: #38bdf8; font-size: 1.1rem; font-weight: 800;" id="modal-title">زانیاری داواکاری</h3>
+            <button onclick="closeOrderModal()" style="background:none; border:none; color:#ef4444; font-size:1.8rem; line-height:1; cursor:pointer;">&times;</button>
+        </div>
+        <div class="form-group">
+            <input type="text" id="order-page-name" class="form-input" placeholder="ناوی تەواوی پەیج">
+        </div>
+        <div class="form-group">
+            <input type="text" id="order-biz-type" class="form-input" placeholder="جۆری کارەکەی چییە">
+        </div>
+        <div class="form-group">
+            <input type="text" id="order-cities" class="form-input" placeholder="ئەو شارانەی ئەتەوێت سپۆنسەرەکە ببینن بینوسە">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <select id="order-gender" class="form-input" style="appearance: auto; cursor: pointer; color: #94a3b8;" onchange="this.style.color='#fff'">
+                <option value="" disabled selected hidden>ڕەگەز دیاری بکە</option>
+                <option value="هەردوو ڕەگەز" style="color: #000;">هەردوو ڕەگەز</option>
+                <option value="نێر" style="color: #000;">نێر (پیاوان)</option>
+                <option value="مێ" style="color: #000;">مێ (ئافرەتان)</option>
+            </select>
+        </div>
+        <button class="submit-btn" onclick="submitOrder()">ناردنی داواکاری بۆ وەتسئەپ</button>
     </div>
 
     <div class="container">
@@ -760,27 +805,27 @@
                 ئەم سپۆنسەره تایبەتە بە فرۆشتن و نامە و پەیوەندی لە فەیسبووک، سپۆنسەرەکە ئەچێتە پێش چاوی ئەو کەسانەی پێویستیان بە بابەتەکەی تۆیە.
             </div>
             <div class="grid-container">
-                <a href="https://wa.me/9647510386174?text=داواکاری%20فەیسبووک:%20٢،٥٠٠%20بینەر%20بۆ%20١٠،٠٠٠%20بینەر%20-%20نرخ:%2010,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('فەیسبووک', '٢،٥٠٠ بینەر بۆ ١٠،٠٠٠ بینەر', '10,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٢،٥٠٠ بینەر بۆ ١٠،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">10,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20فەیسبووک:%20٣،٧٥٠%20بینەر%20بۆ%20١٥،٠٠٠%20بینەر%20-%20نرخ:%2015,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('فەیسبووک', '٣،٧٥٠ بینەر بۆ ١٥،٠٠٠ بینەر', '15,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٣،٧٥٠ بینەر بۆ ١٥،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">15,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20فەیسبووک:%20٥،٠٠٠%20بینەر%20بۆ%20٢٠،٠٠٠%20بینەر%20-%20نرخ:%2020,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('فەیسبووک', '٥،٠٠٠ بینەر بۆ ٢٠،٠٠٠ بینەر', '20,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٥،٠٠٠ بینەر بۆ ٢٠،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">20,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20فەیسبووک:%20٦،٢٥٠%20بینەر%20بۆ%20٢٥،٠٠٠%20بینەر%20-%20نرخ:%2025,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('فەیسبووک', '٦،٢٥٠ بینەر بۆ ٢٥،٠٠٠ بینەر', '25,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٦،٢٥٠ بینەر بۆ ٢٥،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">25,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20فەیسبووک:%20٧،٥٠٠%20بینەر%20بۆ%20٣٠،٠٠٠%20بینەر%20-%20نرخ:%2030,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('فەیسبووک', '٧،٥٠٠ بینەر بۆ ٣٠،٠٠٠ بینەر', '30,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٧،٥٠٠ بینەر بۆ ٣٠،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">30,000 IQD</div>
@@ -797,27 +842,27 @@
                 ئەم سپۆنسەره تایبەتە بە فرۆشتن و نامە و پەیوەندی لە ئینستاگرام، سپۆنسەرەکە ئەچێتە پێش چاوی ئەو کەسانەی پێویستیان بە بابەتەکەی تۆیە.
             </div>
             <div class="grid-container">
-                <a href="https://wa.me/9647510386174?text=داواکاری%20ئینستاگرام:%20٢،٥٠٠%20بینەر%20بۆ%20١٠،٠٠٠%20بینەر%20-%20نرخ:%2010,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('ئینستاگرام', '٢،٥٠٠ بینەر بۆ ١٠،٠٠٠ بینەر', '10,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٢،٥٠٠ بینەر بۆ ١٠،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">10,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20ئینستاگرام:%20٣،٧٥٠%20بینەر%20بۆ%20١٥،٠٠٠%20بینەر%20-%20نرخ:%2015,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('ئینستاگرام', '٣،٧٥٠ بینەر بۆ ١٥،٠٠٠ بینەر', '15,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٣،٧٥٠ بینەر بۆ ١٥،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">15,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20ئینستاگرام:%20٥،٠٠٠%20بینەر%20بۆ%20٢٠،٠٠٠%20بینەر%20-%20نرخ:%2020,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('ئینستاگرام', '٥،٠٠٠ بینەر بۆ ٢٠،٠٠٠ بینەر', '20,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٥،٠٠٠ بینەر بۆ ٢٠،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">20,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20ئینستاگرام:%20٦،٢٥٠%20بینەر%20بۆ%20٢٥،٠٠٠%20بینەر%20-%20نرخ:%2025,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('ئینستاگرام', '٦،٢٥٠ بینەر بۆ ٢٥،٠٠٠ بینەر', '25,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٦،٢٥٠ بینەر بۆ ٢٥،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">25,000 IQD</div>
                 </a>
-                <a href="https://wa.me/9647510386174?text=داواکاری%20ئینستاگرام:%20٧،٥٠٠%20بینەر%20بۆ%20٣٠،٠٠٠%20بینەر%20-%20نرخ:%2030,000%20IQD" class="card">
+                <a href="javascript:void(0)" onclick="openOrderModal('ئینستاگرام', '٧،٥٠٠ بینەر بۆ ٣٠،٠٠٠ بینەر', '30,000 IQD')" class="card">
                     <div class="card-info"><span class="card-title">٧،٥٠٠ بینەر بۆ ٣٠،٠٠٠ بینەر</span></div>
                     <div class="card-line"></div>
                     <div class="card-price">30,000 IQD</div>
@@ -1079,6 +1124,57 @@
         }
 
         window.onload = loadReviews;
+
+        // Order Modal Functions (Facebook & Instagram)
+        let currentOrder = { platform: '', package: '', price: '' };
+
+        function openOrderModal(platform, packageName, price) {
+            currentOrder.platform = platform;
+            currentOrder.package = packageName;
+            currentOrder.price = price;
+            
+            document.getElementById('modal-title').innerText = `داواکاری ${platform}`;
+            document.getElementById('order-modal-overlay').classList.add('show');
+            document.getElementById('order-modal').style.display = 'block';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal-overlay').classList.remove('show');
+            document.getElementById('order-modal').style.display = 'none';
+        }
+
+        function submitOrder() {
+            const pageName = document.getElementById('order-page-name').value.trim();
+            const bizType = document.getElementById('order-biz-type').value.trim();
+            const cities = document.getElementById('order-cities').value.trim();
+            const gender = document.getElementById('order-gender').value;
+
+            if(!pageName || !bizType || !cities || !gender) {
+                alert('تکایە هەموو زانیارییەکان پڕبکەرەوە بە تەواوی');
+                return;
+            }
+
+            const text = `سڵاو کورد ئەجێنسی، دەمەوێت داواکاریەکی نوێ بکەم:
+پلاتفۆرم: ${currentOrder.platform}
+پاکێج: ${currentOrder.package}
+نرخ: ${currentOrder.price}
+---------
+ناوی پەیج: ${pageName}
+جۆری کار: ${bizType}
+شارەکان: ${cities}
+ڕەگەز: ${gender}`;
+
+            const url = `https://wa.me/9647510386174?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+            closeOrderModal();
+            
+            // سڕینەوەی زانیارییەکان پاش ناردن
+            document.getElementById('order-page-name').value = '';
+            document.getElementById('order-biz-type').value = '';
+            document.getElementById('order-cities').value = '';
+            document.getElementById('order-gender').value = '';
+            document.getElementById('order-gender').style.color = '#94a3b8';
+        }
     </script>
 </body>
 </html>
