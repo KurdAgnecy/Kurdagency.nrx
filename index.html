@@ -326,20 +326,39 @@
         }
 
         .custom-request-badge {
-            background: rgba(234, 179, 8, 0.05);
-            border-right: 4px solid #eab308;
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(217, 119, 6, 0.2));
+            border: 1px solid rgba(234, 179, 8, 0.4);
             color: #fef08a;
             text-align: center;
             font-weight: bold;
-            margin-top: 5px;
-            padding: 12px;
-            border-radius: 10px;
+            margin-top: 10px;
+            padding: 14px 16px;
+            border-radius: 14px;
             font-size: 0.95rem;
             cursor: pointer;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.1);
         }
         .custom-request-badge:hover {
-            background: rgba(234, 179, 8, 0.12);
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.25), rgba(217, 119, 6, 0.3));
+            border-color: #eab308;
+            transform: translateY(-1px);
+        }
+
+        .animated-arrow {
+            display: inline-block;
+            animation: moveArrow 1s infinite alternate;
+            color: #fef08a;
+            font-size: 1.1rem;
+        }
+
+        @keyframes moveArrow {
+            0% { transform: translateX(4px); }
+            100% { transform: translateX(-4px); }
         }
 
         .grid-container { display: flex; flex-direction: column; gap: 12px; }
@@ -826,6 +845,10 @@
                 <div class="card-price">65,000 IQD</div>
             </a>
         </div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('تیکتۆک بزنس')">
+            <span>ئەگەر پێویستت بە بڕە پارەیەکی دیاریکراوە بۆ سپۆنسەر لێرە بنووسە</span>
+            <span class="animated-arrow">➔</span>
+        </div>
         <div class="notice-badge-red">
             تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
         </div>
@@ -874,6 +897,10 @@
                 <div class="card-price">45,000 IQD</div>
             </a>
         </div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('تیکتۆک شەخسی')">
+            <span>ئەگەر پێویستت بە بڕە پارەیەکی دیاریکراوە بۆ سپۆنسەر لێرە بنووسە</span>
+            <span class="animated-arrow">➔</span>
+        </div>
         <div class="notice-badge-red">
             تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
         </div>
@@ -910,7 +937,10 @@
                 <div class="card-price">30,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('فەیسبووک')">تکایە نرخی دڵخوازت بنوسە زانیاریەکان بە وردی پڕ بکەرەوە</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('فەیسبووک')">
+            <span>ئەگەر پێویستت بە بڕە پارەیەکی دیاریکراوە بۆ سپۆنسەر لێرە بنووسە</span>
+            <span class="animated-arrow">➔</span>
+        </div>
         <div class="notice-badge-red" style="margin-top:16px;">
             <strong>تێبینی فەیسبووک:</strong> لە سپۆنسەری فەیسبووکتاندا، پێویستە لە ڕێگەی پەیجی فەیسبووکەکەوە ئێمە بکەن بە ئەدمین تا بتوانین کارەکانتان بۆ ڕێکبخەین. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -947,7 +977,10 @@
                 <div class="card-price">30,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('ئینستاگرام')">تکایە نرخی دڵخوازت بنوسە زانیاریەکان بە وردی پڕ بکەرەوە</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('ئینستاگرام')">
+            <span>ئەگەر پێویستت بە بڕە پارەیەکی دیاریکراوە بۆ سپۆنسەر لێرە بنووسە</span>
+            <span class="animated-arrow">➔</span>
+        </div>
         <div class="notice-badge-red" style="margin-top:16px;">
             <strong>تێبینی ئینستاگرام:</strong> لە سپۆنسەر ئینستاگرام پێویستە ئینستاگرامەکەت کۆنێکت بێت بە پەیجێکی فەیسبوک دواتر لە پەیج فەیسبووکەکە ئەمان کەیت بە ئەدمین لە ڕێگەی پەیجی فەیسبووکەکە سپۆنسەر بۆ ئینستاگرامەکەت ئەکرێت و پەیجی فەیسبوکەکە تەنیا بۆ ئەوەیە سپۆنسەری ئینستاگرامەکە لای کەس دەرناکەوێت. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -1007,7 +1040,10 @@
                 <div class="card-price">50,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('سناپچات')">تکایە نرخی دڵخوازت بنوسە زانیاریەکان بە وردی پڕ بکەرەوە</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('سناپچات')">
+            <span>ئەگەر پێویستت بە بڕە پارەیەکی دیاریکراوە بۆ سپۆنسەر لێرە بنووسە</span>
+            <span class="animated-arrow">➔</span>
+        </div>
         <div class="notice-badge-red">
             تێبینی: لە سپۆنسەری سناپچات پێویستی بە پاسۆرد و وسێر نەیم سناپچاتەکەت ئەبێت.
         </div>
@@ -1267,7 +1303,6 @@ function openOrderModal(platform, packageName, price) {
     
     document.getElementById('modal-title').innerText = `داواکاری ${platform} (${price})`;
     
-    // شاردنەوە یان نیشاندانی بەشی ڕۆژەکان و تێبینییەکان بەپێی پلاتفۆرم
     const daysGroup = document.getElementById('days-select-group');
     const modalNote = document.getElementById('modal-note');
 
@@ -1292,7 +1327,15 @@ function openOrderModal(platform, packageName, price) {
 }
 
 function openCustomOrderModal(platform) {
-    let minLimit = platform.includes('سناپچات') ? 25000 : 10000;
+    let minLimit = 10000;
+    if (platform.includes('سناپچات')) {
+        minLimit = 25000;
+    } else if (platform.includes('تیکتۆک بزنس')) {
+        minLimit = 15000;
+    } else if (platform.includes('تیکتۆک شەخسی')) {
+        minLimit = 12000;
+    }
+
     let customPriceInput = prompt(`تکایە بڕی پارەی دڵخوازت بنووسە (کەمترین بڕی داواکاری ${minLimit.toLocaleString()} دینارە):`);
     if (!customPriceInput || isNaN(customPriceInput.trim())) return;
     
@@ -1303,9 +1346,24 @@ function openCustomOrderModal(platform) {
         return;
     }
 
-    let minViews = Math.round((priceVal / minLimit) * (platform.includes('سناپچات') ? 20000 : 2500));
-    let maxViews = Math.round((priceVal / minLimit) * (platform.includes('سناپچات') ? 50000 : 10000));
-    let calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    let calculatedViews = "";
+    if (platform.includes('سناپچات')) {
+        let minViews = Math.round((priceVal / 25000) * 20000);
+        let maxViews = Math.round((priceVal / 25000) * 50000);
+        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    } else if (platform.includes('تیکتۆک بزنس')) {
+        let minViews = Math.round((priceVal / 15000) * 15000);
+        let maxViews = Math.round((priceVal / 15000) * 30000);
+        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    } else if (platform.includes('تیکتۆک شەخسی')) {
+        let minViews = Math.round((priceVal / 12000) * 15000);
+        let maxViews = Math.round((priceVal / 12000) * 30000);
+        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    } else {
+        let minViews = Math.round((priceVal / 10000) * 2500);
+        let maxViews = Math.round((priceVal / 10000) * 10000);
+        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    }
 
     openOrderModal(platform, calculatedViews, priceVal.toLocaleString() + ' IQD');
 }
