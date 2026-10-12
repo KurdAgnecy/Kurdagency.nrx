@@ -562,7 +562,6 @@
             color: #fff;
         }
 
-        /* ستایلی خانەکانی تەمەن و ڕۆژەکان */
         .age-options-grid {
             display: flex;
             flex-wrap: wrap;
@@ -688,7 +687,7 @@
             </select>
         </div>
 
-        <!-- تەمەن (دەتوانیت چەند تەمەنێک هەڵبژێریت) -->
+        <!-- تەمەن (فرە هەڵبژاردن) -->
         <div class="form-group">
             <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;">تەمەن دیاری بکە (دەتوانیت زیاتر لە یەکێک هەڵبژێریت)</label>
             <div class="age-options-grid">
@@ -702,11 +701,10 @@
             <input type="hidden" id="order-age" value="">
         </div>
 
-        <!-- ڕۆژەکانی سپۆنسەر (خۆکار یان هەڵبژاردن) -->
+        <!-- ڕۆژەکانی سپۆنسەر -->
         <div class="form-group" id="days-select-group">
-            <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;" id="days-label">چەند ڕۆژت دەوێت بۆ سپۆنسەر؟</label>
-            <select id="order-days" class="form-input" style="appearance: auto; cursor: pointer; color: #fff;" >
-                <!-- مۆدیۆلی ڕۆژەکان بە پێی نرخ لێرە دادەنرێت -->
+            <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;">چەند ڕۆژت دەوێت بۆ سپۆنسەر؟</label>
+            <select id="order-days" class="form-input" style="appearance: auto; cursor: pointer; color: #fff;">
             </select>
         </div>
 
@@ -1318,4 +1316,8 @@ function openCustomOrderModal(platform) {
         return;
     }
 
-    let calcula
+    let calculatedViews = `نرخی دڵخواز: ${priceVal.toLocaleString()} دینار`;
+    openOrderModal(platform, calculatedViews, priceVal.toLocaleString() + ' IQD');
+}
+
+function closeOrderMo
