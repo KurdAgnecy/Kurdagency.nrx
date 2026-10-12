@@ -208,7 +208,7 @@
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
         }
 
-        /* Instructions Banner (Moved to top with pointer animation) */
+        /* Instructions Banner */
         .top-instruction-badge {
             background: rgba(56, 189, 248, 0.08);
             border: 1px dashed #38bdf8;
@@ -323,7 +323,6 @@
             text-align: justify;
         }
 
-        /* تێبینی سوور بۆ خوارەوەی بەشەکان */
         .notice-badge-red {
             background: rgba(239, 68, 68, 0.07);
             border-right: 4px solid #ef4444;
@@ -347,6 +346,11 @@
             padding: 12px;
             border-radius: 10px;
             font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .custom-request-badge:hover {
+            background: rgba(234, 179, 8, 0.12);
         }
 
         /* Cards Design With Custom Line Inside */
@@ -391,7 +395,6 @@
         }
         .card-sub { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
 
-        /* لاینی جیاکەرەوە لە نێوان نرخ و زانیارییەکان */
         .card-line {
             width: 1px;
             height: 35px;
@@ -430,7 +433,7 @@
         .service-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; color: #fff; }
         .service-desc { font-size: 0.9rem; color: #94a3b8; line-height: 1.6; }
 
-        /* Feedback/Reviews Box (Inside Tab) */
+        /* Feedback/Reviews Box */
         .feedback-box { width: 100%; }
         .feedback-title { font-size: 1.15rem; font-weight: 800; text-align: center; margin-bottom: 15px; color: #fff; }
         .form-group { margin-bottom: 12px; }
@@ -471,7 +474,6 @@
         .review-stars { color: #fbbf24; font-size: 0.9rem; }
         .review-text { font-size: 0.9rem; color: #cbd5e1; }
 
-        /* بەشی پەیوەندی وەتسئەپ لە ناو ڕەخنە و پێشنیار */
         .feedback-whatsapp-box {
             margin-top: 20px;
             padding-top: 15px;
@@ -500,7 +502,6 @@
         }
         .payment-item:hover { transform: scale(1.02); }
 
-        /* Wallet Styles */
         .p-fib { background: rgba(56, 189, 248, 0.06); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.2); }
         .p-fastpay { background: rgba(244, 63, 94, 0.06); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.2); }
         .p-qi { background: rgba(245, 158, 11, 0.06); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.2); }
@@ -521,10 +522,7 @@
 
         .footer-note { text-align: center; font-size: 0.75rem; color: #475569; margin-top: 25px; }
 
-        /* 
-          ستایلی فۆڕمی داواکاری 
-          بەکارهێنانی Flexbox بۆ ئەوەی لە هەموو مۆبایلێک بکەوێتە سەنتەر
-        */
+        /* Modal Overlay */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -533,7 +531,7 @@
             height: 100%;
             background: rgba(0,0,0,0.7);
             z-index: 1000;
-            display: none; /* لەگەڵ کلاس شو ئەبێت بە flex */
+            display: none;
             justify-content: center;
             align-items: center;
             padding: 15px;
@@ -550,8 +548,8 @@
             padding: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             animation: scaleIn 0.3s ease-out forwards;
-            max-height: 90vh; /* ئەگەر فۆڕمەکە درێژ بوو، با لە شاشە دەرنەچێت */
-            overflow-y: auto; /* سکڕۆڵی بۆ دروست بێت ئەگەر پێویست بوو */
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         @keyframes scaleIn {
@@ -561,6 +559,33 @@
         
         select.form-input option {
             background-color: #0f172a;
+            color: #fff;
+        }
+
+        /* ستایلی خانەکانی تەمەن و ڕۆژەکان */
+        .age-options-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .age-opt-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 8px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex: 1 1 calc(33.333% - 8px);
+            text-align: center;
+        }
+        .age-opt-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: #38bdf8;
             color: #fff;
         }
     </style>
@@ -663,16 +688,25 @@
             </select>
         </div>
 
-        <!-- تەمەن -->
+        <!-- تەمەن (دەتوانیت چەند تەمەنێک هەڵبژێریت) -->
         <div class="form-group">
-            <select id="order-age" class="form-input" style="appearance: auto; cursor: pointer; color: #94a3b8;" onchange="this.style.color='#fff'">
-                <option value="" disabled selected hidden>تەمەن بە پێی جۆری ئیشەکەت دیاری بکە</option>
-                <option value="هەمووی" style="color: #000;">هەمووی</option>
-                <option value="18_24" style="color: #000;">18_24</option>
-                <option value="24_36" style="color: #000;">24_36</option>
-                <option value="36_45" style="color: #000;">36_45</option>
-                <option value="45_55" style="color: #000;">45_55</option>
-                <option value="55_65" style="color: #000;">55_65</option>
+            <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;">تەمەن دیاری بکە (دەتوانیت زیاتر لە یەکێک هەڵبژێریت)</label>
+            <div class="age-options-grid">
+                <button type="button" class="age-opt-btn" onclick="toggleAge(this, 'هەمووی')">هەمووی</button>
+                <button type="button" class="age-opt-btn" onclick="toggleAge(this, '18_24')">18_24</button>
+                <button type="button" class="age-opt-btn" onclick="toggleAge(this, '24_36')">24_36</button>
+                <button type="button" class="age-opt-btn" onclick="toggleAge(this, '36_45')">36_45</button>
+                <button type="button" class="age-opt-btn" onclick="toggleAge(this, '45_55')">45_55</button>
+                <button type="button" class="age-opt-btn" onclick="toggleAge(this, '55_65')">55_65</button>
+            </div>
+            <input type="hidden" id="order-age" value="">
+        </div>
+
+        <!-- ڕۆژەکانی سپۆنسەر (خۆکار یان هەڵبژاردن) -->
+        <div class="form-group" id="days-select-group">
+            <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;" id="days-label">چەند ڕۆژت دەوێت بۆ سپۆنسەر؟</label>
+            <select id="order-days" class="form-input" style="appearance: auto; cursor: pointer; color: #fff;" >
+                <!-- مۆدیۆلی ڕۆژەکان بە پێی نرخ لێرە دادەنرێت -->
             </select>
         </div>
 
@@ -818,7 +852,7 @@
                 <div class="card-price">65,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('تیکتۆک بزنس')">✨ نرخ و بینەری دڵخوازی خۆت بنووسە</div>
         <div class="notice-badge-red">
             تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -867,7 +901,7 @@
                 <div class="card-price">45,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('تیکتۆک شەخسی')">✨ نرخ و بینەری دڵخوازی خۆت بنووسە</div>
         <div class="notice-badge-red">
             تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -904,7 +938,7 @@
                 <div class="card-price">30,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('فەیسبووک')">✨ نرخ و بینەری دڵخوازی خۆت بنووسە</div>
         <div class="notice-badge-red" style="margin-top:16px;">
             <strong>تێبینی فەیسبووک:</strong> لە سپۆنسەری فەیسبووکتاندا، پێویستە لە ڕێگەی پەیجی فەیسبووکەکەوە ئێمە بکەن بە ئەدمین تا بتوانین کارەکانتان بۆ ڕێکبخەین. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -941,7 +975,7 @@
                 <div class="card-price">30,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('ئینستاگرام')">✨ نرخ و بینەری دڵخوازی خۆت بنووسە</div>
         <div class="notice-badge-red" style="margin-top:16px;">
             <strong>تێبینی ئینستاگرام:</strong> لە سپۆنسەر ئینستاگرام پێویستە ئینستاگرامەکەت کۆنێکت بێت بە پەیجێکی فەیسبوک دواتر لە پەیج فەیسبووکەکە ئەمان کەیت بە ئەدمین لە ڕێگەی پەیجی فەیسبووکەکە سپۆنسەر بۆ ئینستاگرامەکەت ئەکرێت و پەیجی فەیسبوکەکە تەنیا بۆ ئەوەیە سپۆنسەری ئینستاگرامەکە لای کەس دەرناکەوێت. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -1001,7 +1035,7 @@
                 <div class="card-price">50,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge">✨ هەتا ئەو نرخ و بینەرەی خۆت ئەتەوێت</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('سناپچات')">✨ نرخ و بینەری دڵخوازی خۆت بنووسە</div>
         <div class="notice-badge-red">
             تێبینی: لە سپۆنسەری سناپچات پێویستی بە پاسۆرد و وسێر نەیم سناپچاتەکەت ئەبێت. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -1198,90 +1232,90 @@ function addReview() {
 
 window.onload = loadReviews;
 
-// کۆدەکانی فۆڕمی داواکاری بۆ هەموو بەشەکان
 let currentOrder = { platform: '', package: '', price: '' };
+let selectedAges = [];
+
+function toggleAge(btn, ageValue) {
+    if (ageValue === 'هەمووی') {
+        selectedAges = ['هەمووی'];
+        document.querySelectorAll('.age-opt-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    } else {
+        const allIndex = selectedAges.indexOf('هەمووی');
+        if (allIndex > -1) {
+            selectedAges.splice(allIndex, 1);
+            document.querySelectorAll('.age-opt-btn').forEach(b => {
+                if (b.innerText === 'هەمووی') b.classList.remove('active');
+            });
+        }
+        
+        if (selectedAges.includes(ageValue)) {
+            selectedAges = selectedAges.filter(a => a !== ageValue);
+            btn.classList.remove('active');
+        } else {
+            selectedAges.push(ageValue);
+            btn.classList.add('active');
+        }
+    }
+    document.getElementById('order-age').value = selectedAges.join('، ');
+}
+
+function updateDaysDropdown(priceValue) {
+    const daysSelect = document.getElementById('order-days');
+    daysSelect.innerHTML = '';
+    
+    let maxDays = 8;
+    let priceNum = parseInt(priceValue.replace(/\D/g, '')) || 10000;
+
+    if (priceNum <= 10000) {
+        maxDays = 2;
+    } else if (priceNum <= 15000) {
+        maxDays = 3;
+    } else if (priceNum <= 20000) {
+        maxDays = 5;
+    } else if (priceNum <= 25000) {
+        maxDays = 6;
+    } else {
+        maxDays = 8;
+    }
+
+    for (let i = 1; i <= maxDays; i++) {
+        let opt = document.createElement('option');
+        opt.value = i + (i === 1 ? ' ڕۆژ' : ' ڕۆژ');
+        opt.innerText = i + (i === 1 ? ' ڕۆژ' : ' ڕۆژ');
+        opt.style.color = '#000';
+        daysSelect.appendChild(opt);
+    }
+}
 
 function openOrderModal(platform, packageName, price) {
     currentOrder.platform = platform;
     currentOrder.package = packageName;
     currentOrder.price = price;
     
-    document.getElementById('modal-title').innerText = `داواکاری ${platform}`;
+    document.getElementById('modal-title').innerText = `داواکاری ${platform} (${price})`;
     
-    // ئەگەر تیکتۆک بوو، بەشی هەڵبژاردنی (کورد/عەرەب) نیشان بدە
     if (platform.includes('تیکتۆک')) {
         document.getElementById('cities-group').style.display = 'none';
         document.getElementById('audience-group').style.display = 'block';
     } else {
-        // بۆ فەیسبووک و سناپچات و ئینستاگرام شوێنی نوسینی شارەکان نیشان بدە
         document.getElementById('cities-group').style.display = 'block';
         document.getElementById('audience-group').style.display = 'none';
     }
 
+    updateDaysDropdown(price);
     document.getElementById('order-modal-overlay').classList.add('show');
 }
 
-function closeOrderModal() {
-    document.getElementById('order-modal-overlay').classList.remove('show');
-}
-
-function submitOrder() {
-    const pageName = document.getElementById('order-page-name').value.trim();
-    const bizType = document.getElementById('order-biz-type').value.trim();
-    const gender = document.getElementById('order-gender').value;
-    const age = document.getElementById('order-age').value;
-    const payment = document.getElementById('order-payment').value;
+function openCustomOrderModal(platform) {
+    let customPriceInput = prompt("تکایە بڕی پارەی دڵخوازت بنووسە (کەمترین بڕی داواکاری ١٠,٠٠٠ دینارە):");
+    if (!customPriceInput || isNaN(customPriceInput.trim())) return;
     
-    let locationData = "";
-    let locationLabel = "";
+    let priceVal = parseInt(customPriceInput.trim());
 
-    // وەرگرتنی زانیاری ناوچە/شار بە پێی پلاتفۆرم
-    if (currentOrder.platform.includes('تیکتۆک')) {
-        locationData = document.getElementById('order-audience').value;
-        locationLabel = "بینەر";
-    } else {
-        locationData = document.getElementById('order-cities').value.trim();
-        locationLabel = "شارەکان";
-    }
-
-    if(!pageName || !bizType || !locationData || !gender || !age || !payment) {
-        alert('تکایە هەموو زانیارییەکان پڕبکەرەوە بە تەواوی');
+    if (priceVal < 10000) {
+        alert('کەمترین بڕی داواکاری ١٠,٠٠٠ دینارە! تکایە بڕێکی گەورەتر بنووسە.');
         return;
     }
 
-    const text = `سڵاو کورد ئەجێنسی، دەمەوێت داواکاریەکی نوێ بکەم:
-پلاتفۆرم: ${currentOrder.platform}
-پاکێج: ${currentOrder.package}
-نرخ: ${currentOrder.price}
----------
-ناوی پەیج: ${pageName}
-جۆری کار: ${bizType}
-${locationLabel}: ${locationData}
-ڕەگەز: ${gender}
-تەمەن: ${age}
-شێوازی پارەدان: ${payment}`;
-
-    const url = `https://wa.me/9647510386174?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
-    closeOrderModal();
-    
-    // سڕینەوەی زانیارییەکان پاش ناردن
-    document.getElementById('order-page-name').value = '';
-    document.getElementById('order-biz-type').value = '';
-    document.getElementById('order-cities').value = '';
-    
-    document.getElementById('order-audience').value = '';
-    document.getElementById('order-audience').style.color = '#94a3b8';
-    
-    document.getElementById('order-gender').value = '';
-    document.getElementById('order-gender').style.color = '#94a3b8';
-
-    document.getElementById('order-age').value = '';
-    document.getElementById('order-age').style.color = '#94a3b8';
-
-    document.getElementById('order-payment').value = '';
-    document.getElementById('order-payment').style.color = '#94a3b8';
-}
-</script>
-</body>
-</html>
+    let calcula
