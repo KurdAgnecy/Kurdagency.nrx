@@ -696,7 +696,7 @@
             </select>
         </div>
 
-        <div style="font-size: 0.85rem; color: #fca5a5; margin-bottom: 15px; text-align: justify; line-height: 1.6; font-weight: 700;">
+        <div style="font-size: 0.85rem; color: #fca5a5; margin-bottom: 15px; text-align: justify; line-height: 1.6; font-weight: 700;" id="modal-note">
             تێبینی ڕۆژی سپۆنەسەرەکان بە دیاری کردنی پارە ئەگۆڕێت و تکایە زانیاریەکان بە وردی پڕ بکەرەوە
         </div>
 
@@ -910,7 +910,7 @@
                 <div class="card-price">30,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('فەیسبووک')">✨ ئەگەر پێویستت بە بڕە پارەیکی دیاریکروە بۆ سپۆنسەر لێرە بینوسە بینەکانیش بنوسێ ئتۆتماتیکی</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('فەیسبووک')">تکایە نرخی دڵخوازت بنوسە زانیاریەکان بە وردی پڕ بکەرەوە</div>
         <div class="notice-badge-red" style="margin-top:16px;">
             <strong>تێبینی فەیسبووک:</strong> لە سپۆنسەری فەیسبووکتاندا، پێویستە لە ڕێگەی پەیجی فەیسبووکەکەوە ئێمە بکەن بە ئەدمین تا بتوانین کارەکانتان بۆ ڕێکبخەین. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -947,7 +947,7 @@
                 <div class="card-price">30,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('ئینستاگرام')">✨ ئەگەر پێویستت بە بڕە پارەیکی دیاریکروە بۆ سپۆنسەر لێرە بینوسە بینەکانیش بنوسێ ئتۆتماتیکی</div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('ئینستاگرام')">تکایە نرخی دڵخوازت بنوسە زانیاریەکان بە وردی پڕ بکەرەوە</div>
         <div class="notice-badge-red" style="margin-top:16px;">
             <strong>تێبینی ئینستاگرام:</strong> لە سپۆنسەر ئینستاگرام پێویستە ئینستاگرامەکەت کۆنێکت بێت بە پەیجێکی فەیسبوک دواتر لە پەیج فەیسبووکەکە ئەمان کەیت بە ئەدمین لە ڕێگەی پەیجی فەیسبووکەکە سپۆنسەر بۆ ئینستاگرامەکەت ئەکرێت و پەیجی فەیسبوکەکە تەنیا بۆ ئەوەیە سپۆنسەری ئینستاگرامەکە لای کەس دەرناکەوێت. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -1007,6 +1007,7 @@
                 <div class="card-price">50,000 IQD</div>
             </a>
         </div>
+        <div class="custom-request-badge" onclick="openCustomOrderModal('سناپچات')">تکایە نرخی دڵخوازت بنوسە زانیاریەکان بە وردی پڕ بکەرەوە</div>
         <div class="notice-badge-red">
             تێبینی: لە سپۆنسەری سناپچات پێویستی بە پاسۆرد و وسێر نەیم سناپچاتەکەت ئەبێت.
         </div>
@@ -1266,6 +1267,19 @@ function openOrderModal(platform, packageName, price) {
     
     document.getElementById('modal-title').innerText = `داواکاری ${platform} (${price})`;
     
+    // شاردنەوە یان نیشاندانی بەشی ڕۆژەکان و تێبینییەکان بەپێی پلاتفۆرم
+    const daysGroup = document.getElementById('days-select-group');
+    const modalNote = document.getElementById('modal-note');
+
+    if (platform.includes('تیکتۆک') || platform.includes('سناپچات')) {
+        daysGroup.style.display = 'none';
+        modalNote.style.display = 'none';
+    } else {
+        daysGroup.style.display = 'block';
+        modalNote.style.display = 'block';
+        updateDaysDropdown(price);
+    }
+
     if (platform.includes('تیکتۆک')) {
         document.getElementById('cities-group').style.display = 'none';
         document.getElementById('audience-group').style.display = 'block';
@@ -1274,24 +1288,23 @@ function openOrderModal(platform, packageName, price) {
         document.getElementById('audience-group').style.display = 'none';
     }
 
-    updateDaysDropdown(price);
     document.getElementById('order-modal-overlay').classList.add('show');
 }
 
 function openCustomOrderModal(platform) {
-    let customPriceInput = prompt("تکایە بڕی پارەی دڵخوازت بنووسە (کەمترین بڕی داواکاری ١٠,٠٠٠ دینارە):");
+    let minLimit = platform.includes('سناپچات') ? 25000 : 10000;
+    let customPriceInput = prompt(`تکایە بڕی پارەی دڵخوازت بنووسە (کەمترین بڕی داواکاری ${minLimit.toLocaleString()} دینارە):`);
     if (!customPriceInput || isNaN(customPriceInput.trim())) return;
     
     let priceVal = parseInt(customPriceInput.trim());
 
-    if (priceVal < 10000) {
-        alert('کەمترین بڕی داواکاری ١٠,٠٠٠ دینارە! تکایە بڕێکی گەورەتر بنووسە.');
+    if (priceVal < minLimit) {
+        alert(`کەمترین بڕی داواکاری بۆ ئەم خزمەتگوزارییە ${minLimit.toLocaleString()} دینارە! تکایە بڕێکی گەورەتر بنووسە.`);
         return;
     }
 
-    // هەژمارکردنی خۆکاری بینەرەکان بەپێی بڕی پارەکە بۆ فەیسبووک و ئینستاگرام
-    let minViews = Math.round((priceVal / 10000) * 2500);
-    let maxViews = Math.round((priceVal / 10000) * 10000);
+    let minViews = Math.round((priceVal / minLimit) * (platform.includes('سناپچات') ? 20000 : 2500));
+    let maxViews = Math.round((priceVal / minLimit) * (platform.includes('سناپچات') ? 50000 : 10000));
     let calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
 
     openOrderModal(platform, calculatedViews, priceVal.toLocaleString() + ' IQD');
@@ -1309,8 +1322,12 @@ function submitOrder() {
     const bizType = document.getElementById('order-biz-type').value.trim();
     const gender = document.getElementById('order-gender').value;
     const age = document.getElementById('order-age').value;
-    const days = document.getElementById('order-days').value;
     const payment = document.getElementById('order-payment').value;
+    
+    let days = "بەپێی پاکێج";
+    if (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات')) {
+        days = document.getElementById('order-days').value;
+    }
     
     let locationData = "";
     let locationLabel = "";
@@ -1323,17 +1340,21 @@ function submitOrder() {
         locationLabel = "شارەکان";
     }
 
-    if(!pageName || !bizType || !locationData || !gender || !age || !days || !payment) {
+    if(!pageName || !bizType || !locationData || !gender || !age || (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات') && !days) || !payment) {
         alert('تکایە هەموو زانیارییەکان پڕبکەرەوە بە تەواوی');
         return;
     }
 
-    const text = `سڵاو کورد ئەجێنسی، دەمەوێت داواکاریەکی نوێ بکەم:
+    let text = `سڵاو کورد ئەجێنسی، دەمەوێت داواکاریەکی نوێ بکەم:
 پلاتفۆرم: ${currentOrder.platform}
 پاکێج: ${currentOrder.package}
-نرخ: ${currentOrder.price}
-ماوەی سپۆنسەر: ${days}
----------
+نرخ: ${currentOrder.price}`;
+
+    if (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات')) {
+        text += `\nماوەی سپۆنسەر: ${days}`;
+    }
+
+    text += `\n---------
 ناوی پەیج: ${pageName}
 جۆری کار: ${bizType}
 ${locationLabel}: ${locationData}
