@@ -562,6 +562,7 @@
             color: #fff;
         }
 
+        /* ستایلی خانەکانی تەمەن و ڕۆژەکان */
         .age-options-grid {
             display: flex;
             flex-wrap: wrap;
@@ -687,7 +688,7 @@
             </select>
         </div>
 
-        <!-- تەمەن (فرە هەڵبژاردن) -->
+        <!-- تەمەن (دەتوانیت چەند تەمەنێک هەڵبژێریت) -->
         <div class="form-group">
             <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;">تەمەن دیاری بکە (دەتوانیت زیاتر لە یەکێک هەڵبژێریت)</label>
             <div class="age-options-grid">
@@ -701,10 +702,11 @@
             <input type="hidden" id="order-age" value="">
         </div>
 
-        <!-- ڕۆژەکانی سپۆنسەر -->
+        <!-- ڕۆژەکانی سپۆنسەر (خۆکار یان هەڵبژاردن) -->
         <div class="form-group" id="days-select-group">
-            <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;">چەند ڕۆژت دەوێت بۆ سپۆنسەر؟</label>
-            <select id="order-days" class="form-input" style="appearance: auto; cursor: pointer; color: #fff;">
+            <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;" id="days-label">چەند ڕۆژت دەوێت بۆ سپۆنسەر؟</label>
+            <select id="order-days" class="form-input" style="appearance: auto; cursor: pointer; color: #fff;" >
+                <!-- مۆدیۆلی ڕۆژەکان بە پێی نرخ لێرە دادەنرێت -->
             </select>
         </div>
 
@@ -1320,4 +1322,61 @@ function openCustomOrderModal(platform) {
     openOrderModal(platform, calculatedViews, priceVal.toLocaleString() + ' IQD');
 }
 
-function closeOrderMo
+function closeOrderModal() {
+    document.getElementById('order-modal-overlay').classList.remove('show');
+    selectedAges = [];
+    document.getElementById('order-age').value = '';
+    document.querySelectorAll('.age-opt-btn').forEach(b => b.classList.remove('active'));
+}
+
+function submitOrder() {
+    const pageName = document.getElementById('order-page-name').value.trim();
+    const bizType = document.getElementById('order-biz-type').value.trim();
+    const gender = document.getElementById('order-gender').value;
+    const age = document.getElementById('order-age').value;
+    const days = document.getElementById('order-days').value;
+    const payment = document.getElementById('order-payment').value;
+    
+    let locationData = "";
+    let locationLabel = "";
+
+    if (currentOrder.platform.includes('تیکتۆک')) {
+        locationData = document.getElementById('order-audience').value;
+        locationLabel = "بینەر";
+    } else {
+        locationData = document.getElementById('order-cities').value.trim();
+        locationLabel = "شارەکان";
+    }
+
+    if(!pageName || !bizType || !locationData || !gender || !age || !days || !payment) {
+        alert('تکایە هەموو زانیارییەکان پڕبکەرەوە بە تەواوی');
+        return;
+    }
+
+    const text = `سڵاو کورد ئەجێنسی، دەمەوێت داواکاریەکی نوێ بکەم:
+پلاتفۆرم: ${currentOrder.platform}
+پاکێج: ${currentOrder.package}
+نرخ: ${currentOrder.price}
+ماوەی سپۆنسەر: ${days}
+---------
+ناوی پەیج: ${pageName}
+جۆری کار: ${bizType}
+${locationLabel}: ${locationData}
+ڕەگەز: ${gender}
+تەمەن: ${age}
+شێوازی پارەدان: ${payment}`;
+
+    const url = `https://wa.me/9647510386174?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+    closeOrderModal();
+    
+    document.getElementById('order-page-name').value = '';
+    document.getElementById('order-biz-type').value = '';
+    document.getElementById('order-cities').value = '';
+    document.getElementById('order-audience').value = '';
+    document.getElementById('order-gender').value = '';
+    document.getElementById('order-payment').value = '';
+}
+</script>
+</body>
+</html>
