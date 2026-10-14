@@ -468,6 +468,7 @@
             cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
         }
         .submit-btn:hover { transform: translateY(-1px); }
+        .submit-btn:disabled { background: #334155; color: #64748b; cursor: not-allowed; box-shadow: none; }
 
         .reviews-list {
             margin-top: 20px; display: flex; flex-direction: column;
@@ -657,19 +658,19 @@
         </div>
         
         <div class="form-group">
-            <input type="text" id="order-page-name" class="form-input" placeholder="ناوی تەواوی پەیج">
+            <input type="text" id="order-page-name" class="form-input" placeholder="ناوی تەواوی پەیج" oninput="validateForm()">
         </div>
         
         <div class="form-group">
-            <input type="text" id="order-biz-type" class="form-input" placeholder="جۆری کارەکەی چییە">
+            <input type="text" id="order-biz-type" class="form-input" placeholder="جۆری کارەکەی چییە" oninput="validateForm()">
         </div>
         
         <div class="form-group" id="cities-group">
-            <input type="text" id="order-cities" class="form-input" placeholder="ئەو شارانەی ئەتەوێت سپۆنسەرەکە ببینن بینوسە">
+            <input type="text" id="order-cities" class="form-input" placeholder="ئەو شارانەی ئەتەوێت سپۆنسەرەکە ببینن بینوسە" oninput="validateForm()">
         </div>
         
         <div class="form-group" id="audience-group" style="display: none;">
-            <select id="order-audience" class="form-input" style="appearance: auto; cursor: pointer; color: #94a3b8;" onchange="this.style.color='#fff'">
+            <select id="order-audience" class="form-input" style="appearance: auto; cursor: pointer; color: #94a3b8;" onchange="this.style.color='#fff'; validateForm()">
                 <option value="" disabled selected hidden>بینەر دیاری بکە (کورد یان عەرەب)</option>
                 <option value="کورد" style="color: #000;">کورد</option>
                 <option value="عەرەب" style="color: #000;">عەرەب</option>
@@ -678,7 +679,7 @@
         </div>
 
         <div class="form-group">
-            <select id="order-gender" class="form-input" style="appearance: auto; cursor: pointer; color: #94a3b8;" onchange="this.style.color='#fff'">
+            <select id="order-gender" class="form-input" style="appearance: auto; cursor: pointer; color: #94a3b8;" onchange="this.style.color='#fff'; validateForm()">
                 <option value="" disabled selected hidden>ڕەگەز دیاری بکە</option>
                 <option value="هەردوو ڕەگەز" style="color: #000;">هەردوو ڕەگەز</option>
                 <option value="نێر" style="color: #000;">نێر (پیاوان)</option>
@@ -701,12 +702,12 @@
 
         <div class="form-group" id="days-select-group">
             <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;">چەند ڕۆژت دەوێت بۆ سپۆنسەر؟</label>
-            <select id="order-days" class="form-input" style="appearance: auto; cursor: pointer; color: #fff;">
+            <select id="order-days" class="form-input" style="appearance: auto; cursor: pointer; color: #fff;" onchange="validateForm()">
             </select>
         </div>
 
         <div class="form-group" style="margin-bottom: 12px;">
-            <select id="order-payment" class="form-input" style="appearance: auto; cursor: pointer; color: #94a3b8;" onchange="this.style.color='#fff'">
+            <select id="order-payment" class="form-input" style="appearance: auto; cursor: pointer; color: #94a3b8;" onchange="this.style.color='#fff'; validateForm()">
                 <option value="" disabled selected hidden>شێوزی پارەدان هەڵبژێرە</option>
                 <option value="FIB" style="color: #000;">FIB</option>
                 <option value="FASTPAY" style="color: #000;">FASTPAY</option>
@@ -715,11 +716,31 @@
             </select>
         </div>
 
+        <!-- Added Notice 1: Views prediction info -->
+        <div style="font-size: 0.85rem; color: #38bdf8; margin-bottom: 12px; text-align: justify; line-height: 1.5; font-weight: 700; background: rgba(56,189,248,0.08); padding: 10px; border-radius: 10px;" id="modal-views-note">
+        </div>
+
+        <!-- Added Notice 2: Engagement disclaimer -->
+        <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 12px; text-align: justify; line-height: 1.5; font-weight: 600; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);">
+            نامە و لایک و کۆمێنت و فۆڵۆو بەدەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن، ئەوان بڕیار ئەدەن ئەو شتانە بکەن یان نا.
+        </div>
+
+        <!-- Added Checkbox for Terms -->
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; background: rgba(234, 179, 8, 0.06); padding: 10px; border-radius: 10px; border: 1px solid rgba(234, 179, 8, 0.2);">
+            <input type="checkbox" id="terms-check" style="width: 18px; height: 18px; cursor: pointer; accent-color: #38bdf8;" onchange="validateForm()">
+            <label for="terms-check" style="color: #fef08a; font-size: 0.88rem; font-weight: 700; cursor: pointer; user-select: none;">من ڕەزامەندم بە مەرج و ڕێنماییەکان</label>
+        </div>
+
         <div style="font-size: 0.85rem; color: #fca5a5; margin-bottom: 15px; text-align: justify; line-height: 1.6; font-weight: 700;" id="modal-note">
             تێبینی ڕۆژی سپۆنەسەرەکان بە دیاری کردنی پارە ئەگۆڕێت و تکایە زانیاریەکان بە وردی پڕ بکەرەوە
         </div>
 
-        <button class="submit-btn" onclick="submitOrder()">ناردنی داواکاری بۆ وەتسئەپ</button>
+        <!-- Added Ending Banner Message -->
+        <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(14, 165, 233, 0.25)); border: 1px solid rgba(56, 189, 248, 0.35); padding: 12px; border-radius: 12px; text-align: center; color: #fff; font-size: 0.85rem; font-weight: 800; margin-bottom: 15px; box-shadow: inset 0 2px 8px rgba(56, 189, 248, 0.1);">
+            سوپاس بۆ هەڵبژاردنی کوڕد ئەجێنسی، ئەوەی لە توانای ئێمە بێت پێشکەشتان ئەکەین، قزانجی ئێوە قازانجی ئێمەیە
+        </div>
+
+        <button class="submit-btn" id="submit-order-btn" onclick="submitOrder()" disabled>ناردنی داواکاری بۆ وەتسئەپ</button>
     </div>
 </div>
 
@@ -1266,6 +1287,7 @@ function toggleAge(btn, ageValue) {
         }
     }
     document.getElementById('order-age').value = selectedAges.join('، ');
+    validateForm();
 }
 
 function updateDaysDropdown(priceValue) {
@@ -1303,6 +1325,16 @@ function openOrderModal(platform, packageName, price) {
     
     document.getElementById('modal-title').innerText = `داواکاری ${platform} (${price})`;
     
+    // Set dynamic views note text based on platform
+    const viewsNoteEl = document.getElementById('modal-views-note');
+    if (platform.includes('تیکتۆک')) {
+        viewsNoteEl.innerText = "ئەم ڤیوانە کە نوسراون پێشبینی کراون لەلایەن شەریکەی تیکتۆکەوە، هەندێک جار ڤیوەکان زۆر زیاتر ئەبێت لەوەی کە نوسراوە هەندێک جار کەمتر.";
+    } else if (platform.includes('فەیسبووک') || platform.includes('ئینستاگرام')) {
+        viewsNoteEl.innerText = "ئەم ڤیوانە کە نوسراون پێشبینی کراون لەلایەن شەریکەی مێتاوە، هەندێک جار ڤیوەکان زۆر زیاتر ئەبێت لەوەی کە نوسراوە هەندێک جار کەمتر.";
+    } else {
+        viewsNoteEl.innerText = "ئەم ڤیوانە کە نوسراون پێشبینی کراون، هەندێک جار ڤیوەکان زۆر زیاتر ئەبێت لەوەی کە نوسراوە هەندێک جار کەمتر.";
+    }
+
     const daysGroup = document.getElementById('days-select-group');
     const modalNote = document.getElementById('modal-note');
 
@@ -1323,6 +1355,19 @@ function openOrderModal(platform, packageName, price) {
         document.getElementById('audience-group').style.display = 'none';
     }
 
+    // Reset form fields and validation state
+    document.getElementById('order-page-name').value = '';
+    document.getElementById('order-biz-type').value = '';
+    document.getElementById('order-cities').value = '';
+    document.getElementById('order-audience').value = '';
+    document.getElementById('order-gender').value = '';
+    document.getElementById('order-payment').value = '';
+    document.getElementById('terms-check').checked = false;
+    selectedAges = [];
+    document.getElementById('order-age').value = '';
+    document.querySelectorAll('.age-opt-btn').forEach(b => b.classList.remove('active'));
+
+    validateForm();
     document.getElementById('order-modal-overlay').classList.add('show');
 }
 
@@ -1375,12 +1420,42 @@ function closeOrderModal() {
     document.querySelectorAll('.age-opt-btn').forEach(b => b.classList.remove('active'));
 }
 
+function validateForm() {
+    const pageName = document.getElementById('order-page-name').value.trim();
+    const bizType = document.getElementById('order-biz-type').value.trim();
+    const gender = document.getElementById('order-gender').value;
+    const age = document.getElementById('order-age').value;
+    const payment = document.getElementById('order-payment').value;
+    const termsChecked = document.getElementById('terms-check').checked;
+    
+    let days = "بەپێی پاکێج";
+    if (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات')) {
+        days = document.getElementById('order-days').value;
+    }
+    
+    let locationData = "";
+    if (currentOrder.platform.includes('تیکتۆک')) {
+        locationData = document.getElementById('order-audience').value;
+    } else {
+        locationData = document.getElementById('order-cities').value.trim();
+    }
+
+    const submitBtn = document.getElementById('submit-order-btn');
+
+    if (pageName && bizType && locationData && gender && age && (currentOrder.platform.includes('تیکتۆک') || currentOrder.platform.includes('سناپچات') || days) && payment && termsChecked) {
+        submitBtn.disabled = false;
+    } else {
+        submitBtn.disabled = true;
+    }
+}
+
 function submitOrder() {
     const pageName = document.getElementById('order-page-name').value.trim();
     const bizType = document.getElementById('order-biz-type').value.trim();
     const gender = document.getElementById('order-gender').value;
     const age = document.getElementById('order-age').value;
     const payment = document.getElementById('order-payment').value;
+    const termsChecked = document.getElementById('terms-check').checked;
     
     let days = "بەپێی پاکێج";
     if (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات')) {
@@ -1398,8 +1473,8 @@ function submitOrder() {
         locationLabel = "شارەکان";
     }
 
-    if(!pageName || !bizType || !locationData || !gender || !age || (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات') && !days) || !payment) {
-        alert('تکایە هەموو زانیارییەکان پڕبکەرەوە بە تەواوی');
+    if(!pageName || !bizType || !locationData || !gender || !age || (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات') && !days) || !payment || !termsChecked) {
+        alert('تکایە هەموو زانیارییەکان پڕبکەرەوە و ڕەزامەندی لەسەر مەرجەکان بدە');
         return;
     }
 
@@ -1418,18 +1493,12 @@ function submitOrder() {
 ${locationLabel}: ${locationData}
 ڕەگەز: ${gender}
 تەمەن: ${age}
-شێوازی پارەدان: ${payment}`;
+شێوازی پارەدان: ${payment}
+ڕەزامەندی مەرجەکان: وەرگیراوە`;
 
     const url = `https://wa.me/9647510386174?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
     closeOrderModal();
-    
-    document.getElementById('order-page-name').value = '';
-    document.getElementById('order-biz-type').value = '';
-    document.getElementById('order-cities').value = '';
-    document.getElementById('order-audience').value = '';
-    document.getElementById('order-gender').value = '';
-    document.getElementById('order-payment').value = '';
 }
 </script>
 </body>
