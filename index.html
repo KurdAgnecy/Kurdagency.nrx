@@ -223,6 +223,18 @@
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
         }
 
+        .top-instruction-badge {
+            text-align: center;
+        }
+        .animated-finger {
+            display: inline-block;
+            animation: bounceUpDown 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes bounceUpDown {
+            0% { transform: translateY(-4px); }
+            100% { transform: translateY(4px); }
+        }
+
         /* --- New Grid Layout for Platforms --- */
         .platform-selection-title {
             text-align: center;
@@ -419,40 +431,26 @@
             line-height: 1.6;
         }
 
-        .custom-request-badge {
-            background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(217, 119, 6, 0.2));
-            border: 1px solid rgba(234, 179, 8, 0.4);
-            color: #fef08a;
-            text-align: center;
-            font-weight: bold;
+        /* Inline custom price estimator styles */
+        .inline-estimator-container {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0.05), rgba(217, 119, 6, 0.1));
+            border: 1px dashed rgba(234, 179, 8, 0.4);
+            padding: 15px;
+            border-radius: 16px;
             margin-top: 15px;
-            padding: 14px 16px;
-            border-radius: 14px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(234, 179, 8, 0.1);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
         }
-        .custom-request-badge:hover {
-            background: linear-gradient(135deg, rgba(234, 179, 8, 0.25), rgba(217, 119, 6, 0.3));
-            border-color: #eab308;
-            transform: translateY(-1px);
-        }
-
-        .animated-arrow {
-            display: inline-block;
-            animation: moveArrow 1s infinite alternate;
+        .inline-estimator-title {
             color: #fef08a;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-align: center;
         }
-
-        @keyframes moveArrow {
-            0% { transform: translateX(4px); }
-            100% { transform: translateX(-4px); }
+        .inline-estimator-flex {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
         }
 
         .packages-grid { display: flex; flex-direction: column; gap: 12px; }
@@ -767,6 +765,8 @@
         body.light-theme .menu-btn span { background: #0f172a; }
         body.light-theme .faq-item { background: #ffffff; border-color: #cbd5e1; }
         body.light-theme .faq-item p { color: #334155; }
+        body.light-theme .inline-estimator-container { background: #fef9c3; border-color: #fde047; }
+        body.light-theme .inline-estimator-title { color: #854d0e; }
     </style>
 </head>
 <body>
@@ -834,15 +834,14 @@
             <button onclick="closeOrderModal()" style="background:rgba(239, 68, 68, 0.1); border:1px solid rgba(239,68,68,0.3); color:#ef4444; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; line-height:1; cursor:pointer; transition:0.2s;">&times;</button>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="group-page-name">
             <input type="text" id="order-page-name" class="form-input" placeholder="ناوی تەواوی پەیج" oninput="validateForm()">
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="group-biz-type">
             <input type="text" id="order-biz-type" class="form-input" placeholder="جۆری کارەکەی چییە" oninput="validateForm()">
         </div>
 
-        <!-- NEW FIELD: Link for Insta/FB/TikTok Likes -->
         <div class="form-group" id="post-link-group" style="display: none;">
             <input type="url" id="order-post-link" class="form-input" placeholder="لینکی ئەو پۆستەی ئەتەوێت سپۆنسەری/لایکی بۆ بکرێت" oninput="validateForm()">
         </div>
@@ -860,7 +859,7 @@
             </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="group-gender">
             <select id="order-gender" class="form-input" onchange="this.classList.add('selected'); validateForm()">
                 <option value="" disabled selected hidden>ڕەگەز دیاری بکە</option>
                 <option value="هەردوو ڕەگەز">هەردوو ڕەگەز</option>
@@ -869,7 +868,7 @@
             </select>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="group-age">
             <label style="color:#cbd5e1; font-size:0.85rem; font-weight:700; display:block; margin-bottom:8px;">تەمەن دیاری بکە (دەتوانیت زیاتر لە یەکێک هەڵبژێریت)</label>
             <div class="age-options-grid">
                 <button type="button" class="age-opt-btn" onclick="toggleAge(this, 'هەمووی')">هەمووی</button>
@@ -888,7 +887,6 @@
             </select>
         </div>
 
-        <!-- NEW FIELD: Contact Method for Tiktok Biz -->
         <div class="form-group" id="contact-method-group" style="display: none;">
             <select id="order-contact-method" class="form-input" onchange="this.classList.add('selected'); handleContactMethodChange(); validateForm()">
                 <option value="" disabled selected hidden>لە ڕێگەی چیەوە پەیوەندی بکەن پێتەوە ؟</option>
@@ -903,7 +901,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="group-payment">
             <select id="order-payment" class="form-input" onchange="this.classList.add('selected'); validateForm()">
                 <option value="" disabled selected hidden>شێوزی پارەدان هەڵبژێرە</option>
                 <option value="FIB">FIB</option>
@@ -921,7 +919,6 @@
             نامە و لایک و کۆمێنت و فۆڵۆو بەدەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن، ئەوان بڕیار ئەدەن ئەو شتانە بکەن یان نا.
         </div>
 
-        <!-- NEW FIELD: Time disclaimer based on platform -->
         <div class="disclaimer-box" id="time-disclaimer" style="color: #fca5a5; background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.15);">
             <!-- Text injected dynamically -->
         </div>
@@ -964,8 +961,8 @@
     <div class="header">
         <div class="main-title lang-text" data-ku="نرخ و خزمەتگوزاریەکانی کورد ئەجێنسی ببینە داوای بکە" data-en="Explore and Order Kurd Agency Services" data-ar="استكشف واطلب خدمات وكالة كورد">نرخ و خزمەتگوزاریەکانی کورد ئەجێنسی ببینە داوای بکە</div>
         <div class="top-instruction-badge" style="margin-top: 15px;">
-            <span class="hand-pointer">👇</span>
-            <span class="lang-text" data-ku="پلاتفۆرم هەڵبژێرە و داواکارییەکەت بنێرە" data-en="Select Platform and Send Order" data-ar="اختر المنصة وأرسل طلبك">پلاتفۆرم هەڵبژێرە و داواکارییەکەت بنێرە</span>
+            <span class="animated-finger" id="instruction-icon">👇</span>
+            <span class="lang-text" id="instruction-text" data-ku="پلاتفۆرم هەڵبژێرە و داواکارییەکەت بنێرە" data-en="Select Platform and Send Order" data-ar="اختر المنصة وأرسل طلبك">پلاتفۆرم هەڵبژێرە و داواکارییەکەت بنێرە</span>
         </div>
     </div>
 
@@ -1187,10 +1184,20 @@
                 <div class="card-price">65,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('تیکتۆک بزنس')">
-            <span class="lang-text" data-ku="نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە" data-en="Enter custom amount & view estimate to order" data-ar="أدخل المبلغ المقدر واطلب">نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە</span>
-            <span class="animated-arrow">➔</span>
+
+        <div class="inline-estimator-container">
+            <div class="inline-estimator-title">نرخی دڵخوازت بنوسە و داوای بکە</div>
+            <div class="inline-estimator-flex">
+                <input type="number" id="inline-calc-tk-biz" class="form-input" placeholder="بڕی پارە (کەمترین ١٥,٠٠٠)">
+                <button class="submit-btn" style="width: auto; padding: 0 15px;" onclick="calcCustomPrice('تیکتۆک بزنس', 'inline-calc-tk-biz', 'inline-res-tk-biz', 'inline-view-tk-biz', 15000)">پێشبینی</button>
+            </div>
+            <div id="inline-res-tk-biz" style="display: none; text-align: center; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px;">
+                <div style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">بینەری پێشبینیکراو:</div>
+                <div id="inline-view-tk-biz" style="color: #38bdf8; font-weight: 900; font-size: 1.1rem; margin-bottom: 10px;"></div>
+                <button class="submit-btn" style="padding: 10px; font-size: 0.95rem;" onclick="orderCustomPrice('تیکتۆک بزنس', 'inline-calc-tk-biz', 'inline-view-tk-biz')">داواکردنی ئەم بڕە</button>
+            </div>
         </div>
+
         <div class="notice-badge-red lang-text" data-ku="تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن." data-en="Note: Exact cities cannot be guaranteed in TikTok ads, but we can target Kurdish/Arabic audiences. Engagement depends on the viewers." data-ar="ملاحظة: لا يمكن تحديد المدن بدقة في تيك توك، ولكن يمكننا استهداف المشاهدين الأكراد/العرب. التفاعل يعتمد على المشاهدين.">
             تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
         </div>
@@ -1246,10 +1253,20 @@
                 <div class="card-price">45,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('تیکتۆک شەخسی')">
-            <span class="lang-text" data-ku="نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە" data-en="Enter custom amount & view estimate to order" data-ar="أدخل المبلغ المقدر واطلب">نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە</span>
-            <span class="animated-arrow">➔</span>
+
+        <div class="inline-estimator-container">
+            <div class="inline-estimator-title">نرخی دڵخوازت بنوسە و داوای بکە</div>
+            <div class="inline-estimator-flex">
+                <input type="number" id="inline-calc-tk-pers" class="form-input" placeholder="بڕی پارە (کەمترین ١٢,٠٠٠)">
+                <button class="submit-btn" style="width: auto; padding: 0 15px;" onclick="calcCustomPrice('تیکتۆک شەخسی', 'inline-calc-tk-pers', 'inline-res-tk-pers', 'inline-view-tk-pers', 12000)">پێشبینی</button>
+            </div>
+            <div id="inline-res-tk-pers" style="display: none; text-align: center; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px;">
+                <div style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">بینەری پێشبینیکراو:</div>
+                <div id="inline-view-tk-pers" style="color: #38bdf8; font-weight: 900; font-size: 1.1rem; margin-bottom: 10px;"></div>
+                <button class="submit-btn" style="padding: 10px; font-size: 0.95rem;" onclick="orderCustomPrice('تیکتۆک شەخسی', 'inline-calc-tk-pers', 'inline-view-tk-pers')">داواکردنی ئەم بڕە</button>
+            </div>
         </div>
+
         <div class="notice-badge-red lang-text" data-ku="تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن." data-en="Note: Exact cities cannot be guaranteed in TikTok ads, but we can target Kurdish/Arabic audiences. Engagement depends on the viewers." data-ar="ملاحظة: لا يمكن تحديد المدن بدقة في تيك توك، ولكن يمكننا استهداف المشاهدين الأكراد/العرب. التفاعل يعتمد على المشاهدين.">
             تێبینی: لە سپۆنسەری تیکتۆک ناتوانرێت شارەکان دیاری بکرێت سەد لە سەد بەڵام ئەتوانین وا بکەین هەموو بینەرەکان کورد بن یان عەرەب یان هەردوکی کورد و عەرەب وە لایک و کۆمێنت و فۆڵۆو بە دەست ئەو کەسانەیە کە سپۆنسەرەکە ئەبینن.
         </div>
@@ -1309,9 +1326,18 @@
                 <div class="card-price">13,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('زیادکردنی لایکی تیکتۆک')">
-            <span class="lang-text" data-ku="نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە" data-en="Enter custom amount & view estimate to order" data-ar="أدخل المبلغ المقدر واطلب">نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە</span>
-            <span class="animated-arrow">➔</span>
+
+        <div class="inline-estimator-container">
+            <div class="inline-estimator-title">نرخی دڵخوازت بنوسە و داوای بکە</div>
+            <div class="inline-estimator-flex">
+                <input type="number" id="inline-calc-tk-likes" class="form-input" placeholder="بڕی پارە (کەمترین ٢,٥٠٠)">
+                <button class="submit-btn" style="width: auto; padding: 0 15px;" onclick="calcCustomPrice('زیادکردنی لایکی تیکتۆک', 'inline-calc-tk-likes', 'inline-res-tk-likes', 'inline-view-tk-likes', 2500)">پێشبینی</button>
+            </div>
+            <div id="inline-res-tk-likes" style="display: none; text-align: center; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px;">
+                <div style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">پێشبینیکراو:</div>
+                <div id="inline-view-tk-likes" style="color: #38bdf8; font-weight: 900; font-size: 1.1rem; margin-bottom: 10px;"></div>
+                <button class="submit-btn" style="padding: 10px; font-size: 0.95rem;" onclick="orderCustomPrice('زیادکردنی لایکی تیکتۆک', 'inline-calc-tk-likes', 'inline-view-tk-likes')">داواکردنی ئەم بڕە</button>
+            </div>
         </div>
     </div>
 
@@ -1353,10 +1379,20 @@
                 <div class="card-price">30,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('فەیسبووک')">
-            <span class="lang-text" data-ku="نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە" data-en="Enter custom amount & view estimate to order" data-ar="أدخل المبلغ المقدر واطلب">نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە</span>
-            <span class="animated-arrow">➔</span>
+
+        <div class="inline-estimator-container">
+            <div class="inline-estimator-title">نرخی دڵخوازت بنوسە و داوای بکە</div>
+            <div class="inline-estimator-flex">
+                <input type="number" id="inline-calc-fb" class="form-input" placeholder="بڕی پارە (کەمترین ١٠,٠٠٠)">
+                <button class="submit-btn" style="width: auto; padding: 0 15px;" onclick="calcCustomPrice('فەیسبووک', 'inline-calc-fb', 'inline-res-fb', 'inline-view-fb', 10000)">پێشبینی</button>
+            </div>
+            <div id="inline-res-fb" style="display: none; text-align: center; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px;">
+                <div style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">بینەری پێشبینیکراو:</div>
+                <div id="inline-view-fb" style="color: #38bdf8; font-weight: 900; font-size: 1.1rem; margin-bottom: 10px;"></div>
+                <button class="submit-btn" style="padding: 10px; font-size: 0.95rem;" onclick="orderCustomPrice('فەیسبووک', 'inline-calc-fb', 'inline-view-fb')">داواکردنی ئەم بڕە</button>
+            </div>
         </div>
+
         <div class="notice-badge-red lang-text" style="margin-top:16px;" data-ku="<strong>تێبینی فەیسبووک:</strong> لە سپۆنسەری فەیسبووکتاندا، پێویستە لە ڕێگەی پەیجی فەیسبووکەکەوە ئێمە بکەن بە ئەدمین تا بتوانین کارەکانتان بۆ ڕێکبخەین. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت." data-en="<strong>Facebook Note:</strong> You must make us an admin on your page to manage ads. Sponsorship duration depends on budget." data-ar="<strong>ملاحظة فيسبوك:</strong> يجب أن تجعلنا مسؤولين في صفحتك لإدارة الإعلانات. مدة الرعاية تعتمد على الميزانية.">
             <strong>تێبینی فەیسبووک:</strong> لە سپۆنسەری فەیسبووکتاندا، پێویستە لە ڕێگەی پەیجی فەیسبووکەکەوە ئێمە بکەن بە ئەدمین تا بتوانین کارەکانتان بۆ ڕێکبخەین. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -1400,10 +1436,20 @@
                 <div class="card-price">30,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('ئینستاگرام')">
-            <span class="lang-text" data-ku="نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە" data-en="Enter custom amount & view estimate to order" data-ar="أدخل المبلغ المقدر واطلب">نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە</span>
-            <span class="animated-arrow">➔</span>
+
+        <div class="inline-estimator-container">
+            <div class="inline-estimator-title">نرخی دڵخوازت بنوسە و داوای بکە</div>
+            <div class="inline-estimator-flex">
+                <input type="number" id="inline-calc-ig" class="form-input" placeholder="بڕی پارە (کەمترین ١٠,٠٠٠)">
+                <button class="submit-btn" style="width: auto; padding: 0 15px;" onclick="calcCustomPrice('ئینستاگرام', 'inline-calc-ig', 'inline-res-ig', 'inline-view-ig', 10000)">پێشبینی</button>
+            </div>
+            <div id="inline-res-ig" style="display: none; text-align: center; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px;">
+                <div style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">بینەری پێشبینیکراو:</div>
+                <div id="inline-view-ig" style="color: #38bdf8; font-weight: 900; font-size: 1.1rem; margin-bottom: 10px;"></div>
+                <button class="submit-btn" style="padding: 10px; font-size: 0.95rem;" onclick="orderCustomPrice('ئینستاگرام', 'inline-calc-ig', 'inline-view-ig')">داواکردنی ئەم بڕە</button>
+            </div>
         </div>
+
         <div class="notice-badge-red lang-text" style="margin-top:16px;" data-ku="<strong>تێبینی ئینستاگرام:</strong> لە سپۆنسەر ئینستاگرام پێویستە ئینستاگرامەکەت کۆنێکت بێت بە پەیجێکی فەیسبوک دواتر لە پەیج فەیسبووکەکە ئەمان کەیت بە ئەدمین لە ڕێگەی پەیجی فەیسبووکەکە سپۆنسەر بۆ ئینستاگرامەکەت ئەکرێت و پەیجی فەیسبوکەکە تەنیا بۆ ئەوەیە سپۆنسەری ئینستاگرامەکە لای کەس دەرناکەوێت. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت." data-en="<strong>Instagram Note:</strong> Your IG must be connected to a FB page, and you must make us admin on that FB page. Ads are run through FB but only show on IG." data-ar="<strong>ملاحظة إنستغرام:</strong> يجب ربط حسابك بصفحة فيسبوك وجعلنا مسؤولين عليها لتشغيل الإعلانات عبرها لإنستغرام فقط.">
             <strong>تێبینی ئینستاگرام:</strong> لە سپۆنسەر ئینستاگرام پێویستە ئینستاگرامەکەت کۆنێکت بێت بە پەیجێکی فەیسبوک دواتر لە پەیج فەیسبووکەکە ئەمان کەیت بە ئەدمین لە ڕێگەی پەیجی فەیسبووکەکە سپۆنسەر بۆ ئینستاگرامەکەت ئەکرێت و پەیجی فەیسبوکەکە تەنیا بۆ ئەوەیە سپۆنسەری ئینستاگرامەکە لای کەس دەرناکەوێت. وە ڕۆژی سپۆنسەرەکان بە پێی پارەکان دیاری ئەکرێت.
         </div>
@@ -1470,10 +1516,20 @@
                 <div class="card-price">50,000 IQD</div>
             </a>
         </div>
-        <div class="custom-request-badge" onclick="openCustomOrderModal('سناپچات')">
-            <span class="lang-text" data-ku="نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە" data-en="Enter custom amount & view estimate to order" data-ar="أدخل المبلغ المقدر واطلب">نرخی دڵخوازت بنوسە و بینەری پێشبینی کراو ببینە داوای بکە</span>
-            <span class="animated-arrow">➔</span>
+
+        <div class="inline-estimator-container">
+            <div class="inline-estimator-title">نرخی دڵخوازت بنوسە و داوای بکە</div>
+            <div class="inline-estimator-flex">
+                <input type="number" id="inline-calc-snap" class="form-input" placeholder="بڕی پارە (کەمترین ٢٥,٠٠٠)">
+                <button class="submit-btn" style="width: auto; padding: 0 15px;" onclick="calcCustomPrice('سناپچات', 'inline-calc-snap', 'inline-res-snap', 'inline-view-snap', 25000)">پێشبینی</button>
+            </div>
+            <div id="inline-res-snap" style="display: none; text-align: center; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px;">
+                <div style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 5px;">بینەری پێشبینیکراو:</div>
+                <div id="inline-view-snap" style="color: #38bdf8; font-weight: 900; font-size: 1.1rem; margin-bottom: 10px;"></div>
+                <button class="submit-btn" style="padding: 10px; font-size: 0.95rem;" onclick="orderCustomPrice('سناپچات', 'inline-calc-snap', 'inline-view-snap')">داواکردنی ئەم بڕە</button>
+            </div>
         </div>
+
         <div class="notice-badge-red lang-text" data-ku="تێبینی: لە سپۆنسەری سناپچات پێویستی بە پاسۆرد و وسێرنەیم سناپچاتەکەت نابێت." data-en="Note: Snapchat sponsorship does not require your Snapchat username or password." data-ar="ملاحظة: رعاية سناب شات لا تتطلب اسم المستخدم أو كلمة المرور الخاصة بك.">
             تێبینی: لە سپۆنسەری سناپچات پێویستی بە پاسۆرد و وسێرنەیم سناپچاتەکەت نابێت.
         </div>
@@ -1610,7 +1666,6 @@ function toggleCollapse(id) {
     }
 }
 
-// Language and Theme Functions
 function changeLanguage(lang) {
     document.documentElement.dir = (lang === 'en') ? 'ltr' : 'rtl';
     document.querySelectorAll('.lang-text').forEach(el => {
@@ -1636,6 +1691,16 @@ function openPlatform(sectionId) {
     }
     document.getElementById(sectionId).classList.add("active");
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Dynamic Top Instruction Update
+    const instrText = document.getElementById('instruction-text');
+    if (sectionId !== 'main-platforms-grid' && sectionId !== 'payment-tab' && sectionId !== 'feedback-tab' && sectionId !== 'estimator-tab' && sectionId !== 'terms-tab' && sectionId !== 'faq-tab') {
+        instrText.setAttribute('data-ku', 'ئەو داواکاریەی ئەتەوێت پەنجەی لێبە و زانیاریەکان پڕبکەرەوە');
+        instrText.innerHTML = 'ئەو داواکاریەی ئەتەوێت پەنجەی لێبە و زانیاریەکان پڕبکەرەوە';
+    } else {
+        instrText.setAttribute('data-ku', 'پلاتفۆرم هەڵبژێرە و داواکارییەکەت بنێرە');
+        instrText.innerHTML = 'پلاتفۆرم هەڵبژێرە و داواکارییەکەت بنێرە';
+    }
 }
 
 function backToMain() {
@@ -1646,9 +1711,57 @@ function backToMain() {
     }
     document.getElementById("main-platforms-grid").classList.add("active");
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const instrText = document.getElementById('instruction-text');
+    instrText.setAttribute('data-ku', 'پلاتفۆرم هەڵبژێرە و داواکارییەکەت بنێرە');
+    instrText.innerHTML = 'پلاتفۆرم هەڵبژێرە و داواکارییەکەت بنێرە';
 }
 
-// Auto Estimator Logic
+function calcCustomPrice(platform, inputId, resultDivId, viewsSpanId, minPrice) {
+    let priceVal = parseInt(document.getElementById(inputId).value);
+    if (!priceVal || isNaN(priceVal)) {
+        alert('تکایە بڕی پارەکە بە دروستی بنووسە.');
+        return;
+    }
+    if (priceVal < minPrice) {
+        alert(`کەمترین بڕی داواکاری بۆ ئەم بەشە ${minPrice.toLocaleString()} دینارە.`);
+        return;
+    }
+
+    let calculatedViews = "";
+    if (platform.includes('سناپچات')) {
+        let minViews = Math.round((priceVal / 25000) * 20000);
+        let maxViews = Math.round((priceVal / 25000) * 50000);
+        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    } else if (platform.includes('تیکتۆک بزنس')) {
+        let minViews = Math.round((priceVal / 15000) * 15000);
+        let maxViews = Math.round((priceVal / 15000) * 30000);
+        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    } else if (platform.includes('تیکتۆک شەخسی')) {
+        let minViews = Math.round((priceVal / 12000) * 15000);
+        let maxViews = Math.round((priceVal / 12000) * 30000);
+        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    } else if (platform.includes('زیادکردنی لایکی تیکتۆک')) {
+        let minLikes = Math.round((priceVal / 2500) * 650);
+        let maxLikes = Math.round((priceVal / 2500) * 2000);
+        calculatedViews = `${minLikes.toLocaleString()} لایک بۆ ${maxLikes.toLocaleString()} لایک`;
+    } else {
+        let minViews = Math.round((priceVal / 10000) * 2500);
+        let maxViews = Math.round((priceVal / 10000) * 8000);
+        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
+    }
+
+    document.getElementById(viewsSpanId).innerText = calculatedViews;
+    document.getElementById(resultDivId).style.display = 'block';
+}
+
+function orderCustomPrice(platform, inputId, viewsSpanId) {
+    let priceVal = parseInt(document.getElementById(inputId).value);
+    let calculatedViews = document.getElementById(viewsSpanId).innerText;
+    openOrderModal(platform, calculatedViews, priceVal.toLocaleString() + ' IQD');
+}
+
+// Keep generic estimator logic valid for the separated estimator tab
 function calculateAutoEstimate() {
     let priceInput = document.getElementById('calc-amount').value;
     if (!priceInput || isNaN(priceInput)) {
@@ -1878,7 +1991,6 @@ function openOrderModal(platform, packageName, price) {
         timeDisclaimerEl.innerText = "پاش داواکردن، ماوەیەک پێویستە تا سپۆنسەرەکەت چالاک دەبێت.";
     }
 
-    // Hide or Show Engagement Disclaimer for Snapchat
     if (platform.includes('سناپچات') || platform.includes('زیادکردنی لایکی تیکتۆک')) {
         document.getElementById('engagement-disclaimer').style.display = 'none';
     } else {
@@ -1888,38 +2000,59 @@ function openOrderModal(platform, packageName, price) {
     const daysGroup = document.getElementById('days-select-group');
     const modalNote = document.getElementById('modal-note');
 
-    if (platform.includes('تیکتۆک') || platform.includes('سناپچات')) {
+    if (platform === 'زیادکردنی لایکی تیکتۆک') {
+        document.getElementById('group-biz-type').style.display = 'none';
+        document.getElementById('group-gender').style.display = 'none';
+        document.getElementById('group-age').style.display = 'none';
+        document.getElementById('cities-group').style.display = 'none';
+        document.getElementById('audience-group').style.display = 'none';
+        document.getElementById('contact-method-group').style.display = 'none';
         daysGroup.style.display = 'none';
         modalNote.style.display = 'none';
-    } else {
-        daysGroup.style.display = 'block';
-        modalNote.style.display = 'block';
-        updateDaysDropdown(price);
-    }
 
-    if (platform.includes('تیکتۆک')) {
-        document.getElementById('cities-group').style.display = 'none';
-        document.getElementById('audience-group').style.display = 'block';
+        document.getElementById('group-page-name').style.display = 'block';
+        document.getElementById('order-page-name').placeholder = "ناوی خۆت یان پەیج";
+        document.getElementById('post-link-group').style.display = 'block';
     } else {
-        document.getElementById('cities-group').style.display = 'block';
-        document.getElementById('audience-group').style.display = 'none';
-    }
+        document.getElementById('group-biz-type').style.display = 'block';
+        document.getElementById('group-gender').style.display = 'block';
+        document.getElementById('group-age').style.display = 'block';
+        document.getElementById('group-page-name').style.display = 'block';
+        document.getElementById('order-page-name').placeholder = "ناوی تەواوی پەیج";
 
-    const postLinkGroup = document.getElementById('post-link-group');
-    if (platform.includes('ئینستاگرام') || platform.includes('فەیسبووک') || platform.includes('زیادکردنی لایکی تیکتۆک')) {
-        postLinkGroup.style.display = 'block';
-    } else {
-        postLinkGroup.style.display = 'none';
-    }
+        if (platform.includes('تیکتۆک') || platform.includes('سناپچات')) {
+            daysGroup.style.display = 'none';
+            modalNote.style.display = 'none';
+        } else {
+            daysGroup.style.display = 'block';
+            modalNote.style.display = 'block';
+            updateDaysDropdown(price);
+        }
 
-    const contactMethodGroup = document.getElementById('contact-method-group');
-    const contactDetailsContainer = document.getElementById('contact-details-container');
-    if (platform.includes('تیکتۆک بزنس')) {
-        contactMethodGroup.style.display = 'block';
-    } else {
-        contactMethodGroup.style.display = 'none';
+        if (platform.includes('تیکتۆک')) {
+            document.getElementById('cities-group').style.display = 'none';
+            document.getElementById('audience-group').style.display = 'block';
+        } else {
+            document.getElementById('cities-group').style.display = 'block';
+            document.getElementById('audience-group').style.display = 'none';
+        }
+
+        const postLinkGroup = document.getElementById('post-link-group');
+        if (platform.includes('ئینستاگرام') || platform.includes('فەیسبووک')) {
+            postLinkGroup.style.display = 'block';
+        } else {
+            postLinkGroup.style.display = 'none';
+        }
+
+        const contactMethodGroup = document.getElementById('contact-method-group');
+        if (platform.includes('تیکتۆک بزنس')) {
+            contactMethodGroup.style.display = 'block';
+        } else {
+            contactMethodGroup.style.display = 'none';
+        }
     }
-    contactDetailsContainer.style.display = 'none';
+    
+    document.getElementById('contact-details-container').style.display = 'none';
 
     document.getElementById('order-page-name').value = '';
     document.getElementById('order-biz-type').value = '';
@@ -1946,58 +2079,6 @@ function openOrderModal(platform, packageName, price) {
     document.getElementById('order-modal-overlay').classList.add('show');
 }
 
-function openCustomOrderModal(platform) {
-    let minLimit = 10000;
-    let minLimitText = "10,000";
-
-    if (platform.includes('سناپچات')) {
-        minLimit = 25000; minLimitText = "25,000";
-    } else if (platform.includes('تیکتۆک بزنس')) {
-        minLimit = 15000; minLimitText = "15,000";
-    } else if (platform.includes('تیکتۆک شەخسی')) {
-        minLimit = 12000; minLimitText = "12,000";
-    } else if (platform.includes('زیادکردنی لایکی تیکتۆک')) {
-        minLimit = 2500; minLimitText = "2,500";
-    } else if (platform.includes('ئینستاگرام') || platform.includes('فەیسبووک')) {
-        minLimit = 10000; minLimitText = "10,000";
-    }
-
-    let customPriceInput = prompt(`تکایە بڕی پارەی دڵخوازت بنووسە (کەمترین بڕی داواکاری بۆ ئەم بەشە ${minLimitText} دینارە):`);
-    if (!customPriceInput || isNaN(customPriceInput.trim())) return;
-
-    let priceVal = parseInt(customPriceInput.trim());
-
-    if (priceVal < minLimit) {
-        alert(`کەمترین بڕی داواکاری بۆ ${platform} ${minLimitText} دینارە! تکایە بڕێکی گەورەتر بنووسە.`);
-        return;
-    }
-
-    let calculatedViews = "";
-    if (platform.includes('سناپچات')) {
-        let minViews = Math.round((priceVal / 25000) * 20000);
-        let maxViews = Math.round((priceVal / 25000) * 50000);
-        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
-    } else if (platform.includes('تیکتۆک بزنس')) {
-        let minViews = Math.round((priceVal / 15000) * 15000);
-        let maxViews = Math.round((priceVal / 15000) * 30000);
-        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
-    } else if (platform.includes('تیکتۆک شەخسی')) {
-        let minViews = Math.round((priceVal / 12000) * 15000);
-        let maxViews = Math.round((priceVal / 12000) * 30000);
-        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
-    } else if (platform.includes('زیادکردنی لایکی تیکتۆک')) {
-        let minLikes = Math.round((priceVal / 2500) * 650);
-        let maxLikes = Math.round((priceVal / 2500) * 2000);
-        calculatedViews = `${minLikes.toLocaleString()} لایک بۆ ${maxLikes.toLocaleString()} لایک`;
-    } else {
-        let minViews = Math.round((priceVal / 10000) * 2500);
-        let maxViews = Math.round((priceVal / 10000) * 8000);
-        calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
-    }
-
-    openOrderModal(platform, calculatedViews, priceVal.toLocaleString() + ' IQD');
-}
-
 function closeOrderModal() {
     document.getElementById('order-modal-overlay').classList.remove('show');
     selectedAges = [];
@@ -2012,9 +2093,10 @@ function validateForm() {
     const age = document.getElementById('order-age').value;
     const payment = document.getElementById('order-payment').value;
     const termsChecked = document.getElementById('terms-check').checked;
+    const isTiktokLikes = currentOrder.platform === 'زیادکردنی لایکی تیکتۆک';
 
     let isPostLinkValid = true;
-    if (currentOrder.platform.includes('ئینستاگرام') || currentOrder.platform.includes('فەیسبووک') || currentOrder.platform.includes('زیادکردنی لایکی تیکتۆک')) {
+    if (currentOrder.platform.includes('ئینستاگرام') || currentOrder.platform.includes('فەیسبووک') || isTiktokLikes) {
         const postLink = document.getElementById('order-post-link').value.trim();
         isPostLinkValid = postLink !== "";
     }
@@ -2026,23 +2108,22 @@ function validateForm() {
         isContactMethodValid = (contactMethod !== "" && contactDetail !== "");
     }
 
-    let days = "بەپێی پاکێج";
-    if (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات')) {
-        days = document.getElementById('order-days').value;
-    }
-
     let locationData = "";
-    if (currentOrder.platform.includes('تیکتۆک')) {
+    if (currentOrder.platform.includes('تیکتۆک') && !isTiktokLikes) {
         locationData = document.getElementById('order-audience').value;
-    } else {
+    } else if (!isTiktokLikes) {
         locationData = document.getElementById('order-cities').value.trim();
     }
 
+    let isBizTypeValid = isTiktokLikes ? true : bizType !== "";
+    let isGenderValid = isTiktokLikes ? true : gender !== "";
+    let isAgeValid = isTiktokLikes ? true : age !== "";
+    let isLocationValid = isTiktokLikes ? true : locationData !== "";
+    let isDaysValid = (isTiktokLikes || currentOrder.platform.includes('تیکتۆک') || currentOrder.platform.includes('سناپچات')) ? true : document.getElementById('order-days').value !== "";
+
     const submitBtn = document.getElementById('submit-order-btn');
 
-    if (pageName && bizType && locationData && gender && age && 
-       (currentOrder.platform.includes('تیکتۆک') || currentOrder.platform.includes('سناپچات') || days) && 
-       payment && termsChecked && isPostLinkValid && isContactMethodValid) {
+    if (pageName && payment && termsChecked && isBizTypeValid && isLocationValid && isGenderValid && isAgeValid && isDaysValid && isPostLinkValid && isContactMethodValid) {
         submitBtn.disabled = false;
     } else {
         submitBtn.disabled = true;
@@ -2051,67 +2132,64 @@ function validateForm() {
 
 function submitOrder() {
     const pageName = document.getElementById('order-page-name').value.trim();
-    const bizType = document.getElementById('order-biz-type').value.trim();
-    const gender = document.getElementById('order-gender').value;
-    const age = document.getElementById('order-age').value;
     const payment = document.getElementById('order-payment').value;
-    const termsChecked = document.getElementById('terms-check').checked;
-
-    let days = "بەپێی پاکێج";
-    if (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات')) {
-        days = document.getElementById('order-days').value;
-    }
-
-    let locationData = "";
-    let locationLabel = "";
-
-    if (currentOrder.platform.includes('تیکتۆک')) {
-        locationData = document.getElementById('order-audience').value;
-        locationLabel = "بینەر";
-    } else {
-        locationData = document.getElementById('order-cities').value.trim();
-        locationLabel = "شارەکان";
-    }
-
-    let postLinkData = "";
-    if (currentOrder.platform.includes('ئینستاگرام') || currentOrder.platform.includes('فەیسبووک') || currentOrder.platform.includes('زیادکردنی لایکی تیکتۆک')) {
-        postLinkData = document.getElementById('order-post-link').value.trim();
-    }
-
-    let contactMethodData = "";
-    if (currentOrder.platform.includes('تیکتۆک بزنس')) {
-        const method = document.getElementById('order-contact-method').value;
-        const detail = document.getElementById('order-contact-detail').value.trim();
-        contactMethodData = `${method} (${detail})`;
-    }
+    const isTiktokLikes = currentOrder.platform === 'زیادکردنی لایکی تیکتۆک';
 
     let text = `سڵاو کورد ئەجێنسی، دەمەوێت داواکاریەکی نوێ بکەم:
 پلاتفۆرم: ${currentOrder.platform}
 پاکێج: ${currentOrder.package}
 نرخ: ${currentOrder.price}`;
 
-    if (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات')) {
-        text += `\nماوەی سپۆنسەر: ${days}`;
-    }
-
-    text += `\n---------
+    if (isTiktokLikes) {
+        let postLinkData = document.getElementById('order-post-link').value.trim();
+        text += `\n---------
+ناوی داواکار یان پەیج: ${pageName}
+لینکی پۆست: ${postLinkData}
+شێوازی پارەدان: ${payment}
+ڕەزامەندی مەرجەکان: وەرگیراوە`;
+    } else {
+        let bizType = document.getElementById('order-biz-type').value.trim();
+        let days = "بەپێی پاکێج";
+        if (!currentOrder.platform.includes('تیکتۆک') && !currentOrder.platform.includes('سناپچات')) {
+            days = document.getElementById('order-days').value;
+            text += `\nماوەی سپۆنسەر: ${days}`;
+        }
+        
+        text += `\n---------
 ناوی پەیج: ${pageName}
 جۆری کار: ${bizType}`;
 
-    if (postLinkData) {
-        text += `\nلینکی پۆست: ${postLinkData}`;
-    }
+        let postLinkData = "";
+        if (currentOrder.platform.includes('ئینستاگرام') || currentOrder.platform.includes('فەیسبووک')) {
+            postLinkData = document.getElementById('order-post-link').value.trim();
+            text += `\nلینکی پۆست: ${postLinkData}`;
+        }
 
-    if (contactMethodData) {
-        text += `\nپەیوەندی کڕیار لە ڕێگەی: ${contactMethodData}`;
-    }
+        if (currentOrder.platform.includes('تیکتۆک بزنس')) {
+            const method = document.getElementById('order-contact-method').value;
+            const detail = document.getElementById('order-contact-detail').value.trim();
+            text += `\nپەیوەندی کڕیار لە ڕێگەی: ${method} (${detail})`;
+        }
 
-    text += `
+        let locationData = "";
+        let locationLabel = "";
+        if (currentOrder.platform.includes('تیکتۆک')) {
+            locationData = document.getElementById('order-audience').value;
+            locationLabel = "بینەر";
+        } else {
+            locationData = document.getElementById('order-cities').value.trim();
+            locationLabel = "شارەکان";
+        }
+        let gender = document.getElementById('order-gender').value;
+        let age = document.getElementById('order-age').value;
+
+        text += `
 ${locationLabel}: ${locationData}
 ڕەگەز: ${gender}
 تەمەن: ${age}
 شێوازی پارەدان: ${payment}
 ڕەزامەندی مەرجەکان: وەرگیراوە`;
+    }
 
     const url = `https://wa.me/9647510386174?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
