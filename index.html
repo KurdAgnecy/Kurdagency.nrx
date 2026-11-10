@@ -1637,6 +1637,27 @@
             <div class="reviews-list" id="reviews-container">
                 <div class="review-item">
                     <div class="review-header">
+                        <span class="review-name">ڕەوەند کامەران</span>
+                        <span class="review-stars">★★★★★</span>
+                    </div>
+                    <div class="review-text">زۆر سوپاس بۆ خزمەتگوزارییەکانتان، من سپۆنسەری سناپچاتم کرد و زۆر سودی هەبوو بۆ پەیجەکەم. بەڕاستی کارەکانتان جێگای متمانەیە.</div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="review-name">دەریا عوسمان</span>
+                        <span class="review-stars">★★★★★</span>
+                    </div>
+                    <div class="review-text">کۆمەڵێک لایکم بۆ تیکتۆک داوا کرد، لە کاتی خۆیدا و بە باشترین شێوە گەیشت، دەستان خۆش بێت نموونەتان زۆر بێت.</div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="review-name">ئەحمەد نەوزاد</span>
+                        <span class="review-stars">★★★★☆</span>
+                    </div>
+                    <div class="review-text">یەکەم جارم بوو مامەڵەتان لەگەڵ بکەم بۆ سپۆنسەری ئینستاگرام، ئەنجامەکەی باش بوو و کڕیارم بۆ هات، سوپاس.</div>
+                </div>
+                <div class="review-item">
+                    <div class="review-header">
                         <span class="review-name">سازگار ئەحمەد</span>
                         <span class="review-stars">★★★★★</span>
                     </div>
@@ -1728,26 +1749,28 @@ function calcCustomPrice(platform, inputId, resultDivId, viewsSpanId, minPrice) 
         return;
     }
 
-    let calculatedViews = "";
+    let minViews, maxViews, calculatedViews;
+
     if (platform.includes('سناپچات')) {
-        let minViews = Math.round((priceVal / 25000) * 20000);
-        let maxViews = Math.round((priceVal / 25000) * 50000);
+        minViews = Math.round(priceVal * 0.8);
+        maxViews = Math.round(priceVal * 2.0);
         calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
     } else if (platform.includes('تیکتۆک بزنس')) {
-        let minViews = Math.round((priceVal / 15000) * 15000);
-        let maxViews = Math.round((priceVal / 15000) * 30000);
+        minViews = Math.round(priceVal * 1.5);
+        maxViews = Math.round(priceVal * 2.5);
         calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
     } else if (platform.includes('تیکتۆک شەخسی')) {
-        let minViews = Math.round((priceVal / 12000) * 15000);
-        let maxViews = Math.round((priceVal / 12000) * 30000);
+        minViews = Math.round(priceVal * 2.0);
+        maxViews = Math.round(priceVal * 4.0);
         calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
     } else if (platform.includes('زیادکردنی لایکی تیکتۆک')) {
-        let minLikes = Math.round((priceVal / 2500) * 650);
-        let maxLikes = Math.round((priceVal / 2500) * 2000);
+        let minLikes = Math.round(priceVal * 0.27);
+        let maxLikes = Math.round(priceVal * 0.9);
         calculatedViews = `${minLikes.toLocaleString()} لایک بۆ ${maxLikes.toLocaleString()} لایک`;
     } else {
-        let minViews = Math.round((priceVal / 10000) * 2500);
-        let maxViews = Math.round((priceVal / 10000) * 8000);
+        // Facebook & Instagram
+        minViews = Math.round(priceVal * 0.25);
+        maxViews = Math.round(priceVal * 0.85);
         calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
     }
 
@@ -1782,26 +1805,28 @@ function calculateAutoEstimate() {
         return;
     }
 
-    let calculatedViews = "";
+    let minViews, maxViews, calculatedViews;
+
     if (platform.includes('سناپچات')) {
-        let minViews = Math.round((priceVal / 25000) * 20000);
-        let maxViews = Math.round((priceVal / 25000) * 50000);
+        minViews = Math.round(priceVal * 0.8);
+        maxViews = Math.round(priceVal * 2.0);
         calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
     } else if (platform.includes('تیکتۆک بزنس')) {
-        let minViews = Math.round((priceVal / 15000) * 15000);
-        let maxViews = Math.round((priceVal / 15000) * 30000);
+        minViews = Math.round(priceVal * 1.5);
+        maxViews = Math.round(priceVal * 2.5);
         calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
     } else if (platform.includes('تیکتۆک شەخسی')) {
-        let minViews = Math.round((priceVal / 12000) * 15000);
-        let maxViews = Math.round((priceVal / 12000) * 30000);
+        minViews = Math.round(priceVal * 2.0);
+        maxViews = Math.round(priceVal * 4.0);
         calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
     } else if (platform.includes('زیادکردنی لایکی تیکتۆک')) {
-        let minLikes = Math.round((priceVal / 2500) * 650);
-        let maxLikes = Math.round((priceVal / 2500) * 2000);
+        let minLikes = Math.round(priceVal * 0.27);
+        let maxLikes = Math.round(priceVal * 0.9);
         calculatedViews = `${minLikes.toLocaleString()} لایک بۆ ${maxLikes.toLocaleString()} لایک`;
     } else {
-        let minViews = Math.round((priceVal / 10000) * 2500);
-        let maxViews = Math.round((priceVal / 10000) * 8000);
+        // Facebook & Instagram
+        minViews = Math.round(priceVal * 0.25);
+        maxViews = Math.round(priceVal * 0.85);
         calculatedViews = `${minViews.toLocaleString()} بینەر بۆ ${maxViews.toLocaleString()} بینەر`;
     }
 
@@ -1974,7 +1999,9 @@ function openOrderModal(platform, packageName, price) {
     document.getElementById('modal-title').innerText = `داواکاری ${platform} (${price})`;
 
     const viewsNoteEl = document.getElementById('modal-views-note');
-    if (platform.includes('تیکتۆک')) {
+    if (platform === 'زیادکردنی لایکی تیکتۆک') {
+        viewsNoteEl.innerText = "ئەم لایکانە کە نوسراون پێشبینی کراون لەلایەن شەریکەی تیکتۆکەوە، هەندێک جار لایکەکان زۆر زیاتر ئەبێت لەوەی کە نوسراوە هەندێک جار کەمتر.";
+    } else if (platform.includes('تیکتۆک')) {
         viewsNoteEl.innerText = "ئەم ڤیوانە کە نوسراون پێشبینی کراون لەلایەن شەریکەی تیکتۆکەوە، هەندێک جار ڤیوەکان زۆر زیاتر ئەبێت لەوەی کە نوسراوە هەندێک جار کەمتر.";
     } else if (platform.includes('فەیسبووک') || platform.includes('ئینستاگرام')) {
         viewsNoteEl.innerText = "ئەم ڤیوانە کە نوسراون پێشبینی کراون لەلایەن شەریکەی مێتاوە، هەندێک جار ڤیوەکان زۆر زیاتر ئەبێت لەوەی کە نوسراوە هەندێک جار کەمتر.";
