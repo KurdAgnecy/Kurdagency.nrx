@@ -30,10 +30,12 @@ async function locked(k) { const t = await rc('TTL', 'lk:' + k); return t > 0 ? 
 async function failed(k) { const f = await rc('INCR', 'lf:' + k); await rc('EXPIRE', 'lf:' + k, 3600); if (f % 5 === 0) { const s = f >= 15 ? 600 : f >= 10 ? 60 : 10; await rc('SET', 'lk:' + k, '1', 'EX', s); return s; } return 0; }
 async function adminPassOk(pw) {
   const AP = env('ADMIN_PASS'); if (!AP) return null;
-  const ov = J(await rc('GET', 'adm:pass'));
-  if (ov && ov.fp === sha(AP)) { const [s, h] = ov.h.split(':'); return same(hash(pw, s), h); }
-  return same(pw, AP);
+  if (same(pw, AP)) return true;                       // password from Vercel
+  const ov = J(await rc('GET', 'adm:pass'));            // password changed inside the site
+  if (ov) { const [s, h] = ov.h.split(':'); if (same(hash(pw, s), h)) return true; }
+  return false;
 }
+const admUsers = () => env('ADMIN_USER').toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
 const gateOk = async t => !env('ADMIN_GATE') || !!(t && await rc('GET', 'ag:' + S(t, 40)));
 async function profile(u) {
   const [pts, fr, nu] = await rp([['GET', 'pt:' + u.username], ['LRANGE', 'fr:' + u.username, 0, 99], ['GET', 'ntu:' + u.username]]);
@@ -48,12 +50,14 @@ async function metaData(code, AD, TK) {
     if (!r.ok || j.error) d = { status: 'error' };
     else if (!(j.data || []).length) d = { status: 'pending' };
     else {
-      d = { status: 'ok', reach: 0, impressions: 0, clicks: 0, messages: 0, reactions: 0, comments: 0 };
+      d = { status: 'ok', reach: 0, impressions: 0, clicks: 0, messages: 0, reactions: 0, comments: 0, shares: 0, saves: 0, pageLikes: 0, engagement: 0, linkClicks: 0, videoViews: 0, acts: {} };
       for (const w of j.data) {
         d.reach += +w.reach || 0; d.impressions += +w.impressions || 0; d.clicks += +w.clicks || 0;
         const A = t => +((w.actions || []).find(z => z.action_type === t) || {}).value || 0;
         d.messages += A('onsite_conversion.messaging_conversation_started_7d') || +(((w.actions || []).find(z => /messaging_conversation_started/.test(z.action_type)) || {}).value) || 0;
         d.reactions += A('post_reaction'); d.comments += A('comment');
+        d.shares += A('post'); d.saves += A('onsite_conversion.post_save'); d.pageLikes += A('like'); d.engagement += A('post_engagement'); d.linkClicks += A('link_click'); d.videoViews += A('video_view');
+        for (const z of (w.actions || [])) if (Object.keys(d.acts).length < 40 || d.acts[z.action_type] != null) d.acts[z.action_type] = (d.acts[z.action_type] || 0) + (+z.value || 0);
       }
     }
   } catch (e) { d = { status: 'error' }; }
@@ -95,8 +99,8 @@ async function handle(b, req) {
     return { ok: 1, token: await sess(un), me: await profile(u) };
   }
   if (a === 'login') {
-    const id = S(b.id, 80).toLowerCase().trim(), AUl = env('ADMIN_USER').toLowerCase();
-    if (AUl && id === AUl) return err('adm');
+    const id = S(b.id, 80).toLowerCase().trim();
+    if (admUsers().includes(id)) return err('adm');
     const gi = 'lgi:' + ip; if ((await rc('INCR', gi)) > 60) { await rc('EXPIRE', gi, 600); return waitErr(60); } await rc('EXPIRE', gi, 600);
     const lk = id.slice(0, 40), lw = await locked(lk); if (lw) return waitErr(lw);
     const u = await lookup(id);
@@ -132,9 +136,15 @@ async function handle(b, req) {
   if (a === 'alogin') {
     if (!(await gateOk(b.gate))) return err('gate');
     const k = 'a:' + ip, lw = await locked(k); if (lw) return waitErr(lw);
-    const AU = env('ADMIN_USER'), pk = await adminPassOk(String(b.password || '').trim());
-    if (!AU || pk === null) return err('noadmin');
-    if (!(same(S(b.user, 80).trim().toLowerCase(), AU.toLowerCase()) && pk)) { const s = await failed(k); return s ? waitErr(s) : err('wrong'); }
+    const AUs = admUsers(), pk = await adminPassOk(String(b.password || '').trim());
+    if (!AUs.length || pk === null) return err('noadmin');
+    const uu = S(b.user, 80).trim().toLowerCase(), okU = AUs.some(u => same(uu, u));
+    if (!(okU && pk)) {
+      const s = await failed(k); if (s) return waitErr(s);
+      const w = err('wrong');
+      if (env('ADMIN_GATE')) { const ov = J(await rc('GET', 'adm:pass')); w.u = okU; w.p = !!pk; w.src = ov ? 'site' : 'env'; }
+      return w;
+    }
     await rp([['DEL', 'lf:' + k], ['DEL', 'lk:' + k]]);
     const t = rnd(24); await rc('SET', 'as:' + t, '1', 'EX', YEAR); return { ok: 1, token: t };
   }
@@ -142,9 +152,10 @@ async function handle(b, req) {
     if (!(await gateOk(b.gate))) return err('gate');
     const RW = env('ADMIN_RESET'), AP = env('ADMIN_PASS'); if (!RW || !AP) return err('noreset');
     const rk = 'rs:' + ip; if ((await rc('INCR', rk)) > 5) { await rc('EXPIRE', rk, 3600); return waitErr(600); } await rc('EXPIRE', rk, 3600);
-    const pw = String(b.pass || '').trim(); if (pw.length < 8 || pw.length > 64) return err('bad');
     if (!same(S(b.word, 60).trim().toLowerCase(), RW.toLowerCase())) return err('wrong');
-    const salt = rnd(8); await rc('SET', 'adm:pass', JSON.stringify({ h: salt + ':' + hash(pw, salt), fp: sha(AP) })); return { ok: 1 };
+    if (b.revert) { await rc('DEL', 'adm:pass'); return { ok: 1 }; }
+    const pw = String(b.pass || '').trim(); if (pw.length < 8 || pw.length > 64) return err('bad');
+    const salt = rnd(8); await rc('SET', 'adm:pass', JSON.stringify({ h: salt + ':' + hash(pw, salt) })); return { ok: 1 };
   }
   if (a === 'order') {
     const o = b.o || {}, P = ['fb', 'ig', 'sc', 'tb', 'tp', 'tl'], price = Math.round(+o.price);
@@ -164,7 +175,7 @@ async function handle(b, req) {
     if (a === 'apass') {
       const AP = env('ADMIN_PASS'), np = String(b.pass || '').trim(); if (!AP) return err('noadmin'); if (np.length < 8 || np.length > 64) return err('bad');
       if (!(await adminPassOk(String(b.old || '').trim()))) return err('wrong');
-      const salt = rnd(8); await rc('SET', 'adm:pass', JSON.stringify({ h: salt + ':' + hash(np, salt), fp: sha(AP) })); return { ok: 1 };
+      const salt = rnd(8); await rc('SET', 'adm:pass', JSON.stringify({ h: salt + ':' + hash(np, salt) })); return { ok: 1 };
     }
     if (a === 'agencode') {
       const rid = S(b.rid, 12).toUpperCase().trim(), rq = J(await rc('GET', 'rq:' + rid)); if (!rq) return err('nocode');
@@ -173,9 +184,9 @@ async function handle(b, req) {
     if (a === 'asetcost') { const c = +b.cost; if (!(c >= 0 && c <= 5000)) return err('bad'); await rc('SET', 'cfg:cost', String(+c.toFixed(2))); return { ok: 1 }; }
     if (a === 'ostatus') {
       const raw = await rc('GET', 'ord:' + S(b.id, 30)); if (!raw) return err('bad');
-      const o = JSON.parse(raw), st = ['new', 'ok', 'act', 'fin', 'x'].includes(b.st) ? b.st : 'new', d0 = dayOf(o.at);
+      const o = JSON.parse(raw), st = ['new', 'ok', 'act', 'fin', 'x', 'ns'].includes(b.st) ? b.st : 'new', d0 = dayOf(o.at);
       if (!isC(o.st) && isC(st)) {
-        await rc('INCRBY', 'tot:ok', o.price);
+        await rc('INCRBY', 'tot:ok', o.price); await rp([['INCR', 'ccnt:d:' + d0], ['INCRBY', 'ctot:d:' + d0, o.price]]); o.cc = 1;
         if (o.usd) {
           const cfg = +(await rc('GET', 'cfg:cost')) || DEF_COST; if (o.cost == null && cfg > 0) o.cost = cfg;
           o.profit = o.cost > 0 ? Math.round(o.price - o.usd * o.cost) : null; o.cu = Math.round(o.usd * 100); o.cp = o.profit || 0;
@@ -183,15 +194,15 @@ async function handle(b, req) {
         }
       }
       if (isC(o.st) && !isC(st)) {
-        await rc('DECRBY', 'tot:ok', o.price);
+        await rc('DECRBY', 'tot:ok', o.price); if (o.cc) { await rp([['DECRBY', 'ccnt:d:' + d0, 1], ['DECRBY', 'ctot:d:' + d0, o.price]]); o.cc = null; }
         if (o.cu != null) { await rp([['DECRBY', 'usdc:d:' + d0, o.cu], ['DECRBY', 'prof:d:' + d0, o.cp || 0], ['DECRBY', 'revc:d:' + d0, o.price]]); o.cu = null; o.cp = null; }
       }
-      if (o.st !== st && o.owner && st !== 'new') await rp([['LPUSH', 'nt:' + o.owner, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st })], ['LTRIM', 'nt:' + o.owner, 0, 49], ['INCR', 'ntu:' + o.owner]]);
+      if (o.st !== st && o.owner && st !== 'new' && st !== 'ns') await rp([['LPUSH', 'nt:' + o.owner, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st })], ['LTRIM', 'nt:' + o.owner, 0, 49], ['INCR', 'ntu:' + o.owner]]);
       o.st = st; await rc('SET', 'ord:' + o.id, JSON.stringify(o)); return { ok: 1 };
     }
     const rg = dayList(b.from, b.to);
     const cmds = [['SCARD', 'users'], ['GET', 'tot:all'], ['GET', 'cnt:all'], ['GET', 'tot:ok'], ['LRANGE', 'orders', 0, 299], ['SMEMBERS', 'users'], ['LRANGE', 'red', 0, 59], ['LRANGE', 'rqs', 0, 49], ['GET', 'cfg:cost']];
-    const f0 = cmds.length; rg.forEach(d => cmds.push(['PFCOUNT', 'vis:' + d], ['PFCOUNT', 'ply:' + d], ['GET', 'cnt:d:' + d], ['GET', 'tot:d:' + d], ['GET', 'usdc:d:' + d], ['GET', 'prof:d:' + d], ['GET', 'revc:d:' + d]));
+    const f0 = cmds.length; rg.forEach(d => cmds.push(['PFCOUNT', 'vis:' + d], ['PFCOUNT', 'ply:' + d], ['GET', 'cnt:d:' + d], ['GET', 'tot:d:' + d], ['GET', 'usdc:d:' + d], ['GET', 'prof:d:' + d], ['GET', 'revc:d:' + d], ['GET', 'ccnt:d:' + d], ['GET', 'ctot:d:' + d]));
     const r = await rp(cmds), ids = r[4] || [], un = (r[5] || []).slice(-300), rids = r[7] || [];
     const [ords, us, pts, rqs] = await Promise.all([ids.length ? rc('MGET', ...ids.map(i => 'ord:' + i)) : [], un.length ? rc('MGET', ...un.map(u => 'u:' + u)) : [], un.length ? rc('MGET', ...un.map(u => 'pt:' + u)) : [], rids.length ? rc('MGET', ...rids.map(i => 'rq:' + i)) : []]);
     const users = (us || []).map((x, i) => { const u = x && x !== 'x' ? J(x) : null; return u && { username: u.username, name: u.name, phone: u.phone, email: u.email, avatar: u.avatar, by: u.by, created: u.created, points: +pts[i] || 0 }; }).filter(Boolean).reverse();
@@ -199,7 +210,7 @@ async function handle(b, req) {
     const resets = rids.map((rid, i) => { const q = J(rqs[i]); const u = q && byU[q.u]; return q && u ? { rid, u: u.username, name: u.name, phone: u.phone, email: u.email, at: q.at } : null; }).filter(Boolean);
     return { ok: 1, ver: VER, accounts: +r[0] || 0, totAll: +r[1] || 0, cntAll: +r[2] || 0, totOk: +r[3] || 0, cost: +r[8] || DEF_COST,
       orders: (ords || []).map(J).filter(Boolean), reds: (r[6] || []).map(J).filter(Boolean), users, resets,
-      rows: rg.map((d, i) => { const k = f0 + i * 7; return { d, v: +r[k] || 0, p: +r[k + 1] || 0, n: +r[k + 2] || 0, t: +r[k + 3] || 0, usd: (+r[k + 4] || 0) / 100, prof: +r[k + 5] || 0, rev: +r[k + 6] || 0 }; }) };
+      rows: rg.map((d, i) => { const k = f0 + i * 9; return { d, v: +r[k] || 0, p: +r[k + 1] || 0, n: +r[k + 2] || 0, t: +r[k + 3] || 0, usd: (+r[k + 4] || 0) / 100, prof: +r[k + 5] || 0, rev: +r[k + 6] || 0, cn: +r[k + 7] || 0, ct: +r[k + 8] || 0 }; }) };
   }
   const un = await auth(b.token); if (!un) return err('auth');
   if (a === 'me') { const raw = await rc('GET', 'u:' + un); return { ok: 1, me: await profile(JSON.parse(raw)) }; }
@@ -209,7 +220,7 @@ async function handle(b, req) {
     const recs = ids.length ? (await rc('MGET', ...ids.map(i => 'ord:' + i))).map(J).filter(Boolean).reverse() : [];
     const AD = env('META_AD_ACCOUNT'), TK = env('META_TOKEN');
     const rows = await Promise.all(recs.map(async (o, i) => ({ id: o.id, at: o.at, code: o.code, pn: o.pn, pg: o.pg, price: o.price, usd: o.usd, st: o.st,
-      data: AD && TK && o.code && o.st !== 'x' && i < 15 ? await metaData(o.code, AD, TK) : null })));
+      data: AD && TK && o.code && o.st !== 'x' && o.st !== 'ns' && i < 15 ? await metaData(o.code, AD, TK) : null })));
     const nl = ((await rc('LRANGE', 'nt:' + un, 0, 19)) || []).map(J).filter(Boolean); await rc('SET', 'ntu:' + un, '0');
     return { ok: 1, meta: !!(AD && TK), orders: rows, notes: nl };
   }
