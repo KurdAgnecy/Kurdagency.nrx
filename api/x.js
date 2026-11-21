@@ -39,7 +39,7 @@ const admUsers = () => env('ADMIN_USER').toLowerCase().split(',').map(s => s.tri
 const gateOk = async t => !env('ADMIN_GATE') || !!(t && await rc('GET', 'ag:' + S(t, 40)));
 async function profile(u) {
   const [pts, fr, nu] = await rp([['GET', 'pt:' + u.username], ['LRANGE', 'fr:' + u.username, 0, 99], ['GET', 'ntu:' + u.username]]);
-  return { username: u.username, name: u.name, avatar: u.avatar, code: u.code, points: +pts || 0, unread: +nu || 0, friends: (fr || []).map(J).filter(Boolean) };
+  return { username: u.username, name: u.name, email: u.email, phone: u.phone, avatar: u.avatar, code: u.code, points: +pts || 0, unread: +nu || 0, friends: (fr || []).map(J).filter(Boolean) };
 }
 async function metaData(code, AD, TK) {
   const ck = 'mc:' + code, c = await rc('GET', ck); if (c) return JSON.parse(c);
@@ -163,7 +163,7 @@ async function handle(b, req) {
     const ol = 'ol:' + ip; if ((await rc('INCR', ol)) > 8) return err('wait'); await rc('EXPIRE', ol, 60);
     const id = Date.now().toString(36) + rnd(2), d = day(), meta = o.p === 'fb' || o.p === 'ig', cfg = meta ? (+(await rc('GET', 'cfg:cost')) || DEF_COST) : 0, usd = meta ? +(price / 2000).toFixed(2) : null;
     const code = meta && /^KA-[A-Z0-9]{6}$/.test(o.code || '') ? o.code : '', owner = meta && b.token ? ((await auth(b.token)) || '') : '';
-    const r = { id, at: Date.now(), p: o.p, pn: S(o.pn, 40), pk: S(o.pk, 80), price, usd, cost: cfg > 0 ? cfg : null, profit: cfg > 0 ? Math.round(price - usd * cfg) : null, pg: S(o.pg, 100), bz: S(o.bz, 100), lk: S(o.lk, 300), tg: S(o.tg, 100), gd: S(o.gd, 30), ag: S(o.ag, 60), dy: S(o.dy, 10), pay: S(o.pay, 20), ref: S(o.ref, 12).replace(/[^A-Za-z0-9]/g, ''), code, owner, st: 'new' };
+    const r = { id, at: Date.now(), p: o.p, pn: S(o.pn, 40), pk: S(o.pk, 80), price, usd, cost: cfg > 0 ? cfg : null, profit: cfg > 0 ? Math.round(price - usd * cfg) : null, pg: S(o.pg, 100), bz: S(o.bz, 100), lk: S(o.lk, 300), tg: S(o.tg, 100), gd: S(o.gd, 30), ag: S(o.ag, 60), dy: meta ? String(Math.min(Math.max(1, parseInt(o.dy) || 1), Math.max(1, Math.floor(price / 4000)))) : S(o.dy, 10), pay: S(o.pay, 20), ref: S(o.ref, 12).replace(/[^A-Za-z0-9]/g, ''), code, owner, st: 'new' };
     await rp([['SET', 'ord:' + id, JSON.stringify(r)], ['LPUSH', 'orders', id], ['INCRBY', 'tot:all', price], ['INCR', 'cnt:all'], ['INCRBY', 'tot:d:' + d, price], ['INCR', 'cnt:d:' + d], ['INCRBY', 'tot:p:' + o.p, price]]);
     if (code) await rc('SET', 'oc:' + code, id, 'NX');
     if (owner) await rc('RPUSH', 'uo:' + owner, id);
@@ -232,6 +232,22 @@ async function handle(b, req) {
     if (o.owner && o.owner !== un) return err('owned');
     if (!o.owner) { o.owner = un; await rp([['SET', 'ord:' + o.id, JSON.stringify(o)], ['RPUSH', 'uo:' + un, o.id]]); }
     return { ok: 1 };
+  }
+  if (['pname', 'pmail', 'ppass'].includes(a)) {
+    const pk = 'pf:' + un; if ((await rc('INCR', pk)) > 30) { await rc('EXPIRE', pk, 3600); return waitErr(300); } await rc('EXPIRE', pk, 3600);
+    const u = J(await rc('GET', 'u:' + un)); if (!u) return err('auth');
+    if (a === 'pname') { const nm = S(b.name, 60).trim(); if (nm.length < 2) return err('bad'); u.name = nm; await rc('SET', 'u:' + un, JSON.stringify(u)); return { ok: 1, me: await profile(u) }; }
+    const lk = 'p:' + un, lw = await locked(lk); if (lw) return waitErr(lw);
+    const cur = String(a === 'pmail' ? b.password : b.old || ''), [s0, h0] = u.pass.split(':');
+    if (!same(hash(cur, s0), h0)) { const s = await failed(lk); return s ? waitErr(s) : err('wrong'); }
+    await rp([['DEL', 'lf:' + lk], ['DEL', 'lk:' + lk]]);
+    if (a === 'ppass') {
+      const np = String(b.pass || ''); if (np.length < 6 || np.length > 64) return err('bad');
+      const salt = rnd(8); u.pass = salt + ':' + hash(np, salt); await rc('SET', 'u:' + un, JSON.stringify(u)); return { ok: 1, me: await profile(u) };
+    }
+    const mail = S(b.email, 80).toLowerCase().trim(); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) return err('bad');
+    if (mail !== u.email) { if (!(await rc('SETNX', 'em:' + mail, un))) return err('taken'); await rc('DEL', 'em:' + u.email); u.email = mail; await rc('SET', 'u:' + un, JSON.stringify(u)); }
+    return { ok: 1, me: await profile(u) };
   }
   if (a === 'play') { const k = 'ply:' + day(); await rp([['PFADD', k, un], ['EXPIRE', k, 3456000]]); return { ok: 1 }; }
   if (a === 'award') {
