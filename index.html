@@ -294,7 +294,7 @@ reset();
 
 function setLang(l){lang=l;localStorage.kl=l;render()}
 function theme(){const d=document.documentElement,l=d.dataset.theme=='light';d.dataset.theme=l?'':'light';$('th').textContent=l?'☀️':'🌙';localStorage.kt=l?'':'light'}
-function go(v){stop();if(v==V)return;if(!ACC&&['prof','g','r','m'].includes(v))AU='x';if(v=='prof')PFSEC='menu';if(v=='home'||(v=='c'&&V=='home'))reset();if(v=='c'&&V=='home')loadDraft();PREV=(v=='prof'||v=='reg')?'home':V;V=v;render();if(ACC&&v=='r')api('me',{token:tok()}).then(r=>{if(r.ok){ACC=r.me;if(V=='r')render()}})}
+function go(v){stop();if(v==V)return;if(!ACC&&['prof','g','r','m'].includes(v))AU='x';if(v=='prof')PFSEC='menu';if(v=='home'){localStorage.removeItem('kcamp');reset()}if(v=='c'&&V=='home')loadDraft();PREV=(v=='prof'||v=='reg')?'home':V;V=v;render();if(ACC&&v=='r')api('me',{token:tok()}).then(r=>{if(r.ok){ACC=r.me;if(V=='r')render()}})}
 function landing(){const cards=[['c','nc','📣'],['m','nmy','📊'],['s','ns','🛠️'],['r','nr','🎁'],['g','ng','🎮'],['ins','nin','📲']];return `<div class="landing"><div class="landingHero"><h1>${t('hero')}</h1><p>هەموو خزمەتگوزارییەکان لە یەک شوێن</p></div><h2>سەرکەوتنی کارەکەت لێرەیە</h2><div class="homeGrid">${cards.map(x=>`<button class="homeCard" onclick="go('${x[0]}')"><i>${x[2]}</i><b>${t(x[1])}</b><small>بۆ بینینی بەشەکە کرتە بکە</small></button>`).join('')}</div></div>`}
 function render(){
  const d=document.documentElement;d.lang=lang;d.dir=lang=='en'?'ltr':'rtl';$('lg').value=lang;
@@ -310,7 +310,7 @@ function navArrows(){const n=$('nv'),mx=n.scrollWidth-n.clientWidth,p=Math.abs(n
  $('nal').style.display=(rtl?b:a)?'block':'none';$('nar').style.display=(rtl?a:b)?'block':'none'}
 window.addEventListener('resize',navArrows);
 document.addEventListener('input',()=>{if(V=='c')saveDraft()});document.addEventListener('change',()=>{if(V=='c')saveDraft()});
-function campHome(){go('home')}
+function campHome(){localStorage.removeItem('kcamp');reset();go('home')}
 function campPrev(){if(S.st>1){S.st--;render();window.scrollTo({top:0,behavior:'smooth'})}else go('home')}
 /* ---------- Campaign ---------- */
 const isMeta=()=>S.p=='fb'||S.p=='ig',usdT=x=>'$'+(+(x/2000).toFixed(2)),usdL=()=>isMeta()&&S.pr?`<span class="usd2">${t('usd')}: ${usdT(S.pr)}</span>`:'';
@@ -514,6 +514,7 @@ const EM={gate:['وشەی نهێنی پێویستە','Secret word required','ا�
  const em=e=>(EM[e]||EM.net)[LI[lang]];
 const refreshChip=()=>{const p=$('pt');if(p){p.style.display=ACC?'':'none';p.textContent=ACC?'⭐ '+fmt(ACC.points):''}const b=$('bl');b.style.display=ACC?'':'none';b.textContent='🔔'+(ACC&&ACC.unread?' '+ACC.unread:'');const ac=$('acct');if(ac)ac.innerHTML=ACC&&ACC.avatar?`<img class="acctAvatar" src="${ACC.avatar}" alt=""><small>هەژمار</small>`:'<span>👤</span><small>هەژمار</small>'};
 T.nt_received=['داواکاری سپۆنسەرەکەت وەرگیراوە','Your sponsorship request was received','تم استلام طلب رعايتك'];
+T.nt_site=['وێبسایتەکە نوێ کرایەوە و ئاسانتر کرا','The website was updated and made easier to use','تم تحديث الموقع وجعله أسهل للاستخدام'];
 let NTP=0;
 function enableNotifications(){if('Notification' in window&&Notification.permission==='default')Notification.requestPermission().catch(()=>{});}
 function showNotificationToasts(notes){for(const n of (notes||[])){const id='kn:'+n.at+'|'+n.st+'|'+(n.code||'');if(localStorage.getItem(id))continue;localStorage.setItem(id,'1');const box=document.createElement('div');box.className='toast';box.textContent=t('nt_'+n.st)||t('nt_ok');document.body.appendChild(box);setTimeout(()=>box.remove(),6500);if('Notification' in window&&Notification.permission==='granted')new Notification('Kurd Agency',{body:box.textContent});}}
