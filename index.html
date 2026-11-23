@@ -19,6 +19,7 @@ body{background:var(--bg);color:var(--tx);font-family:"Noto Sans Arabic","Segoe 
 h1,h2,h3,.kf{font-family:"Noto Kufi Arabic","Noto Sans Arabic",sans-serif}
 button,input,select{font:inherit;color:inherit}
 header{position:sticky;top:0;z-index:20;background:var(--bar);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:9px 14px;box-shadow:var(--sh)}
+header #acct,header #hm{position:absolute;top:7px}header #hm{left:8px}header #acct{left:56px}header #hl{margin-inline-end:auto}
 header img{height:34px;display:block}.ads{background:var(--ac);color:#fff;font-weight:800;font-size:.7rem;padding:2px 8px;border-radius:6px;direction:ltr;margin-inline-end:auto}
 .chip{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:6px 11px;font-size:.85rem;cursor:pointer;font-weight:700}.chip.on{background:var(--ac);color:#fff;border-color:var(--ac)}
 .acct{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:58px;line-height:1.1}.acct span{font-size:1.35rem;color:#a855f7}.acct small{font-size:.68rem;color:var(--mu);font-weight:800}.acctAvatar{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid #a855f7}
@@ -136,17 +137,19 @@ h2:before{content:"";display:inline-block;width:6px;height:1.05em;border-radius:
 input[type=date]{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:9px 10px}
 .gr3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:270px;margin:12px auto;direction:ltr}.gr4g{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:340px;margin:12px auto;direction:ltr}.gr4g .cd,.gr3 .cd{font-size:1.4rem;font-weight:800}.gr4g .cd.on{background:var(--gold);color:#1b1400}
 #more{display:none;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0}footer{display:flex;flex-direction:column;align-items:center;gap:6px}
+.hmenu{position:fixed;top:64px;inset-inline-end:10px;z-index:40;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px;box-shadow:var(--sh)}.hmenu[hidden]{display:none}#hm{font-size:1.05rem}
+@media(max-width:600px){header{padding:7px 8px;gap:5px}header img{height:28px;max-width:150px}.chip{padding:5px 8px;font-size:.78rem}#pt{padding-inline:7px}.acct{min-width:48px;padding:5px 7px}#hm{margin-inline-start:0}main{padding-inline:8px}.box{padding:14px;border-radius:14px}.hero{padding:16px 12px}.homeGrid{gap:8px}.homeCard{padding:15px 8px}.steps button{font-size:.68rem}.btn{padding:10px 14px}.hmenu{top:54px;inset-inline:8px;justify-content:space-between}}
+@media(max-width:420px){header{padding:5px 6px;gap:4px}header img{height:24px;max-width:118px}.chip{padding:4px 6px;font-size:.7rem}.acct{min-width:42px}.acct span{font-size:1.08rem}.acct small{font-size:.58rem}#pt{font-size:.68rem}main{padding:4px 6px 40px}.box{padding:11px;border-radius:12px}.homeGrid{gap:6px}.homeCard{padding:12px 5px;border-radius:14px}.homeCard i{width:44px;height:44px;font-size:1.5rem;border-radius:13px;margin-bottom:6px}.homeCard b{font-size:.78rem}.homeCard small{font-size:.62rem}.landingHero{padding:18px 10px;border-radius:16px}.landingHero h1{font-size:1rem}h2{font-size:.95rem}.navw nav{padding:7px 8px}.navw nav button{padding:6px 11px;font-size:.72rem}.hmenu{top:48px}}
 </style>
 </head>
 <body>
 <header>
- <img id="hl" alt="Kurd Agency"><span class="ads">ADS</span>
+ <img id="hl" alt="Kurd Agency">
  <span class="chip" id="pt" onclick="go('g')"></span>
- <button class="chip" id="bl" onclick="enableNotifications();go('m')" style="display:none">🔔</button>
- <select class="chip" id="lg" onchange="setLang(this.value)"><option value="ku">کوردی</option><option value="en">English</option><option value="ar">العربية</option></select>
- <button class="chip" id="th" onclick="theme()">☀️</button>
  <button class="chip acct" id="acct" onclick="go('prof')" title="Account"><span>👤</span><small>هەژمار</small></button>
+ <button class="chip" id="hm" onclick="toggleHeaderMenu()" aria-expanded="false" aria-controls="hmenu">☰</button>
 </header>
+<div id="hmenu" class="hmenu" hidden><span class="ads">ADS</span><select class="chip" id="lg" onchange="setLang(this.value)"><option value="ku">کوردی</option><option value="en">English</option><option value="ar">العربية</option></select><button class="chip" id="th" onclick="theme()">☀️</button></div>
 <div class="navw"><button class="na l" id="nal" onclick="navGo(-1)">‹</button><nav id="nv" onscroll="navArrows()"></nav><button class="na r" id="nar" onclick="navGo(1)">›</button></div>
 <main id="app"></main>
 <footer><button class="chip" id="mb" onclick="toggleMore()">…</button><div id="more"></div><div>KURD AGENCY © 2018 · <span id="ft"></span></div></footer>
@@ -292,9 +295,16 @@ function saveDraft(){try{localStorage.kcamp=JSON.stringify(S)}catch(e){}}
 function loadDraft(){try{const d=JSON.parse(localStorage.kcamp||'null');if(d&&d.f&&d.st>=1&&d.st<=4)S=d}catch(e){}}
 reset();
 
-function setLang(l){lang=l;localStorage.kl=l;render()}
-function theme(){const d=document.documentElement,l=d.dataset.theme=='light';d.dataset.theme=l?'':'light';$('th').textContent=l?'☀️':'🌙';localStorage.kt=l?'':'light'}
-function go(v){stop();if(v==V)return;if(!ACC&&['prof','g','r','m'].includes(v))AU='x';if(v=='prof')PFSEC='menu';if(v=='home'){localStorage.removeItem('kcamp');reset()}if(v=='c'&&V=='home')loadDraft();PREV=(v=='prof'||v=='reg')?'home':V;V=v;render();if(ACC&&v=='r')api('me',{token:tok()}).then(r=>{if(r.ok){ACC=r.me;if(V=='r')render()}})}
+function closeHeaderMenu(){const e=$('hmenu'),b=$('hm');if(e)e.hidden=true;if(b)b.setAttribute('aria-expanded','false')}
+function toggleHeaderMenu(){const e=$('hmenu'),b=$('hm');if(!e)return;e.hidden=!e.hidden;if(b)b.setAttribute('aria-expanded',String(!e.hidden))}
+document.addEventListener('click',e=>{if(!e.target.closest('#hmenu,#hm'))closeHeaderMenu()});
+function setLang(l){lang=l;localStorage.kl=l;closeHeaderMenu();render()}
+function theme(){const d=document.documentElement,l=d.dataset.theme=='light';d.dataset.theme=l?'':'light';$('th').textContent=l?'☀️':'🌙';localStorage.kt=l?'':'light';closeHeaderMenu()}
+function go(v,fromPop){stop();if(v==V)return;if(!fromPop)history.pushState({v},'',location.pathname+location.search+'#'+v);closeHeaderMenu();if(!ACC&&['prof','g','r','m'].includes(v))AU='x';if(v=='prof')PFSEC='menu';if(v=='home'){localStorage.removeItem('kcamp');reset()}if(v=='c'&&V=='home')loadDraft();PREV=(v=='prof'||v=='reg')?'home':V;V=v;render();if(ACC&&v=='r')api('me',{token:tok()}).then(r=>{if(r.ok){ACC=r.me;if(V=='r')render()}})}
+const appUrl=location.pathname+location.search;
+history.replaceState({v:V,root:true},'',appUrl+'#'+V);
+history.pushState({v:V,root:true},'',appUrl+'#'+V);
+window.addEventListener('popstate',e=>{const v=e.state&&e.state.v||'home';go(v,true)});
 function landing(){const cards=[['c','nc','📣'],['m','nmy','📊'],['s','ns','🛠️'],['r','nr','🎁'],['g','ng','🎮'],['ins','nin','📲']];return `<div class="landing"><div class="landingHero"><h1>${t('hero')}</h1><p>هەموو خزمەتگوزارییەکان لە یەک شوێن</p></div><h2>سەرکەوتنی کارەکەت لێرەیە</h2><div class="homeGrid">${cards.map(x=>`<button class="homeCard" onclick="go('${x[0]}')"><i>${x[2]}</i><b>${t(x[1])}</b><small>بۆ بینینی بەشەکە کرتە بکە</small></button>`).join('')}</div></div>`}
 function render(){
  const d=document.documentElement;d.lang=lang;d.dir=lang=='en'?'ltr':'rtl';$('lg').value=lang;
@@ -512,8 +522,8 @@ const EM={gate:['وشەی نهێنی پێویستە','Secret word required','ا�
  EM.banned=['ئەم هەژمارەیە باند کراوە','This account is banned','هذا الحساب محظور'];
  EM.emailcfg=['ناردنی ئیمەیڵ ڕێکنەخراوە؛ RESEND_API_KEY و RESEND_FROM بپشکنە','Email sending is not configured; check RESEND_API_KEY and RESEND_FROM','إرسال البريد غير مهيأ؛ تحقق من RESEND_API_KEY و RESEND_FROM'];EM.otpbad=['کۆدی OTP هەڵەیە یان بەسەرچووە','The OTP is invalid or expired','رمز OTP غير صحيح أو منتهي'];
  const em=e=>(EM[e]||EM.net)[LI[lang]];
-const refreshChip=()=>{const p=$('pt');if(p){p.style.display=ACC?'':'none';p.textContent=ACC?'⭐ '+fmt(ACC.points):''}const b=$('bl');b.style.display=ACC?'':'none';b.textContent='🔔'+(ACC&&ACC.unread?' '+ACC.unread:'');const ac=$('acct');if(ac)ac.innerHTML=ACC&&ACC.avatar?`<img class="acctAvatar" src="${ACC.avatar}" alt=""><small>هەژمار</small>`:'<span>👤</span><small>هەژمار</small>'};
-T.nt_received=['داواکاری سپۆنسەرەکەت وەرگیراوە','Your sponsorship request was received','تم استلام طلب رعايتك'];
+const refreshChip=()=>{const p=$('pt');if(p){p.style.display=ACC?'':'none';p.textContent=ACC?'⭐ '+fmt(ACC.points):''}const b=$('bl');if(b){b.style.display=ACC?'':'none';b.textContent='🔔'+(ACC&&ACC.unread?' '+ACC.unread:'')}const ac=$('acct');if(ac)ac.innerHTML=ACC&&ACC.avatar?`<img class="acctAvatar" src="${ACC.avatar}" alt=""><small>هەژمار</small>`:'<span>👤</span><small>هەژمار</small>'};
+T.nt_received=['داواکاریەکەت نێردرا','Your request was sent','تم إرسال طلبك'];
 T.nt_site=['وێبسایتەکە نوێ کرایەوە و ئاسانتر کرا','The website was updated and made easier to use','تم تحديث الموقع وجعله أسهل للاستخدام'];
 let NTP=0;
 function enableNotifications(){if('Notification' in window&&Notification.permission==='default')Notification.requestPermission().catch(()=>{});}
@@ -527,10 +537,10 @@ function authBox(k,desc){k=k||'need';if(AU=='f'&&k!='adminOnly')return forgotBox
 function eye(id,b){const i=$(id);i.type=i.type=='password'?'text':'password';b.textContent=i.type=='password'?'👁':'🙈'}
 async function afterAuth(r){if(!r.ok){if(r.err=='wait'&&r.wait)return startWait(r.wait,'a_er','a_btn');$('a_er').innerHTML=`<div class="nt r">${em(r.err)}${r.st!==undefined?' (HTTP '+r.st+')':''}</div>`;return}delete sessionStorage.ktok;localStorage.ktok=r.token;ACC=r.me;render();startNotificationPolling()}
 async function doLogin(){afterAuth(await api('login',{id:$('a_id').value,password:$('a_pw').value}))}
-async function doReg(){const f=$('a_av').files[0],av=f?await avatar(f):'',data={username:$('a_un').value,name:$('a_nm').value,phone:$('a_ph').value,email:$('a_em').value,password:$('a_pw').value,avatar:av,ref:refIn(),vid:localStorage.kv||(localStorage.kv=Math.random().toString(36).slice(2)+Date.now().toString(36))};const r=await api('registerOtp',data);if(!r.ok){$('a_er').innerHTML=`<div class="nt r">${em(r.err)}</div>`;return}REGP={...data,rid:r.rid};$('a_er').innerHTML='<div class="nt">کۆدی OTP بۆ ئیمەیڵەکەت نێردرا. کۆدەکە لێرە بنووسە.</div><div class="fg"><label>کۆدی OTP</label><input type="text" id="a_otp" inputmode="numeric" maxlength="6" dir="ltr"></div>';$('a_btn').textContent='پشتڕاستکردنەوە و دروستکردنی هەژمار';$('a_btn').onclick=doRegVerify}
+async function doReg(){const f=$('a_av').files[0],av=f?await avatar(f):'',data={username:$('a_un').value,name:$('a_nm').value,phone:$('a_ph').value,email:$('a_em').value,password:$('a_pw').value,avatar:av,ref:refIn(),vid:localStorage.kv||(localStorage.kv=Math.random().toString(36).slice(2)+Date.now().toString(36))};afterAuth(await api('register',data))}
 async function doRegVerify(){if(!REGP)return;const r=await api('register',{...REGP,otp:$('a_otp').value});if(!r.ok){$('a_er').innerHTML=`<div class="nt r">${em(r.err)}</div>`;return}REGP=null;afterAuth(r)}
 async function logout(){await api('logout',{token:tok()});delete sessionStorage.ktok;delete localStorage.ktok;ACC=null;AU='x';render()}
-function pbar(){const a=ACC.avatar?`<img class="av" src="${ACC.avatar}" alt="">`:`<span class="av">${esc((ACC.name||'?')[0])}</span>`;return `<div class="pbar">${a}<div><b id="pbn">${esc(ACC.name)}</b><small>@${esc(ACC.username)}</small></div><button class="btn g" onclick="logout()">${t('logout')}</button></div>`}
+function pbar(){const a=ACC.avatar?`<img class="av" src="${ACC.avatar}" alt="">`:`<span class="av">${esc((ACC.name||'?')[0])}</span>`;return `<div class="pbar">${a}<div><b id="pbn">${esc(ACC.name)}</b><small>@${esc(ACC.username)}</small></div><button class="btn g" onclick="enableNotifications();go('m');setTimeout(()=>myTab('nt'),0)">🔔${ACC.unread?' '+ACC.unread:''}</button><button class="btn g" onclick="logout()">${t('logout')}</button></div>`}
 function games(){if(!ACC)return accountEntry();
  const rw=REW.map(r=>`<div class="rc"><b>${t('sp').replace('{n}',fmt(r[1]))}</b><small>${fmt(r[0])} ${t('pn')}</small><div class="bar"><i style="width:${Math.min(100,ACC.points/r[0]*100)}%"></i></div><button class="btn" ${ACC.points>=r[0]?'':'disabled'} onclick="redeem(${r[0]},${r[1]})">${t('rq')}</button></div>`).join('');
  return `${pbar()}<div class="box" style="margin-top:12px"><h2>${t('gt')}</h2><div class="big" id="bp">⭐ ${fmt(ACC.points)}</div><p style="color:var(--mu);font-size:.85rem">${t('rwd')}</p><div class="rw">${rw}</div>
