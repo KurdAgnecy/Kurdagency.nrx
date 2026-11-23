@@ -7,6 +7,7 @@ const URL_ = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
 const TOK = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
 const DAILY = 100, REW = [1000, 1500, 2000], POINT_REWARD = 30, VER = 4, YEAR = 31536000;
 const DEF_COST = 1542.77, GV = process.env.META_API_VERSION || 'v21.0';
+const SITE_NOTICE = 'site-update-20261123';
 const H = { Authorization: 'Bearer ' + TOK };
 async function rc(...a) { const r = await fetch(URL_, { method: 'POST', headers: H, body: JSON.stringify(a) }); const j = await r.json(); if (j.error) throw new Error(j.error); return j.result; }
 async function rp(c) { const r = await fetch(URL_ + '/pipeline', { method: 'POST', headers: H, body: JSON.stringify(c) }); return (await r.json()).map(x => x.result); }
@@ -28,6 +29,10 @@ async function sendOtpEmail(to, code) {
   if (!key) return false;
   const r = await fetch('https://api.resend.com/emails', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify({ from, to: [to], subject: 'کۆدی پشتڕاستکردنەوەی Kurd Agency', html: `<div dir="rtl"><h2>Kurd Agency</h2><p>کۆدی پشتڕاستکردنەوەی دروستکردنی هەژمارەکەت:</p><p style="font-size:28px;font-weight:bold;letter-spacing:6px">${code}</p><p>ئەم کۆدە تەنها ١٠ خولەک کار دەکات.</p></div>` }) });
   return r.ok;
+}
+async function siteNotice(u) {
+  if (!u || !(await rc('SETNX', 'site:notice:' + u, SITE_NOTICE))) return;
+  await rp([['LPUSH', 'nt:' + u, JSON.stringify({ at: Date.now(), st: 'site' })], ['LTRIM', 'nt:' + u, 0, 49], ['INCR', 'ntu:' + u]]);
 }
 async function makeDailyBackup() {
   const d = day(), key = 'backup:' + d;
@@ -295,6 +300,7 @@ async function handle(b, req) {
   const un = await auth(b.token); if (!un) return err('auth');
   if (a === 'nread') { await rc('SET', 'ntu:' + un, '0'); return { ok: 1 }; }
   if (a === 'notifications') {
+    await siteNotice(un);
     const notes = ((await rc('LRANGE', 'nt:' + un, 0, 49)) || []).map(J).filter(Boolean);
     const unread = +(await rc('GET', 'ntu:' + un)) || 0;
     return { ok: 1, unread, notes };
