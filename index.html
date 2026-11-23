@@ -19,10 +19,8 @@ body{background:var(--bg);color:var(--tx);font-family:"Noto Sans Arabic","Segoe 
 h1,h2,h3,.kf{font-family:"Noto Kufi Arabic","Noto Sans Arabic",sans-serif}
 button,input,select{font:inherit;color:inherit}
 header{position:sticky;top:0;z-index:20;background:var(--bar);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:9px 14px;box-shadow:var(--sh)}
-header #acct,header #hm{position:absolute;top:7px}header #hm{left:8px}header #acct{left:56px}header #hl{margin-inline-end:auto}
 header img{height:34px;display:block}.ads{background:var(--ac);color:#fff;font-weight:800;font-size:.7rem;padding:2px 8px;border-radius:6px;direction:ltr;margin-inline-end:auto}
-.chip{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:6px 11px;font-size:.85rem;cursor:pointer;font-weight:700}.chip.on{background:var(--ac);color:#fff;border-color:var(--ac)}
-.acct{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:58px;line-height:1.1}.acct span{font-size:1.35rem;color:#a855f7}.acct small{font-size:.68rem;color:var(--mu);font-weight:800}.acctAvatar{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid #a855f7}
+.chip{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:6px 11px;font-size:.85rem;cursor:pointer;font-weight:700}
 nav{display:flex;gap:6px;padding:10px 14px;overflow-x:auto;max-width:1000px;margin:0 auto}
 nav button{background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:8px 16px;font-weight:700;color:var(--mu);cursor:pointer;white-space:nowrap}
 nav button.on{background:var(--ac);border-color:var(--ac);color:#fff}
@@ -41,7 +39,6 @@ main{max-width:1000px;margin:0 auto;padding:6px 14px 60px}
 .lay{display:grid;grid-template-columns:1fr;gap:14px}
 @media(min-width:800px){.lay.two{grid-template-columns:1fr 300px}.sum{position:sticky;top:76px;align-self:start}}
 .box{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;box-shadow:var(--sh)}
-.landing{padding:8px 0 20px}.landingHero{background:linear-gradient(135deg,#0b4564,#6b2a6d 58%,#c34b36);border-radius:22px;padding:28px 20px;margin-bottom:18px;color:#fff;box-shadow:var(--sh);text-align:center}.landingHero h1{font-size:1.35rem;margin-bottom:6px}.landingHero p{opacity:.9}.homeGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}@media(min-width:700px){.homeGrid{grid-template-columns:repeat(3,1fr)}}.homeCard{background:linear-gradient(145deg,rgba(255,255,255,.1),transparent 60%),var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px 12px;text-align:center;color:var(--tx);cursor:pointer;transition:.2s;box-shadow:var(--sh)}.homeCard:hover{transform:translateY(-4px);border-color:var(--ac2)}.homeCard i{display:flex;width:58px;height:58px;border-radius:18px;align-items:center;justify-content:center;margin:0 auto 10px;font-size:2rem;background:linear-gradient(135deg,var(--ac),#a855f7);font-style:normal}.homeCard b{display:block;font-size:.95rem}.homeCard small{display:block;color:var(--mu);margin-top:4px}
 h2{font-size:1.1rem;margin-bottom:14px}h3{font-size:1rem;margin-bottom:8px}
 .pg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}@media(min-width:640px){.pg{grid-template-columns:repeat(3,1fr)}}
 .pc{background:var(--in);border:1px solid var(--bd);border-radius:16px;padding:20px 8px 16px;text-align:center;cursor:pointer;font-weight:800;font-size:.92rem;transition:.2s;position:relative}
@@ -54,13 +51,10 @@ h2{font-size:1.1rem;margin-bottom:14px}h3{font-size:1rem;margin-bottom:8px}
 input[type=text],input[type=url],input[type=tel],input[type=number],select{width:100%;background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:11px 12px;outline:none}
 input:focus,select:focus{border-color:var(--ac2)}
 .ages{display:flex;flex-wrap:wrap;gap:6px}.ages button{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:7px 12px;cursor:pointer;font-weight:700;direction:ltr}.ages .on{background:var(--ac);color:#fff;border-color:var(--ac)}
-.daypick{display:flex;align-items:center;gap:8px;direction:ltr}.daypick .daySlider{width:100%;accent-color:var(--ac);height:34px;cursor:pointer;touch-action:none}.daypick .arrow{width:38px;height:38px;flex:none;border:1px solid var(--bd);border-radius:10px;background:var(--in);cursor:pointer;font-size:1.3rem;font-weight:900}.daypick output{min-width:78px;text-align:center;border:1px solid var(--bd);border-radius:10px;background:var(--in);padding:9px 8px;font-weight:900;color:var(--ac2);white-space:nowrap}
-.statusSteps{display:flex;gap:5px;margin-top:10px;direction:rtl}.statusSteps span{flex:1;text-align:center;font-size:.7rem;padding:6px 3px;border-radius:8px;background:var(--in);color:var(--mu);border:1px solid var(--bd)}.statusSteps span.on{background:var(--ac);color:#fff;border-color:var(--ac)}
 .btn{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border:0;border-radius:12px;padding:12px 20px;font-weight:800;cursor:pointer}
 .btn.g{background:var(--in);color:var(--tx);border:1px solid var(--bd)}.btn:disabled{opacity:.4;cursor:not-allowed}
 .row{display:flex;gap:10px;margin-top:14px;justify-content:flex-end;flex-wrap:wrap}.row.s{justify-content:flex-start}
 .nt{border-inline-start:4px solid var(--ac2);background:var(--in);padding:10px 12px;border-radius:10px;font-size:.85rem;color:var(--mu);margin-top:10px}.nt.r{border-color:var(--no);color:var(--no)}
-.toast{position:fixed;z-index:80;inset-inline:16px;top:72px;max-width:560px;margin:auto;padding:14px 18px;background:var(--card);border:1px solid var(--ac2);border-radius:14px;box-shadow:var(--sh);animation:up .25s ease;font-weight:800;text-align:center}
 .sum dl{display:grid;grid-template-columns:auto 1fr;gap:8px 10px;font-size:.88rem;margin-top:10px}.sum dt{color:var(--mu)}.sum dd{font-weight:800;text-align:end}.sum dd span{direction:ltr;display:inline-block}
 .sm{display:flex;align-items:center;gap:10px;font-weight:800}
 .est{margin-top:12px;padding:12px;border-radius:12px;background:var(--in);text-align:center}.est b{display:block;color:var(--ac2);font-size:1.05rem;direction:ltr}
@@ -96,7 +90,6 @@ body{background:radial-gradient(900px 500px at 90% -10%,rgba(10,150,216,.28),tra
 a.btn{display:inline-block;text-decoration:none;text-align:center}.btn.dis{opacity:.4;pointer-events:none}
 .btn{box-shadow:0 6px 18px color-mix(in srgb,var(--ac) 40%,transparent)}.btn.g{box-shadow:none}
 footer{text-align:center;color:var(--mu);font-size:.78rem;padding:22px 14px 30px;border-top:1px solid var(--bd);max-width:1000px;margin:0 auto}
-
 .gm{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}@media(min-width:640px){.gm{grid-template-columns:repeat(3,1fr)}}
 .gc{background:var(--in);border:1px solid var(--bd);border-radius:14px;padding:14px 10px;cursor:pointer;text-align:center;display:flex;flex-direction:column;gap:4px;align-items:center;transition:.2s}
 .gc:hover{border-color:var(--ac2);transform:translateY(-2px)}.gc span{font-size:1.8rem}.gc small{color:var(--mu);font-size:.72rem;line-height:1.45}
@@ -126,7 +119,7 @@ input[type=password]:focus{border-color:var(--ac2)}
 .eye{position:absolute;inset-inline-end:8px;top:50%;transform:translateY(-50%);background:none;border:0;font-size:1.5rem;cursor:pointer;padding:6px;line-height:1}
 header{flex-wrap:wrap}header select.chip{width:auto}
 .pwr{display:flex;gap:8px;align-items:stretch;position:static}.pwr input{padding:15px 14px;flex:1;min-width:0}
-.eye{position:static;transform:none;background:var(--in);border:1px solid var(--bd);border-radius:10px;width:56px;flex:none;font-size:1.4rem;padding:0}
+.toast{position:fixed;z-index:80;inset-inline:16px;top:72px;max-width:520px;margin:auto;padding:14px 18px;background:var(--card);border:1px solid var(--ac2);border-radius:14px;box-shadow:var(--sh);animation:up .25s ease;font-weight:800}.eye{position:static;transform:none;background:var(--in);border:1px solid var(--bd);border-radius:10px;width:56px;flex:none;font-size:1.4rem;padding:0}
 @media(min-width:0){:root{--red:#ef4444;--gold:#f5b301}}
 body{background:radial-gradient(900px 500px at 90% -10%,rgba(10,150,216,.28),transparent 60%),radial-gradient(700px 420px at 0% 30%,rgba(239,68,68,.16),transparent 60%),radial-gradient(800px 500px at 50% 110%,rgba(245,179,1,.14),transparent 60%),var(--bg);background-attachment:fixed}
 nav button.on{color:#fff}nav button[data-k=c].on{background:#0a96d8;border-color:#0a96d8}nav button[data-k=m].on{background:#16a34a;border-color:#16a34a}nav button[data-k=s].on{background:#f5b301;border-color:#f5b301;color:#1b1400}nav button[data-k=r].on{background:#e5484d;border-color:#e5484d}nav button[data-k=g].on{background:#8b5cf6;border-color:#8b5cf6}
@@ -137,19 +130,17 @@ h2:before{content:"";display:inline-block;width:6px;height:1.05em;border-radius:
 input[type=date]{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:9px 10px}
 .gr3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:270px;margin:12px auto;direction:ltr}.gr4g{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:340px;margin:12px auto;direction:ltr}.gr4g .cd,.gr3 .cd{font-size:1.4rem;font-weight:800}.gr4g .cd.on{background:var(--gold);color:#1b1400}
 #more{display:none;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0}footer{display:flex;flex-direction:column;align-items:center;gap:6px}
-.hmenu{position:fixed;top:64px;inset-inline-end:10px;z-index:40;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px;box-shadow:var(--sh)}.hmenu[hidden]{display:none}#hm{font-size:1.05rem}
-@media(max-width:600px){header{padding:7px 8px;gap:5px}header img{height:28px;max-width:150px}.chip{padding:5px 8px;font-size:.78rem}#pt{padding-inline:7px}.acct{min-width:48px;padding:5px 7px}#hm{margin-inline-start:0}main{padding-inline:8px}.box{padding:14px;border-radius:14px}.hero{padding:16px 12px}.homeGrid{gap:8px}.homeCard{padding:15px 8px}.steps button{font-size:.68rem}.btn{padding:10px 14px}.hmenu{top:54px;inset-inline:8px;justify-content:space-between}}
-@media(max-width:420px){header{padding:5px 6px;gap:4px}header img{height:24px;max-width:118px}.chip{padding:4px 6px;font-size:.7rem}.acct{min-width:42px}.acct span{font-size:1.08rem}.acct small{font-size:.58rem}#pt{font-size:.68rem}main{padding:4px 6px 40px}.box{padding:11px;border-radius:12px}.homeGrid{gap:6px}.homeCard{padding:12px 5px;border-radius:14px}.homeCard i{width:44px;height:44px;font-size:1.5rem;border-radius:13px;margin-bottom:6px}.homeCard b{font-size:.78rem}.homeCard small{font-size:.62rem}.landingHero{padding:18px 10px;border-radius:16px}.landingHero h1{font-size:1rem}h2{font-size:.95rem}.navw nav{padding:7px 8px}.navw nav button{padding:6px 11px;font-size:.72rem}.hmenu{top:48px}}
 </style>
 </head>
 <body>
 <header>
- <img id="hl" alt="Kurd Agency">
+ <img id="hl" alt="Kurd Agency"><span class="ads">ADS</span>
  <span class="chip" id="pt" onclick="go('g')"></span>
- <button class="chip acct" id="acct" onclick="go('prof')" title="Account"><span>👤</span><small>هەژمار</small></button>
- <button class="chip" id="hm" onclick="toggleHeaderMenu()" aria-expanded="false" aria-controls="hmenu">☰</button>
+ <button class="chip" id="bl" onclick="go('m')" style="display:none">🔔</button>
+ <select class="chip" id="lg" onchange="setLang(this.value)"><option value="ku">کوردی</option><option value="en">English</option><option value="ar">العربية</option></select>
+ <button class="chip" id="th" onclick="theme()">☀️</button>
+ <button class="chip" id="lk" onclick="go('a')" title="Admin">🔒</button>
 </header>
-<div id="hmenu" class="hmenu" hidden><span class="ads">ADS</span><select class="chip" id="lg" onchange="setLang(this.value)"><option value="ku">کوردی</option><option value="en">English</option><option value="ar">العربية</option></select><button class="chip" id="th" onclick="theme()">☀️</button></div>
 <div class="navw"><button class="na l" id="nal" onclick="navGo(-1)">‹</button><nav id="nv" onscroll="navArrows()"></nav><button class="na r" id="nar" onclick="navGo(1)">›</button></div>
 <main id="app"></main>
 <footer><button class="chip" id="mb" onclick="toggleMore()">…</button><div id="more"></div><div>KURD AGENCY © 2018 · <span id="ft"></span></div></footer>
@@ -162,7 +153,7 @@ const REW=[[1000,10000],[1500,15000],[2000,20000]];
 const myCode=localStorage.kc||(localStorage.kc='KA'+Math.random().toString(36).slice(2,7).toUpperCase());
 try{const r=new URLSearchParams(location.search).get('ref');if(r&&r!=myCode)localStorage.kri=r.replace(/[^A-Za-z0-9]/g,'').slice(0,12)}catch(e){}
 const refIn=()=>localStorage.kri||'';
-let lang=localStorage.kl||'ku',V='home',PREV='home',pts=+localStorage.kp||0,S;
+let lang=localStorage.kl||'ku',V='c',pts=+localStorage.kp||0,S;
 const LI={ku:0,en:1,ar:2};
 const T={
 nc:['دروستکردنی کەمپەین','Create Campaign','إنشاء حملة'],ng:['یاری بکە و ببەرەوە','Play & Win','العب واربح'],ns:['خزمەتگوزاریەکانی تر','Other Services','خدمات أخرى'],ni:['زانیاری','Info','معلومات'],np:['ڕێگاکانی پارەدان','Payment Methods','طرق الدفع'],
@@ -174,7 +165,7 @@ bud:['بودجە و ئەنجامی پێشبینیکراو','Budget & estimated r
 cust:['بڕی دڵخواز بنووسە (کەمترین {m} دینار)','Custom amount (min {m} IQD)','مبلغ مخصص (الحد الأدنى {m} دينار)'],
 v:['بینەر','views','مشاهدة'],l:['لایک','likes','إعجاب'],to:['بۆ','to','إلى'],
 nx:['دواتر','Next','التالي'],bk:['گەڕانەوە','Back','رجوع'],
-pg:['ناوی تەواوی پەیج','Full page name','اسم الصفحة الكامل'],pgl:['ناوی خۆت یان پەیج','Your name or page','اسمك أو صفحتك'],bz:['جۆری کارەکەی چییە','Business type','نوع العمل'],lk:['لینکی پۆست','Post link','رابط المنشور'],ct:['شارەکان (ئەو شارانەی ئەتەوێت سپۆنسەرەکە ببینن بینوسە )','Cities to target','المدن المستهدفة'],
+pg:['ناوی تەواوی پەیج','Full page name','اسم الصفحة الكامل'],pgl:['ناوی خۆت یان پەیج','Your name or page','اسمك أو صفحتك'],bz:['جۆری کارەکەی چییە','Business type','نوع العمل'],lk:['لینکی پۆست','Post link','رابط المنشور'],ct:['شارەکان (ئەو شارانەی ئەتەوێت سپۆنسەرەکە ببینن)','Cities to target','المدن المستهدفة'],
 au:['بینەر','Audience','الجمهور'],kurd:['کورد','Kurdish','كرد'],arab:['عەرەب','Arab','عرب'],both:['کورد و عەرەب','Kurdish & Arab','كرد وعرب'],
 gd:['ڕەگەز','Gender','الجنس'],all2:['هەردوو ڕەگەز','All','الكل'],male:['نێر','Male','ذكر'],female:['مێ','Female','أنثى'],
 ag:['تەمەن (دەتوانیت چەند دانەیەک هەڵبژێریت)','Age (multiple allowed)','العمر (يمكن اختيار أكثر من واحد)'],allA:['هەمووی','All','الكل'],
@@ -208,7 +199,7 @@ tc:['مەرجەکانی کارکردن و گەڕاندنەوەی پارە','Term
 fq:['پرسیارە باوەکان','FAQ','الأسئلة الشائعة'],
 q1:['ئایا سپۆنسەر فۆڵۆو زیاد دەکات؟','Does sponsoring increase followers?','هل الرعاية تزيد المتابعين؟'],a1:['نەخێر، خەڵک سپۆنسەر وەکو بازاڕێکی ئۆنلاین بەکاردەهێنێت نەک بۆ فۆڵۆو کردنی پەیج.','No. People use ads like an online marketplace, not to follow pages.','لا، الناس تستخدم الإعلانات كسوق إلكتروني وليس لمتابعة الصفحات.'],
 q2:['ئایا فرۆش گەرەنتی دەکرێت؟','Are sales guaranteed?','هل المبيعات مضمونة؟'],a2:['نەخێر، کڕیار خۆی بڕیار دەدات. شێوازی ڤیدیۆ، پێشکەشکردن و کوالیتی کاڵاکەش کاریگەرییان هەیە.','No. The buyer decides; video style, presentation and product quality matter too.','لا، المشتري هو من يقرر، وأسلوب الفيديو والعرض وجودة المنتج مؤثرة أيضا.'],
-home:['گەڕانەوە بۆ سەرەتا','Back to start','العودة للبداية'],or:['یان','or','أو'],oth:['نرخێکی تر دەتەوێت؟','Need a different amount?','تريد مبلغا آخر؟'],othD:[' ئەگەر نرخەکەت لە لیستەکەدا نییە، لێرە بڕی دڵخوازت بنووسە و بینەری پێشبینیکراو ببینە داوای بکە.','If your amount is not in the list, enter it here to see the estimated results.','إذا لم يكن المبلغ في القائمة، أدخله هنا لرؤية النتائج المقدرة.'],cin:['بڕی پارە بە دینار (کەمترین {m})','Amount in IQD (min {m})','المبلغ بالدينار (الحد الأدنى {m})'],mn:['کەمترین بڕ {m} دینارە','Minimum is {m} IQD','الحد الأدنى {m} دينار'],ctS:['شارەکان','Cities','المدن'],agS:['تەمەن','Age','العمر'],cmS:['پەیوەندی لە ڕێگەی','Contact via','التواصل عبر'],foot:['هەموو مافەکان پارێزراوە بۆ کورد ئەجێنسی ٢٠١٨','All rights reserved to Kurd Agency 2018','جميع الحقوق محفوظة لوكالة كورد 2018'],
+home:['گەڕانەوە بۆ سەرەتا','Back to start','العودة للبداية'],or:['یان','or','أو'],oth:['نرخێکی تر دەتەوێت؟','Need a different amount?','تريد مبلغا آخر؟'],othD:['ئەگەر نرخەکەت لە لیستەکەدا نییە، لێرە بڕی دڵخوازت بنووسە و بینەری پێشبینیکراو ببینە.','If your amount is not in the list, enter it here to see the estimated results.','إذا لم يكن المبلغ في القائمة، أدخله هنا لرؤية النتائج المقدرة.'],cin:['بڕی پارە بە دینار (کەمترین {m})','Amount in IQD (min {m})','المبلغ بالدينار (الحد الأدنى {m})'],mn:['کەمترین بڕ {m} دینارە','Minimum is {m} IQD','الحد الأدنى {m} دينار'],ctS:['شارەکان','Cities','المدن'],agS:['تەمەن','Age','العمر'],cmS:['پەیوەندی لە ڕێگەی','Contact via','التواصل عبر'],foot:['هەموو مافەکان پارێزراوە بۆ کورد ئەجێنسی ٢٠١٨','All rights reserved to Kurd Agency 2018','جميع الحقوق محفوظة لوكالة كورد 2018'],
 g4:['ژمارە و کات','Math Rush','سباق الحساب'],g4d:['٧ چرکە بۆ هەر پرسیارێک، ٣ ژیان، ٦٠ چرکە. لانی کەم ١٢ وەڵامی ڕاست','7s per question, 3 lives, 60s. Get 12+ right','7 ثوان لكل سؤال، 3 أرواح، 60 ثانية. 12 إجابة صحيحة على الأقل'],
 g5:['ڕیزکردنی ژمارە','Number Order','ترتيب الأرقام'],g5d:['١ تا ٢٥ بە ڕیز لە ٢٥ چرکەدا، هەڵە = +٢ چرکە','1 to 25 in order within 25s, mistake = +2s','من 1 إلى 25 بالترتيب خلال 25 ثانية، الخطأ = +2 ثانية'],
 g6:['ڕەنگی ڕاستەقینە','True Color','اللون الحقيقي'],g6d:['ڕەنگی نووسینەکە دیاری بکە نەک وشەکە. ٣٠ چرکە، ٣ ژیان، لانی کەم ١٥','Pick the ink color, not the word. 30s, 3 lives, 15+','اختر لون الخط لا الكلمة. 30 ثانية، 3 أرواح، 15 على الأقل'],
@@ -229,20 +220,20 @@ fn:['ناوت','Your name','اسمك'],fr:['نرخاندن','Rating','التقي
 g8:['یادگەی ژمارە','Digit Memory','ذاكرة الأرقام'],g8d:['ژمارەکە لە بیر بکە و بینووسەرەوە، هەر جار درێژتر دەبێت. پۆینت لە ٨ ژمارەوە','Memorize the number and type it back, it grows each round. Points from 8 digits','احفظ الرقم واكتبه، يطول كل جولة. النقاط من 8 أرقام'],
 g9:['ڕەنگی جیاواز','Odd Color','اللون المختلف'],g9d:['چوارگۆشەی کەمێک جیاواز بدۆزەرەوە. ٣٠ چرکە، ٣ ژیان، لانی کەم ١٢','Find the slightly different square. 30s, 3 lives, 12+','اعثر على المربع المختلف قليلا. 30 ثانية، 3 أرواح، 12+'],
 g10:['وەستاندنی تەواو','Perfect Stop','التوقيت المثالي'],g10d:['نیشانەکە لە ناو ناوچە سەوزەکە بوەستێنە، خێراتر و بچووکتر دەبێت. ٣ ژیان، لانی کەم ٨','Stop the marker in the green zone; it gets faster and smaller. 3 lives, 8+','أوقف المؤشر في المنطقة الخضراء؛ يزداد سرعة وصغرا. 3 أرواح، 8+'],
-need:[' پیویستە هەژمارت هەبێت بچۆرە ناوەوە یان هەژمار دروست بکە','You need an account to play and invite friends','تحتاج حسابا للعب ودعوة الأصدقاء'],au_l:['چوونەژوورەوە','Log in','تسجيل الدخول'],au_r:['دروستکردنی هەژمار','Create account','إنشاء حساب'],
+need:['بۆ یاری کردن و بانگێشتکردن دەبێت هەژمارت هەبێت','You need an account to play and invite friends','تحتاج حسابا للعب ودعوة الأصدقاء'],au_l:['چوونەژوورەوە','Log in','تسجيل الدخول'],au_r:['دروستکردنی هەژمار','Create account','إنشاء حساب'],
 un:['ناوی بەکارهێنەر (یوسەرنەیم) — پیتی ئینگلیزی و ژمارە','Username (letters/numbers)','اسم المستخدم (حروف/أرقام)'],fullname:['ناوی تەواو','Full name','الاسم الكامل'],phone:['ژمارەی تەلەفۆن','Phone number','رقم الهاتف'],email:['ئیمەیڵ','Email','البريد الإلكتروني'],pw:['پاسۆرد (٦ پیت یان زیاتر)','Password (6+ characters)','كلمة المرور (6 أحرف أو أكثر)'],av:['وێنەی پرۆفایل (ئارەزوومەندانە)','Profile photo (optional)','صورة الملف الشخصي (اختياري)'],rem:['لەسەر ئەم ئامێرە بمهێڵەوە (چوونەژوورەوەی خۆکار)','Keep me logged in on this device','أبقني مسجلا على هذا الجهاز'],idl:['ناوی بەکارهێنەر / ژمارەی تەلەفۆن / ئیمەیڵ','Username / phone / email','اسم المستخدم / الهاتف / البريد'],logout:['دەرچوون','Log out','خروج'],
 frT:['هاوڕێ بانگێشتکراوەکانت','Friends you invited','أصدقاؤك المدعوون'],frN:['هێشتا کەس نییە','No one yet','لا أحد بعد'],frS:['سپۆنسەری کرد ✓','Sponsored ✓','قام بالرعاية ✓'],frJ:['هەژماری دروستکرد','Joined','أنشأ حسابا'],frP:['سپۆنسەرکراو: {n} لە ٥','Sponsored: {n} of 5','تمت الرعاية: {n} من 5'],
 usd:['بڕی سپۆنسەر بە دۆلار','Ad budget in USD','ميزانية الإعلان بالدولار'],usdN:['هەر ١ دۆلارێک = ٢٬٠٠٠ دینار (باجی مێتا و هەقدەستی ئێمەی تێدایە). بڕی دۆلارەکە ئەو بڕەیە کە لە سپۆنسەرەکەدا خەرج دەکرێت.','Every $1 = 2,000 IQD (includes Meta tax and our fee). The dollar amount is what is actually spent on your ad.','كل 1 دولار = 2,000 دينار (يشمل ضريبة ميتا وأتعابنا). المبلغ بالدولار هو ما يُنفق فعليا على إعلانك.'],
- nmy:['داواکاریەکانم','My requests','طلباتي'],myN:['بۆ دیتنی داواکاریەکانت هەژمارت پێویستە','You need an account to see your requests','تحتاج حسابا لرؤية طلباتك'],
-trkH:['داواکاریەکانت ببینە','See your requests','شاهد طلباتك'],trkD:['هەژمارێک دروست بکە (یان بچۆ ژوورەوە) بۆ ئەوەی داواکاریەکانت ببینی.','Create an account (or log in) to see your requests.','أنشئ حسابا لترى طلباتك.'],
-trkOn:['بە هەژماری @{u} چوویتە ژوورەوە. داواکاریەکانت لە بەشی «داواکاریەکانم» دەردەکەوێت.','Logged in as @{u}. Your requests appear in “My requests”.','سجلت الدخول باسم @{u}. ستظهر طلباتك في «طلباتي».'],
-lastT:['داواکارییەکەت نێردرا ✓','Order sent ✓','تم إرسال الطلب ✓'],lastC:['کۆدی داواکاری','Order code','رمز الطلب'],lastA:['هەژمارت پێویستە؛ داواکاریەکانت لە «داواکاریەکانم» دەبینیت.','Your account is linked; see your requests in “My requests”.','حسابك مرتبط؛ شاهد طلباتك في «طلباتي».'],lastN:['ئەگەر هەژمارت نییە، دواتر لە «داواکاریەکانم» بە کۆدەکە زیادی بکە.','No account? Add this order later in “My requests” with the code.','بدون حساب؟ أضف الطلب لاحقا في «طلباتي» بالرمز.'],
+nmy:['داتای سپۆنسەرەکەم','My Ad Data','بيانات إعلاني'],myN:['بۆ دیتنی داتای سپۆنسەرەکەت هەژمارت پێویستە','You need an account to see your ad data','تحتاج حسابا لرؤية بيانات إعلانك'],
+trkH:['داتای سپۆنسەرەکەت ببینە','See your ad data','شاهد بيانات إعلانك'],trkD:['هەژمارێک دروست بکە (یان بچۆ ژوورەوە) بۆ ئەوەی دوای سپۆنسەرەکە بتوانیت ببینیت چەند کەس بینیویەتی، چەند نامەت بۆ هاتووە و داتاکانی تر. تەنیا تۆ داتای خۆت دەبینیت.','Create an account (or log in) to see how many people saw your ad, how many messages you got and more. Only you can see your own data.','أنشئ حسابا (أو سجل الدخول) لترى كم شخصا شاهد إعلانك وكم رسالة وصلتك وغير ذلك. أنت فقط ترى بياناتك.'],
+trkOn:['بە هەژماری @{u} چوویتە ژوورەوە. داتای سپۆنسەرەکەت لە بەشی «داتای سپۆنسەرەکەم» دەردەکەوێت.','Logged in as @{u}. Your ad data will appear in “My Ad Data”.','سجلت الدخول باسم @{u}. ستظهر بيانات إعلانك في «بيانات إعلاني».'],
+lastT:['داواکارییەکەت نێردرا ✓','Order sent ✓','تم إرسال الطلب ✓'],lastC:['کۆدی داواکاری','Order code','رمز الطلب'],lastA:['هەژمارت پێوەیە؛ داتاکەت لە «داتای سپۆنسەرەکەم» دەبینیت.','Your account is linked; see your data in “My Ad Data”.','حسابك مرتبط؛ شاهد بياناتك في «بيانات إعلاني».'],lastN:['ئەگەر هەژمارت نییە، دواتر لە «داتای سپۆنسەرەکەم» بە کۆدەکە زیادی بکە.','No account? Add this order later in “My Ad Data” with the code.','بدون حساب؟ أضف الطلب لاحقا في «بيانات إعلاني» بالرمز.'],
 claimT:['زیادکردنی داواکاری بە کۆد','Add an order by code','إضافة طلب بالرمز'],claimB:['زیاد بکە','Add','إضافة'],trkNote:['داتاکە لە Meta وەردەگیرێت و ڕەنگە چەند خولەکێک دوابکەوێت.','Data comes from Meta and may be delayed by a few minutes.','البيانات من ميتا وقد تتأخر بضع دقائق.'],
-mReach:['بینراو','People reached','الوصول إلى الجمهور'],mImp:['ژمارەی دەرکەوتن','Impressions','مرات الظهور'],mClk:['کرتەکان','Clicks','النقرات'],mMsg:['نامەکان / گفتوگۆکان','Messages','الرسائل'],mRea:['لایک و کارلێک','Likes & reactions','الإعجابات والتفاعلات'],mCom:['کۆمێنتەکان','Comments','التعليقات'],
+mReach:['بینەری ڕاستەقینە','People reached','وصل إلى'],mImp:['جاری دەرکەوتن','Impressions','مرات الظهور'],mClk:['کرتە','Clicks','نقرات'],mMsg:['نامە / گفتوگۆ','Messages','رسائل'],mRea:['لایک و ڕیاکشن','Likes & reactions','الإعجابات والتفاعلات'],mCom:['کۆمێنت','Comments','تعليقات'],
 myPend:['داتا هێشتا نەهاتووە. دوای دەستپێکردنی سپۆنسەرەکە دەردەکەوێت.','No data yet. It appears once your ad has started.','لا توجد بيانات بعد. تظهر بعد بدء إعلانك.'],myErr:['کێشە لە هێنانی داتا، دواتر هەوڵبدەرەوە.','Could not load data, try later.','تعذر جلب البيانات، حاول لاحقا.'],myOff:['بەستنەوەی داتای Meta هێشتا چالاک نەکراوە.','Meta data connection is not enabled yet.','ربط بيانات ميتا غير مفعل بعد.'],myNone:['هێشتا هیچ سپۆنسەرێکی فەیسبووک یان ئینستاگرامت نییە.','No Facebook or Instagram sponsorships yet.','لا توجد رعايات فيسبوك أو إنستغرام بعد.'],
 stN:['چاوەڕێی پشتڕاستکردنەوە','Awaiting confirmation','بانتظار التأكيد'],stO:['پشتڕاستکراوە','Confirmed','مؤكد'],stX:['هەڵوەشاوەتەوە','Cancelled','ملغى'],
 more:['زیاتر ببینە','See more','عرض المزيد'],nin:['دابەزاندنی بەرنامە','Install the app','تثبيت التطبيق'],priv:['سیاسەتی نهێنی','Privacy','الخصوصية'],trm:['مەرجەکان','Terms','الشروط'],del:['سڕینەوەی داتا','Data deletion','حذف البيانات'],
-insD:['<b><a href="#" onclick="go(\'prof\');return false" style="color:inherit;text-decoration:underline">کورد</a></b> ئەجێنسی دەتوانیت وەک بەرنامە لەسەر مۆبایلەکەت دابنێیت، بەبێ App Store و Play Store.','You can install Kurd Agency like an app, without an app store.','يمكنك تثبيت وكالة كورد كتطبيق على هاتفك دون متجر تطبيقات.'],insBtn:['دابەزاندن','Install','تثبيت'],
+insD:['کورد ئەجێنسی دەتوانیت وەک بەرنامە لەسەر مۆبایلەکەت دابنێیت، بەبێ App Store و Play Store.','You can install Kurd Agency like an app on your phone, without an app store.','يمكنك تثبيت وكالة كورد كتطبيق على هاتفك دون متجر تطبيقات.'],insBtn:['دابەزاندن','Install','تثبيت'],
 insA:['<ol><li>سایتەکە لە Chrome بکەرەوە.</li><li>کرتە لە سێ خاڵەکەی ⋮ (سەرەوەی لای ڕاست) بکە.</li><li>«Install app» یان «Add to Home screen» هەڵبژێرە.</li><li>«Install» یان «Add» دابگرە.</li><li>ئایکۆنی کورد ئەجێنسی لە شاشەی سەرەکی و لیستی بەرنامەکان دەردەکەوێت.</li></ol>','<ol><li>Open the site in Chrome.</li><li>Tap the three dots ⋮ (top right).</li><li>Choose “Install app” or “Add to Home screen”.</li><li>Tap “Install” or “Add”.</li><li>The Kurd Agency icon appears on your home screen and app list.</li></ol>','<ol><li>افتح الموقع في Chrome.</li><li>اضغط على النقاط الثلاث ⋮ (أعلى اليمين).</li><li>اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».</li><li>اضغط «تثبيت» أو «إضافة».</li><li>تظهر أيقونة وكالة كورد على الشاشة الرئيسية.</li></ol>'],
 insI:['<ol><li>سایتەکە لە <b>Safari</b> بکەرەوە (نەک لە browserی تر).</li><li>کرتە لە دوگمەی Share بکە (چوارگۆشەیەک بە تیرەوە، خوارەوەی شاشە).</li><li>سکرۆڵ بکە و «Add to Home Screen» هەڵبژێرە.</li><li>ناوەکە بهێڵەرەوە و «Add» دابگرە.</li><li>ئایکۆنەکە لە شاشەی سەرەکی دەردەکەوێت.</li></ol>','<ol><li>Open the site in <b>Safari</b> (not another browser).</li><li>Tap the Share button (square with arrow, bottom of the screen).</li><li>Scroll and choose “Add to Home Screen”.</li><li>Keep the name and tap “Add”.</li><li>The icon appears on your home screen.</li></ol>','<ol><li>افتح الموقع في <b>Safari</b>.</li><li>اضغط زر المشاركة (مربع بسهم أسفل الشاشة).</li><li>مرر واختر «إضافة إلى الشاشة الرئيسية».</li><li>اترك الاسم واضغط «إضافة».</li><li>تظهر الأيقونة على الشاشة الرئيسية.</li></ol>'],
 waitN:['چاوەڕێ بکە {n} چرکە پێش ئەوەی دووبارە هەوڵبدەیتەوە','Wait {n} seconds before trying again','انتظر {n} ثانية قبل المحاولة'],
@@ -250,22 +241,19 @@ fgT:['پاسۆردم بیرچووە','Forgot password','نسيت كلمة الم
 fg1:['١. ناوی بەکارهێنەر، ژمارەی تەلەفۆن یان ئیمەیڵەکەت بنووسە و داواکاری بنێرە بۆ وەتسئەپ. ئێمە دڵنیا دەبینەوە لە ژمارەکەت و کۆدێکت دەدەینێ.','1. Enter your username, phone or email and send the request on WhatsApp. We confirm your number and give you a code.','1. أدخل اسم المستخدم أو الهاتف أو البريد وأرسل الطلب عبر واتساب. نتأكد من رقمك ونعطيك رمزا.'],
 fg2:['٢. کۆدەکە و پاسۆردی نوێ لێرە بنووسە.','2. Enter the code and your new password here.','2. أدخل الرمز وكلمة المرور الجديدة هنا.'],
 fgId:['ناوی بەکارهێنەر / ژمارە / ئیمەیڵ','Username / phone / email','اسم المستخدم / الهاتف / البريد'],fgCode:['کۆدی وەرگیراو','Code you received','الرمز المستلم'],fgNew:['پاسۆردی نوێ (٦+)','New password (6+)','كلمة المرور الجديدة (6+)'],fgSend:['داواکردنی کۆد','Request code','طلب الرمز'],fgSet:['پاسۆردی نوێ هەڵبگرە','Save new password','حفظ كلمة المرور'],fgOk:['پاسۆرد گۆڕدرا ✓ ئێستا بچۆ ژوورەوە','Password changed ✓ you can log in now','تم تغيير كلمة المرور ✓ سجل الدخول الآن'],fgOk1:['داواکاریەکەت تۆمار کرا. ژمارەی داواکاری:','Request saved. Request ID:','تم حفظ الطلب. رقم الطلب:'],fgWa:['ناردن بۆ وەتسئەپ','Send on WhatsApp','إرسال عبر واتساب'],
-nt_ok:['سپۆنسەرەکەت ئەنجام درا و لە ژێر پێداچوونەوەیە','Your sponsorship was placed and is under review','تم تنفيذ رعايتك وهي قيد المراجعة'],nt_act:['سپۆنسەرەکەت کارا بوو، سەیری داتاکانت بکە','Your sponsorship is now active. Check your data','أصبحت رعايتك نشطة، راجع بياناتك'],nt_fin:['سپۆنسەرەکەت تەواو بوو','Your sponsorship has finished','انتهت رعايتك'],nt_x:['سپۆنسەرەکەت ڕەتکرایەوە','Your sponsorship was declined','تم رفض رعايتك'],nt_reward:['٣٠ پۆینتت بۆ زیاد کرا، بۆ پەسەندکردنی سپۆنسەرەکەت','30 points were added for your approved sponsorship','تمت إضافة 30 نقطة لرعايتك المقبولة'],
-stR:['لە ژێر پێداچوونەوەیە','Under review','قيد المراجعة'],stA:['کارایە','Active','نشط'],stF:['تەواو بوو','Finished','منتهٍ'],wk:['٧ ڕۆژی ڕابردوو','Last 7 days','آخر 7 أيام'],mo:['٣٠ ڕۆژی ڕابردوو','Last 30 days','آخر 30 يوما'],spent:['سەرف کراو','Spent','المصروف'],ntH:['ئاگادارییەکان','Notifications','الإشعارات'],
+nt_ok:['سپۆنسەرەکەت ئەنجام درا و لە ژێر پێداچوونەوەدایە','Your sponsorship was placed and is under review','تم تنفيذ رعايتك وهي قيد المراجعة'],nt_act:['سپۆنسەرەکەت ئەکتیڤ بوو','Your sponsorship is now active','أصبحت رعايتك نشطة'],nt_fin:['سپۆنسەرەکەت تەواو بوو','Your sponsorship has finished','انتهت رعايتك'],nt_x:['سپۆنسەرەکەت ڕەتکرایەوە','Your sponsorship was declined','تم رفض رعايتك'],
+stR:['ئەنجام درا، لە ژێر پێداچوونەوەدایە','Placed, under review','نُفذ، قيد المراجعة'],stA:['ئەکتیڤە','Active','نشط'],stF:['تەواو بوو','Finished','منتهٍ'],wk:['٧ ڕۆژی ڕابردوو','Last 7 days','آخر 7 أيام'],mo:['٣٠ ڕۆژی ڕابردوو','Last 30 days','آخر 30 يوما'],spent:['سەرف کراو','Spent','المصروف'],ntH:['ئاگادارییەکان','Notifications','الإشعارات'],
 g11:['وشەی کوردی','Kurdish Words','كلمات كردية'],g11d:['پیتەکان بە ڕیز بکە و وشەکە دروست بکە. ٩٠ چرکە، ٣ ژیان، لانی کەم ٦ وشە','Tap the letters in order to build the word. 90s, 3 lives, 6+ words','رتب الحروف لتكوين الكلمة. 90 ثانية، 3 أرواح، 6 كلمات على الأقل'],
 g12:['پازڵی ژمارە','Sliding Puzzle','لغز الأرقام'],g12d:['ژمارەکان بە ڕیز بکە (١ تا ٨) لە ١٢٠ چرکەدا','Order the tiles 1 to 8 within 120s','رتب الأرقام من 1 إلى 8 خلال 120 ثانية'],
 g13:['چرا کوژاندنەوە','Lights Out','أطفئ الأضواء'],g13d:['هەموو چراکان بکوژێنەوە لە ١٦ هەنگاودا. هەر کرتەیەک دراوسێکانیشی دەگۆڕێت','Turn all lights off in 16 moves. Each tap flips its neighbours too','أطفئ كل الأضواء في 16 حركة. كل نقرة تقلب الجيران أيضا'],
 g14:['ئیمۆجی جیاواز','Odd Emoji','الإيموجي المختلف'],g14d:['ئیمۆجییەکی کەمێک جیاواز بدۆزەرەوە. ٣٠ چرکە، ٣ ژیان، ١٢+','Find the slightly different emoji. 30s, 3 lives, 12+','اعثر على الإيموجي المختلف قليلا. 30 ثانية، 3 أرواح، 12+'],
 g15:['ڕیزی ژمارە','Number Sequence','تسلسل الأرقام'],g15d:['ژمارەی داهاتوو بدۆزەرەوە. ٤٥ چرکە، ٣ ژیان، ١٠+','Find the next number. 45s, 3 lives, 10+','اعثر على الرقم التالي. 45 ثانية، 3 أرواح، 10+'],
-myHome:['هەژمارەکەم','My account','حسابي'],myData:['داتاکانم','My data','بياناتي'],myT1:['سپۆنسەرەکانم','My sponsorships','رعاياتي'],myT2:['ئامار','Summary','ملخص'],myT3:['ئاگاداری','Notifications','الإشعارات'],myT4:['زیادکردن بە کۆد','Add by code','إضافة برمز'],myBack:['گەڕانەوە بۆ هەژمارەکەم','Back to my account','العودة إلى حسابي'],myDay:['ئەمڕۆ','Today','اليوم'],mySpent:['بڕی سەرفکراو','Amount spent','المبلغ المصروف'],mySponsorInfo:['وردەکاری سپۆنسەر','Sponsorship details','تفاصيل الرعاية'],oc:['ژمارەی سپۆنسەر','Sponsorships','عدد الرعايات'],
+myT1:['سپۆنسەرەکانم','My sponsorships','رعاياتي'],myT2:['ئامار','Summary','ملخص'],myT3:['ئاگاداری','Notifications','الإشعارات'],myT4:['زیادکردن بە کۆد','Add by code','إضافة برمز'],myT5:['پڕۆفایل','Profile','الملف الشخصي'],pfName:['ناو','Name','الاسم'],pfEmail:['ئیمەیڵ','Email','البريد الإلكتروني'],pfPass:['پاسۆردی ئێستا','Current password','كلمة المرور الحالية'],pfNew:['پاسۆردی نوێ (٦+)','New password (6+)','كلمة المرور الجديدة (6+)'],pfSave:['پاشەکەوتکردن','Save changes','حفظ التغييرات'],pfOk:['زانیارییەکان نوێ کرانەوە','Profile updated','تم تحديث الملف الشخصي'],oc:['ژمارەی سپۆنسەر','Sponsorships','عدد الرعايات'],
 mShr:['شەیر','Shares','المشاركات'],mSav:['سەیڤ','Saves','الحفظ'],mPgl:['لایکی پەیج','Page likes','إعجابات الصفحة'],mEng:['کارلێککردن','Engagement','التفاعل'],mLnk:['کرتەی لینک','Link clicks','نقرات الرابط'],mVid:['بینینی ڤیدیۆ','Video views','مشاهدات الفيديو'],mAll:['هەموو وردەکاری','All details','كل التفاصيل'],ntNone:['هێشتا هیچ ئاگاداریەک نییە','No notifications yet','لا توجد إشعارات بعد'],
 dayN:['هەر ٢ دۆلارێک = ١ ڕۆژ. بۆ ئەم بڕە دەتوانیت لە ١ هەتا {n} ڕۆژ دیاری بکەیت.','Every $2 = 1 day. For this amount you can choose from 1 to {n} days.','كل 2 دولار = يوم واحد. يمكنك اختيار من 1 إلى {n} أيام.'],
-prof:['پرۆفایل','Profile','الملف الشخصي'],pfName:['ناوی تەواو','Full name','الاسم الكامل'],pfSave:['هەڵگرتن','Save','حفظ'],pfCur:['پاسۆردی ئێستا','Current password','كلمة المرور الحالية'],pfNew:['پاسۆردی نوێ (٦+)','New password (6+)','كلمة المرور الجديدة (6+)'],pfNew2:['دووبارەی پاسۆردی نوێ','Repeat new password','أعد كلمة المرور الجديدة'],pfPass:['گۆڕینی پاسۆرد','Change password','تغيير كلمة المرور'],pfOk:['هەڵگیرا ✓','Saved ✓','تم الحفظ ✓'],pfMis:['دوو پاسۆردە نوێیەکە وەک یەک نین','The two new passwords do not match','كلمتا المرور الجديدتان غير متطابقتين'],pfWrong:['پاسۆردی ئێستا هەڵەیە','Current password is wrong','كلمة المرور الحالية خاطئة'],pfUser:['ناوی بەکارهێنەر','Username','اسم المستخدم'],pfNote:['ناو و ئیمەیڵ و پاسۆرد دەتوانیت بیگۆڕیت. ناوی بەکارهێنەر و ژمارەی تەلەفۆن ناگۆڕێن. بۆ گۆڕینی ئیمەیڵ و پاسۆرد پاسۆردی ئێستا پێویستە.','You can change your name, email and password. Username and phone cannot change. Email and password changes need your current password.','يمكنك تغيير الاسم والبريد وكلمة المرور. اسم المستخدم والهاتف لا يتغيران. تغيير البريد وكلمة المرور يتطلب كلمة المرور الحالية.'],
-adminOnly:['ئەم بەشە تایبەتە بە ئەدمین','This section is for the admin only','هذا القسم خاص بالمدير فقط'],
 cv:['ناردنی CV بۆ کارکردن','Send CV for a job','إرسال السيرة الذاتية']
 };
 const t=k=>(T[k]||[k,k,k])[LI[lang]];
-T.userLogin=['چوونەژوورەوە','Log in','تسجيل الدخول'];
 const SV={fb:'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
 ig:'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z',
 sc:'M12 2.5c-2.8 0-4.6 2.1-4.6 4.9v1.8c-.5.1-1 0-1.4-.3-.3-.2-.7 0-.7.4 0 .6.8 1 1.6 1.3-.3 1-1.2 2.2-2.8 2.7-.4.1-.5.6-.1.8.7.4 1.4.6 2 .7.1.4.2.7.4.9.3.3.9.1 1.5.1.9 0 1.6 1.7 4.1 1.7s3.2-1.7 4.1-1.7c.6 0 1.2.2 1.5-.1.2-.2.3-.5.4-.9.6-.1 1.3-.3 2-.7.4-.2.3-.7-.1-.8-1.6-.5-2.5-1.7-2.8-2.7.8-.3 1.6-.7 1.6-1.3 0-.4-.4-.6-.7-.4-.4.3-.9.4-1.4.3V7.4c0-2.8-1.8-4.9-4.6-4.9z',
@@ -291,49 +279,33 @@ function estH(P,x){const e=est(x,P),u=eu(P);return `<span class="rg"><span>${fmt
 const maxDays=p=>Math.max(1,Math.floor(p/4000));
 const esc=s=>String(s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 function reset(){S={st:1,p:null,pr:0,f:{ag:[]},pay:'',ok:0}}
-function saveDraft(){try{localStorage.kcamp=JSON.stringify(S)}catch(e){}}
-function loadDraft(){try{const d=JSON.parse(localStorage.kcamp||'null');if(d&&d.f&&d.st>=1&&d.st<=4)S=d}catch(e){}}
 reset();
-
-function closeHeaderMenu(){const e=$('hmenu'),b=$('hm');if(e)e.hidden=true;if(b)b.setAttribute('aria-expanded','false')}
-function toggleHeaderMenu(){const e=$('hmenu'),b=$('hm');if(!e)return;e.hidden=!e.hidden;if(b)b.setAttribute('aria-expanded',String(!e.hidden))}
-document.addEventListener('click',e=>{if(!e.target.closest('#hmenu,#hm'))closeHeaderMenu()});
-function setLang(l){lang=l;localStorage.kl=l;closeHeaderMenu();render()}
-function theme(){const d=document.documentElement,l=d.dataset.theme=='light';d.dataset.theme=l?'':'light';$('th').textContent=l?'☀️':'🌙';localStorage.kt=l?'':'light';closeHeaderMenu()}
-function go(v,fromPop){stop();if(v==V)return;if(!fromPop)history.pushState({v},'',location.pathname+location.search+'#'+v);closeHeaderMenu();if(!ACC&&['prof','g','r','m'].includes(v))AU='x';if(v=='prof')PFSEC='menu';if(v=='home'){localStorage.removeItem('kcamp');reset()}if(v=='c'&&V=='home')loadDraft();PREV=(v=='prof'||v=='reg')?'home':V;V=v;render();if(ACC&&v=='r')api('me',{token:tok()}).then(r=>{if(r.ok){ACC=r.me;if(V=='r')render()}})}
-const appUrl=location.pathname+location.search;
-history.replaceState({v:V,root:true},'',appUrl+'#'+V);
-history.pushState({v:V,root:true},'',appUrl+'#'+V);
-window.addEventListener('popstate',e=>{const v=e.state&&e.state.v||'home';go(v,true)});
-function landing(){const cards=[['c','nc','📣'],['m','nmy','📊'],['s','ns','🛠️'],['r','nr','🎁'],['g','ng','🎮'],['ins','nin','📲']];return `<div class="landing"><div class="landingHero"><h1>${t('hero')}</h1><p>هەموو خزمەتگوزارییەکان لە یەک شوێن</p></div><h2>سەرکەوتنی کارەکەت لێرەیە</h2><div class="homeGrid">${cards.map(x=>`<button class="homeCard" onclick="go('${x[0]}')"><i>${x[2]}</i><b>${t(x[1])}</b><small>بۆ بینینی بەشەکە کرتە بکە</small></button>`).join('')}</div></div>`}
+function setLang(l){lang=l;localStorage.kl=l;render()}
+function theme(){const d=document.documentElement,l=d.dataset.theme=='light';d.dataset.theme=l?'':'light';$('th').textContent=l?'☀️':'🌙';localStorage.kt=l?'':'light'}
+function go(v){stop();V=v;render();if(ACC&&v=='r')api('me',{token:tok()}).then(r=>{if(r.ok){ACC=r.me;if(V=='r')render()}})}
 function render(){
  const d=document.documentElement;d.lang=lang;d.dir=lang=='en'?'ltr':'rtl';$('lg').value=lang;
-  refreshChip();
-  $('ft').textContent=t('foot');renderMore();$('nv').parentElement.style.display='none';$('nv').innerHTML=[['c','nc'],['m','nmy'],['s','ns'],['r','nr'],['g','ng'],['ins','nin']].map(a=>`<button data-k="${a[0]}" class="${V==a[0]?'on':''}" onclick="go('${a[0]}')">${t(a[1])}</button>`).join('');
-  $('app').innerHTML={home:landing,c:camp,g:games,s:srv,i:info,p:payTab,r:refer,f:feedback,q:faq,a:admin,m:mydata,ins:install,prof:profView,reg:registerView,adminLogin:admin}[V]();
-  const needsHome=!['home','a','c'].includes(V);if(needsHome&&$('app')&&!$('app').querySelector('.backHome')){const prev=V=='adminLogin'?`<button class="back" onclick="go('ins')">↩ گەڕانەوە بۆ هەنگاوی پێشتر</button>`:`<button class="back" onclick="go(PREV||'home')">↩ گەڕانەوە بۆ هەنگاوی پێشتر</button>`;$('app').insertAdjacentHTML('afterbegin',`<div class="top backHome"><button class="back" onclick="go('home')">↩ ${t('home')}</button>${prev}</div>`)}
+ refreshChip();
+ $('ft').textContent=t('foot');renderMore();$('nv').innerHTML=[['c','nc'],['m','nmy'],['s','ns'],['r','nr'],['g','ng']].map(a=>`<button data-k="${a[0]}" class="${V==a[0]?'on':''}" onclick="go('${a[0]}')">${t(a[1])}</button>`).join('');
+ $('app').innerHTML={c:camp,g:games,s:srv,i:info,p:payTab,r:refer,f:feedback,q:faq,a:admin,m:mydata,ins:install}[V]();
  if(V=='c'){sum();updSend()}if(V=='f')setStar(fbStar);
  window.scrollTo(0,0);setTimeout(navArrows,60)}
-
 function navGo(d){$('nv').scrollBy({left:d*220,behavior:'smooth'})}
 function navArrows(){const n=$('nv'),mx=n.scrollWidth-n.clientWidth,p=Math.abs(n.scrollLeft),rtl=document.documentElement.dir=='rtl',a=p>2,b=p<mx-2;
  $('nal').style.display=(rtl?b:a)?'block':'none';$('nar').style.display=(rtl?a:b)?'block':'none'}
 window.addEventListener('resize',navArrows);
-document.addEventListener('input',()=>{if(V=='c')saveDraft()});document.addEventListener('change',()=>{if(V=='c')saveDraft()});
-function campHome(){localStorage.removeItem('kcamp');reset();go('home')}
-function campPrev(){if(S.st>1){S.st--;render();window.scrollTo({top:0,behavior:'smooth'})}else go('home')}
 /* ---------- Campaign ---------- */
 const isMeta=()=>S.p=='fb'||S.p=='ig',usdT=x=>'$'+(+(x/2000).toFixed(2)),usdL=()=>isMeta()&&S.pr?`<span class="usd2">${t('usd')}: ${usdT(S.pr)}</span>`:'';
 const GL={fb:'#1877f2',ig:'#e1306c',sc:'#fffc00',tb:'#00f2fe',tp:'#fe0979',tl:'#a855f7'};
 const tv=v=>{for(const k of ['kurd','arab','both','all2','male','female','wa','igc','ph','allA'])if(T[k][0]==v)return t(k);return v};
 function camp(){
  const ar=lang=='en'?'←':'→';
- const top=`<div class="top"><button class="back" type="button" onclick="campHome()">⟲ ${t('home')}</button>${S.st>1?`<button class="back" type="button" onclick="campPrev()">${ar} ${t('bk')}</button>`:''}</div>`;
+ const top=S.st>1?`<div class="top"><button class="back" onclick="S.st=${S.st-1};render()">${ar} ${t('bk')}</button><button class="back" onclick="S.st=1;render()">⟲ ${t('home')}</button></div>`:'';
  const stp=['s1','s2','s3','s4'].map((k,i)=>`<button class="${S.st==i+1?'on':S.st>i+1?'dn':''}" ${S.st>i+1?`onclick="S.st=${i+1};render()"`:''}><b>${S.st>i+1?'✓':i+1}</b>${t(k)}</button>`).join('');
  const hero=S.st==1?`<div class="hero">${t('hero')}</div>`:'';
  return `${top}${hero}${S.st==1&&LAST?lastBox():''}<div class="steps">${stp}</div><div class="lay ${S.st>1?'two':''}"><div class="box fx">${[0,st1,st2,st3,st4][S.st]()}</div>${S.st>1?'<div class="box sum" id="sm"></div>':''}</div>`}
 function st1(){return `<h2>${t('choose')}</h2><div class="pg">${Object.keys(D).map(k=>`<div class="pc" style="--g:${GL[k]}" onclick="pick('${k}')">${ico(k)}${t('p_'+k)}</div>`).join('')}</div>`}
-function pick(k){if(S.p!=k){S.p=k;S.pr=0;S.cu='';S.src='';S.pay='';S.f={ag:[]}}S.st=2;render()}
+function pick(k){if(S.p!=k){S.p=k;S.pr=0;S.cu='';S.src='';S.f={ag:[]}}S.st=2;render()}
 function nxt(a,dis){return `<div class="row"><button class="btn" id="nx" onclick="${a}" ${dis?'disabled':''}>${t('nx')}</button></div>`}
 const okPr=()=>S.pr>=D[S.p].m;
 function crHtml(){if(!S.cu)return '';return S.pr?`<div class="est">${t('es')}<b>${estH(S.p,S.pr)}</b>${usdL()}</div>`:`<div class="nt r">${t('mn').replace('{m}',fmt(D[S.p].m))}</div>`}
@@ -344,8 +316,6 @@ function st2(){const d=D[S.p];
 function setPr(v){S.pr=v;S.src='t';S.cu='';$('cu').value='';$('cr').innerHTML='';$('cb').classList.remove('on');document.querySelectorAll('.tier').forEach(x=>x.classList.toggle('on',+x.dataset.p==v));sum();$('nx').disabled=false}
 function cust(v){S.cu=v;S.src='c';const n=+v;S.pr=n>=D[S.p].m?n:0;$('cr').innerHTML=crHtml();$('cb').classList.add('on');document.querySelectorAll('.tier').forEach(x=>x.classList.remove('on'));sum();$('nx').disabled=!okPr()}
 function dayHint(){}
-function dayPick(n){const m=maxDays(S.pr),v=Math.max(1,Math.min(m,Math.floor(+n||1)));S.f.dy=String(v);sum();dayHint();const r=$('dayrange'),o=$('dayval');if(r)r.value=v;if(o)o.textContent=v+' '+t('dd')}
-function dayShift(d){dayPick((+S.f.dy||1)+d)}
 function goS3(){try{ttq.track('InitiateCheckout')}catch(e){}if(D[S.p].f.includes('dy')&&(+S.f.dy||1)>maxDays(S.pr))S.f.dy='1';S.st=3;render()}
 function inp(c,l,ty='text'){return `<div class="fg"><label>${t(l)}</label><input type="${ty}" value="${esc(S.f[c])}" oninput="S.f.${c}=this.value;chk()"></div>`}
 function sel(c,l,o){return `<div class="fg"><label>${t(l)}</label><select onchange="S.f.${c}=this.value;chk()"><option value="" disabled ${S.f[c]?'':'selected'}>—</option>${o.map(k=>{const v=T[k][0];return `<option value="${esc(v)}" ${S.f[c]==v?'selected':''}>${t(k)}</option>`}).join('')}</select></div>`}
@@ -357,16 +327,15 @@ function st3(){const f=D[S.p].f.split(' ');let h='';
   if(c=='ct')h+=inp('ct','ct');
   if(c=='au')h+=sel('au','au',['kurd','arab','both']);
   if(c=='gd')h+=sel('gd','gd',['all2','male','female']);
-  if(c=='dy'){const m=maxDays(S.pr),dl=Math.min(+S.f.dy||1,m);h+=`<div class="fg"><label>${t('dy')}</label><div class="daypick"><button type="button" class="arrow" onclick="dayShift(-1)" aria-label="Previous day">‹</button><input class="daySlider" id="dayrange" type="range" min="1" max="${m}" step="1" value="${dl}" oninput="dayPick(this.value)" aria-label="${t('dy')}"><output id="dayval">${dl} ${t('dd')}</output><button type="button" class="arrow" onclick="dayShift(1)" aria-label="Next day">›</button></div><small id="dh" style="color:var(--mu)">${t('dayN').replace('{n}',m)}</small></div>`}
+  if(c=='dy'){const m=maxDays(S.pr),dl=Math.min(+S.f.dy||1,m);h+=`<div class="fg"><label>${t('dy')}</label><select onchange="S.f.dy=this.value;sum();dayHint()">${Array.from({length:m},(_,i)=>`<option value="${i+1}" ${dl==i+1?'selected':''}>${i+1} ${t('dd')}</option>`).join('')}</select><small id="dh" style="color:var(--mu)">${t('dayN').replace('{n}',m)}</small></div>`}
  });
  if(f.includes('ag'))h+=`<div class="fg"><label>${t('ag')}</label><div class="ages">${['allA','18_24','24_36','36_45','45_55','55_65'].map(a=>{const v=a=='allA'?T.allA[0]:a;return `<button type="button" data-v="${v}" class="${S.f.ag.includes(v)?'on':''}" onclick="age('${v}',this)">${a=='allA'?t(a):a}</button>`}).join('')}</div></div>`;
  if(f.includes('cm')){h+=sel('cm','cm',['wa','igc','ph']);h+=inp('cd','cd')}
- h+=`<div class="fg"><label>${t('pay')}</label><select onchange="S.pay=this.value;chk()"><option value="" disabled ${S.pay?'':'selected'}>—</option>${Object.keys(PAYN).map(x=>`<option ${S.pay==x?'selected':''}>${x}</option>`).join('')}</select></div>`;
- return `<h2>${t('s3')}</h2>${h}${nxt('S.st=4;render()',!ok3()||!S.pay)}`}
+ h+=notes();return `<h2>${t('s3')}</h2>${h}${nxt('S.st=4;render()',!ok3())}`}
 function age(v,b){const a=S.f.ag,A=T.allA[0];if(v==A)S.f.ag=a.includes(A)?[]:[A];else{S.f.ag=a.filter(x=>x!=A);const i=S.f.ag.indexOf(v);i>-1?S.f.ag.splice(i,1):S.f.ag.push(v)}
  b.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',S.f.ag.includes(x.dataset.v)));chk()}
 function ok3(){const f=D[S.p].f.split(' ');return f.every(c=>c=='dy'?1:c=='ag'?S.f.ag.length:c=='cm'?S.f.cm&&(S.f.cd||'').trim():(S.f[c]||'').trim())}
-function chk(){const b=$('nx');if(b&&S.st==3)b.disabled=!ok3()||!S.pay;updSend()}
+function chk(){const b=$('nx');if(b&&S.st==3)b.disabled=!ok3();updSend()}
 function notes(){const p=S.p,pv=p[0]=='t'?'TikTok':'Meta';let h='';
  if(p!='tl')h+=`<div class="nt">${t('vN').replace('{p}',pv)}</div>`;
  if(p!='sc'&&p!='tl')h+=`<div class="nt">${t('eN')}</div>`;
@@ -384,9 +353,10 @@ function rows(){const f=S.f,h=D[S.p].f.split(' ');
  return L}
 function st4(){
  return `<h2>${t('s4')}</h2><div class="rvb">${rows().map(r=>`<div class="rv"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}</div>
+ <div class="fg" style="margin-top:16px"><label>${t('pay')}</label><select onchange="S.pay=this.value;chk()"><option value="" disabled ${S.pay?'':'selected'}>—</option>${Object.keys(PAYN).map(x=>`<option ${S.pay==x?'selected':''}>${x}</option>`).join('')}</select></div>
  ${isMeta()?trackBox():''}
  <label class="ck"><input type="checkbox" ${S.ok?'checked':''} onchange="S.ok=this.checked;chk()"> ${t('ag2')}</label>${notes()}
- <div class="row"><button class="btn g" type="button" onclick="campHome()">⟲ ${t('home')}</button><button id="sd" class="btn" onclick="sent()" disabled>${t('send')}</button></div>`}
+ <div class="row"><button class="btn g" onclick="S.st=1;render()">⟲ ${t('home')}</button><button id="sd" class="btn" onclick="sent()" disabled>${t('send')}</button></div>`}
 function sum(){const el=$('sm');if(!el||!S.p)return;const ok=okPr();
  el.innerHTML=`<div class="sm">${ico(S.p)}<span>${t('p_'+S.p)}</span></div><dl><dt>${t('pr')}</dt><dd><span>${ok?fmt(S.pr)+' IQD':'—'}</span></dd>${S.f.dy&&D[S.p].f.includes('dy')?`<dt>${t('dy')}</dt><dd>${S.f.dy} ${t('dd')}</dd>`:''}</dl><div class="est">${t('es')}<b>${ok?estH(S.p,S.pr):'—'}</b>${ok?usdL():''}</div>`}
 function msg(){const d=D[S.p],f=S.f;
@@ -406,8 +376,7 @@ const genCode=()=>{const al='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',rb=(typeof crypto
 let LAST=null;
 function lastBox(){return `<div class="nt" style="border-color:var(--ok);margin-bottom:12px"><b>${t('lastT')}</b><br>${t('lastC')}: <b dir="ltr">${esc(LAST.code)}</b> <button class="chip" onclick="LAST=null;render()">✕</button><br>${ACC?t('lastA'):t('lastN')}</div>`}
 function trackBox(){return ACC?`<div class="nt" style="border-color:var(--ok);margin-top:12px">✓ ${t('trkOn').replace('{u}',esc(ACC.username))}</div>`:`<div style="margin-top:14px">${authBox('trkH',t('trkD'))}</div>`}
-function sent(){if(!(S.pay&&S.ok))return;S.code=isMeta()?genCode():'';try{ttq.track('PlaceAnOrder')}catch(x){}fetch('/api/x',{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify({a:'order',o:orderObj(),token:tok()})}).catch(()=>{});if(ACC)setTimeout(pollNotifications,1500);openWA(msg());LAST=S.code?{code:S.code,acc:!!ACC}:null;localStorage.removeItem('kcamp');reset();render()}
-
+function sent(){if(!(S.pay&&S.ok))return;S.code=isMeta()?genCode():'';try{ttq.track('PlaceAnOrder')}catch(x){}fetch('/api/x',{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},body:JSON.stringify({a:'order',o:orderObj(),token:tok()})}).catch(()=>{});openWA(msg());LAST=S.code?{code:S.code,acc:!!ACC}:null;reset();render()}
 /* ---------- Games ---------- */
 function stop(){clearInterval(window.tmr);clearTimeout(window.w)}
 function memory(){stop();$('gr').textContent='';
@@ -441,8 +410,6 @@ function simon(){stop();$('gr').textContent='';
   if(k!=seq[i]){busy=1;done_=1;const r=seq.length-1;done(r>=5?(r-4)*4:0);return}
   i++;if(i==seq.length){busy=1;setTimeout(nx,500)}});
  nx()}
-
-
 const G=[['🧠','gm','gmd','memory'],['🎯','ga','gad','aim'],['🎹','gq','gqd','simon'],['➗','g4','g4d','mathrush'],['🔢','g5','g5d','numord'],['🎨','g6','g6d','stroop'],['⚡','g7','g7d','reflex'],['👁️','g8','g8d','digits'],['🌈','g9','g9d','oddone'],['⏱️','g10','g10d','timing'],['🔤','g11','g11d','wordtiles'],['🧩','g12','g12d','puzzle8'],['💡','g13','g13d','lights'],['😵','g14','g14d','oddemoji'],['🔮','g15','g15d','seqgame']];
 function mathrush(){stop();$('gr').textContent='';let ok=0,lv=3,fin=0,ans=0,tq=0;const T0=Date.now();
  $('ga').innerHTML='<div class="mq" id="mq"></div><input type="number" inputmode="numeric" id="ma" class="mi"><div class="bar"><i id="mb" style="width:100%"></i></div>';
@@ -478,8 +445,6 @@ function reflex(){stop();$('gr').textContent='';let r=0,tot=0,st0=0,ready=0,lock
  up();nr()}
 function cpy(){const i=$('rl');const ok=()=>{$('cb2').textContent=t('cpd');setTimeout(()=>$('cb2').textContent=t('cp'),1500)};
  try{navigator.clipboard.writeText(i.value).then(ok,()=>{i.select();document.execCommand('copy');ok()})}catch(e){i.select();document.execCommand('copy');ok()}}
-
-
 function digits(){stop();$('gr').textContent='';let L=4,fin=0,cur='';
  $('ga').innerHTML='<div class="mq" id="dq"></div><input type="number" inputmode="numeric" id="di" class="mi" disabled><button class="btn" id="db" style="display:none">OK</button>';
  const up=()=>$('gs').textContent=`${t('g8d')} | 🔢 ${L}`;
@@ -513,35 +478,31 @@ function sendFb(){const n=$('fbn').value.trim().slice(0,60),x=$('fbt').value.tri
  const rv=JSON.parse(localStorage.kfb||'[]');rv.push({n,t:x,s:fbStar});localStorage.kfb=JSON.stringify(rv.slice(-20));
  openWA(`سڵاو کورد ئەجێنسی، ڕەخنە و پێشنیارم هەیە:\nناو: ${n}\nنرخاندن: ${fbStar}/5\n---------\n${x}`);render()}
 function faq(){return `<div class="box"><h2>❓ ${t('fq')}</h2>${[1,2,3,4].map(i=>`<div class="qa"><b>${t('q'+i)}</b>${t('a'+i)}</div>`).join('')}<div class="nt">${t('fqn')}</div></div>`}
-
 /* ---------- Accounts, games, referral, admin ---------- */
-let ACC=null,AU='x',REGP=null;
+let ACC=null,AU='l';
 const tok=()=>sessionStorage.ktok||localStorage.ktok||'';
 async function api(a,d){try{const r=await fetch('/api/x',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({a,...d})}),x=await r.text();try{return JSON.parse(x)}catch(e){return{ok:0,err:r.status==404?'nf':'net',st:r.status}}}catch(e){return{ok:0,err:'net',st:0}}}
-const EM={gate:['وشەی نهێنی پێویستە','Secret word required','الكلمة السرية مطلوبة'],locked:['ئەم بەشە قوفڵ کرا','This section is locked','تم قفل هذا القسم'],noreset:['ADMIN_RESET لە Vercel دانەنراوە','ADMIN_RESET is not set in Vercel','ADMIN_RESET غير مضبوط'],nocode:['کۆدەکە نەدۆزرایەوە','Code not found','الرمز غير موجود'],owned:['ئەم کۆدە بۆ هەژمارێکی تر بەستراوەتەوە','This code belongs to another account','هذا الرمز مرتبط بحساب آخر'],noadmin:['ADMIN_USER یان ADMIN_PASS لە Vercel دانەنراوە یان Redeploy نەکراوە','ADMIN_USER or ADMIN_PASS is not set in Vercel, or not redeployed','ADMIN_USER أو ADMIN_PASS غير مضبوط في Vercel أو لم تتم إعادة النشر'],adm:['ئەمە فۆڕمی ئەدمینە . ئەدمین لە بەشی «دابەزاندنی بەرنامە» لەسەر وشەی «کورد» دەچێتە ژوورەوە..','This is the player login. The admin signs in only with the 🔒 icon at the top.','هذا دخول اللاعبين. المدير يدخل فقط من أيقونة 🔒 في الأعلى.'],nokey:['کلیلی API ڕێکنەخراوە (ANTHROPIC_API_KEY)','API key is not set (ANTHROPIC_API_KEY)','مفتاح API غير مهيأ (ANTHROPIC_API_KEY)'],cap2:['سنووری تێستی ئەمڕۆ پڕبووەتەوە، سبەی هەوڵبدەرەوە','Today\'s check limit is reached, try tomorrow','تم بلوغ حد الفحص اليوم، حاول غدا'],api:['پشکنین سەرکەوتوو نەبوو (کرێدیتی API یان کلیلەکە بپشکنە)','The check failed (verify the API key and credits)','فشل الفحص (تحقق من المفتاح والرصيد)'],bad:['زانیارییەکان هەڵەن یان تەواو نین','Invalid or incomplete data','بيانات غير صحيحة أو ناقصة'],taken:['ئەم ناو، ژمارە یان ئیمەیڵە پێشتر بەکارهاتووە','Username, phone or email already used','الاسم أو الرقم أو البريد مستخدم'],wrong:['زانیاری چوونەژوورەوە هەڵەیە','Wrong login details','بيانات الدخول خاطئة'],wait:['زۆر هەوڵت دا، کەمێک چاوەڕێ بکە','Too many tries, wait a bit','محاولات كثيرة، انتظر قليلا'],nf:['فایلی api/x.js لەم سایتەدا نەدۆزرایەوە. لە GitHub دڵنیا ببەوە لە ناو پۆشەی api دایە، پاشان Redeploy بکە','api/x.js was not found on this site. Make sure it is inside the api folder on GitHub, then redeploy','لم يتم العثور على api/x.js. تأكد أنه داخل مجلد api في GitHub ثم أعد النشر'],net:['پەیوەندی بە سێرڤەرەوە نییە','Cannot reach the server','لا يوجد اتصال بالخادم'],nodb:['داتابەیس ڕێکنەخراوە','Database not set up','قاعدة البيانات غير مهيأة'],low:['پۆینتت بەس نییە','Not enough points','النقاط غير كافية'],auth:['دووبارە بچۆرەوە ژوورەوە','Please log in again','سجل الدخول مجددا']};
- EM.banned=['ئەم هەژمارەیە باند کراوە','This account is banned','هذا الحساب محظور'];
- EM.otpbad=['کۆدەکە هەڵەیە یان بەسەرچووە','The code is invalid or expired','الرمز غير صحيح أو منتهي'];
- const em=e=>(EM[e]||EM.net)[LI[lang]];
-const refreshChip=()=>{const p=$('pt');if(p){p.style.display=ACC?'':'none';p.textContent=ACC?'⭐ '+fmt(ACC.points):''}const b=$('bl');if(b){b.style.display=ACC?'':'none';b.textContent='🔔'+(ACC&&ACC.unread?' '+ACC.unread:'')}const ac=$('acct');if(ac)ac.innerHTML=ACC&&ACC.avatar?`<img class="acctAvatar" src="${ACC.avatar}" alt=""><small>هەژمار</small>`:'<span>👤</span><small>هەژمار</small>'};
-T.nt_received=['داواکاریەکەت نێردرا','Your request was sent','تم إرسال طلبك'];
-T.nt_site=['وێبسایتەکە نوێ کرایەوە و ئاسانتر کرا','The website was updated and made easier to use','تم تحديث الموقع وجعله أسهل للاستخدام'];
-let NTP=0;
-function enableNotifications(){if('Notification' in window&&Notification.permission==='default')Notification.requestPermission().catch(()=>{});}
-function showNotificationToasts(notes){for(const n of (notes||[])){const id='kn:'+n.at+'|'+n.st+'|'+(n.code||'');if(localStorage.getItem(id))continue;localStorage.setItem(id,'1');const box=document.createElement('div');box.className='toast';box.textContent=t('nt_'+n.st)||t('nt_ok');document.body.appendChild(box);setTimeout(()=>box.remove(),6500);if('Notification' in window&&Notification.permission==='granted')new Notification('Kurd Agency',{body:box.textContent});}}
-async function pollNotifications(){if(!ACC||!tok())return;const r=await api('notifications',{token:tok()});if(!r.ok)return;showNotificationToasts(r.notes);ACC.unread=+r.unread||0;refreshChip()}
-function startNotificationPolling(){clearInterval(NTP);pollNotifications();NTP=setInterval(pollNotifications,30000);}
-async function boot(){if(!tok())return;const r=await api('me',{token:tok()});if(r.ok){ACC=r.me;startNotificationPolling();}else if(r.err=='auth'){delete sessionStorage.ktok;delete localStorage.ktok}render()}
+const EM={gate:['وشەی نهێنی پێویستە','Secret word required','الكلمة السرية مطلوبة'],locked:['ئەم بەشە قوفڵ کرا','This section is locked','تم قفل هذا القسم'],noreset:['ADMIN_RESET لە Vercel دانەنراوە','ADMIN_RESET is not set in Vercel','ADMIN_RESET غير مضبوط'],nocode:['کۆدەکە نەدۆزرایەوە','Code not found','الرمز غير موجود'],owned:['ئەم کۆدە بۆ هەژمارێکی تر بەستراوەتەوە','This code belongs to another account','هذا الرمز مرتبط بحساب آخر'],noadmin:['ADMIN_USER یان ADMIN_PASS لە Vercel دانەنراوە یان Redeploy نەکراوە','ADMIN_USER or ADMIN_PASS is not set in Vercel, or not redeployed','ADMIN_USER أو ADMIN_PASS غير مضبوط في Vercel أو لم تتم إعادة النشر'],adm:['ئەمە فۆڕمی یاریکەرانە. ئەدمین تەنیا لە ئایکۆنی 🔒 ی سەرەوە دەچێتە ژوورەوە.','This is the player login. The admin signs in only with the 🔒 icon at the top.','هذا دخول اللاعبين. المدير يدخل فقط من أيقونة 🔒 في الأعلى.'],nokey:['کلیلی API ڕێکنەخراوە (ANTHROPIC_API_KEY)','API key is not set (ANTHROPIC_API_KEY)','مفتاح API غير مهيأ (ANTHROPIC_API_KEY)'],cap2:['سنووری تێستی ئەمڕۆ پڕبووەتەوە، سبەی هەوڵبدەرەوە','Today\'s check limit is reached, try tomorrow','تم بلوغ حد الفحص اليوم، حاول غدا'],api:['پشکنین سەرکەوتوو نەبوو (کرێدیتی API یان کلیلەکە بپشکنە)','The check failed (verify the API key and credits)','فشل الفحص (تحقق من المفتاح والرصيد)'],bad:['زانیارییەکان هەڵەن یان تەواو نین','Invalid or incomplete data','بيانات غير صحيحة أو ناقصة'],taken:['ئەم ناو، ژمارە یان ئیمەیڵە پێشتر بەکارهاتووە','Username, phone or email already used','الاسم أو الرقم أو البريد مستخدم'],wrong:['زانیاری چوونەژوورەوە هەڵەیە','Wrong login details','بيانات الدخول خاطئة'],wait:['زۆر هەوڵت دا، کەمێک چاوەڕێ بکە','Too many tries, wait a bit','محاولات كثيرة، انتظر قليلا'],nf:['فایلی api/x.js لەم سایتەدا نەدۆزرایەوە. لە GitHub دڵنیا ببەوە لە ناو پۆشەی api دایە، پاشان Redeploy بکە','api/x.js was not found on this site. Make sure it is inside the api folder on GitHub, then redeploy','لم يتم العثور على api/x.js. تأكد أنه داخل مجلد api في GitHub ثم أعد النشر'],net:['پەیوەندی بە سێرڤەرەوە نییە','Cannot reach the server','لا يوجد اتصال بالخادم'],nodb:['داتابەیس ڕێکنەخراوە','Database not set up','قاعدة البيانات غير مهيأة'],low:['پۆینتت بەس نییە','Not enough points','النقاط غير كافية'],auth:['دووبارە بچۆرەوە ژوورەوە','Please log in again','سجل الدخول مجددا']};
+const em=e=>(EM[e]||EM.net)[LI[lang]];
+const refreshChip=()=>{$('pt').textContent=ACC?'⭐ '+fmt(ACC.points):'👤';const b=$('bl');b.style.display=ACC?'':'none';b.textContent='🔔'+(ACC&&ACC.unread?' '+ACC.unread:'')};
+async function pollNotifications(){if(!ACC)return;const r=await api('notifications',{token:tok()});if(!r.ok)return;for(const n of (r.notes||[])){const id=n.at+'|'+n.st+'|'+(n.code||'');if(localStorage.getItem('kn:'+id))continue;localStorage.setItem('kn:'+id,'1');const box=document.createElement('div');box.className='toast';box.textContent=t('nt_'+n.st);document.body.appendChild(box);setTimeout(()=>box.remove(),6000);if('Notification' in window&&Notification.permission==='granted')new Notification('Kurd Agency',{body:t('nt_'+n.st)})}if(r.notes&&r.notes.length){ACC.unread=0;refreshChip()}}
+ async function boot(){if(!tok())return;const r=await api('me',{token:tok()});if(r.ok){ACC=r.me;window._knPoll=setInterval(pollNotifications,30000)}else if(r.err=='auth'){delete sessionStorage.ktok;delete localStorage.ktok}render()}
 const track=()=>api('track',{vid:localStorage.kv||(localStorage.kv=Math.random().toString(36).slice(2)+Date.now().toString(36))});
 const avatar=f=>new Promise(res=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=128;const s=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,128,128);res(c.toDataURL('image/jpeg',.7))};im.onerror=()=>res('');im.src=URL.createObjectURL(f)});
-function authBox(k,desc){k=k||'need';if(AU=='f'&&k!='adminOnly')return forgotBox();const admin=k=='adminOnly',L=admin||AU=='l';return `<div class="box"><h2>👤 ${t(k)}</h2>${desc?`<p style="color:var(--mu);margin-bottom:12px">${desc}</p>`:''}${admin?'':`<div class="steps" style="margin-bottom:14px"><button class="${L?'on':'dn'}" style="cursor:pointer" onclick="AU='l';render()">${t('au_l')}</button><button class="${L?'dn':'on'}" style="cursor:pointer" onclick="AU='r';render()">${t('au_r')}</button></div>`}${L?`<div class="fg"><label>${t('idl')}</label><input type="text" id="a_id" dir="ltr" autocapitalize="none"></div>`:`<div class="fg"><label>${t('un')}</label><input type="text" id="a_un" maxlength="20" dir="ltr" autocapitalize="none"></div><div class="fg"><label>${t('fullname')}</label><input type="text" id="a_nm" maxlength="60"></div><div class="fg"><label>${t('phone')}</label><input type="tel" id="a_ph" dir="ltr"></div><div class="fg"><label>${t('email')}</label><input type="text" id="a_em" dir="ltr"></div>`}<div class="fg"><label>${t('pw')}</label><div class="pwr"><input type="password" id="a_pw" dir="ltr" autocomplete="${L?'current-password':'new-password'}"><button type="button" class="eye" onclick="eye('a_pw',this)">👁</button></div></div>${L||admin?'':`<div class="fg"><label>${t('av')}</label><input type="file" id="a_av" accept="image/*"></div>`}<div id="a_er"></div><div class="row s"><button class="btn" id="a_btn" onclick="${L?'doLogin()':'doReg()'}">${t(L?'au_l':'au_r')}</button>${L&&!admin?`<a href="#" style="align-self:center;color:var(--ac2)" onclick="AU='f';render();return false">${t('fgT')}</a>`:''}</div></div>`}
+function authBox(k,desc){k=k||'need';if(AU=='f')return forgotBox();const L=AU=='l';return `<div class="box"><h2>👤 ${t(k)}</h2>${desc?`<p style="color:var(--mu);margin-bottom:12px">${desc}</p>`:''}
+ <div class="steps" style="margin-bottom:14px"><button class="${L?'on':'dn'}" style="cursor:pointer" onclick="AU='l';render()">${t('au_l')}</button><button class="${L?'dn':'on'}" style="cursor:pointer" onclick="AU='r';render()">${t('au_r')}</button></div>
+ ${L?`<div class="fg"><label>${t('idl')}</label><input type="text" id="a_id" dir="ltr" autocapitalize="none"></div>`:`<div class="fg"><label>${t('un')}</label><input type="text" id="a_un" maxlength="20" dir="ltr" autocapitalize="none"></div><div class="fg"><label>${t('fullname')}</label><input type="text" id="a_nm" maxlength="60"></div><div class="fg"><label>${t('phone')}</label><input type="tel" id="a_ph" dir="ltr"></div><div class="fg"><label>${t('email')}</label><input type="text" id="a_em" dir="ltr"></div>`}
+ <div class="fg"><label>${t('pw')}</label><div class="pwr"><input type="password" id="a_pw" dir="ltr" autocomplete="${L?'current-password':'new-password'}"><button type="button" class="eye" onclick="eye('a_pw',this)">👁</button></div></div>
+ ${L?'':`<div class="fg"><label>${t('av')}</label><input type="file" id="a_av" accept="image/*"></div>`}
+ <div id="a_er"></div>
+ <div class="row s"><button class="btn" id="a_btn" onclick="${L?'doLogin()':'doReg()'}">${t(L?'au_l':'au_r')}</button>${L?`<a href="#" style="align-self:center;color:var(--ac2)" onclick="AU='f';render();return false">${t('fgT')}</a>`:''}</div></div>`}
 function eye(id,b){const i=$(id);i.type=i.type=='password'?'text':'password';b.textContent=i.type=='password'?'👁':'🙈'}
-async function afterAuth(r){if(!r.ok){if(r.err=='wait'&&r.wait)return startWait(r.wait,'a_er','a_btn');$('a_er').innerHTML=`<div class="nt r">${em(r.err)}${r.st!==undefined?' (HTTP '+r.st+')':''}</div>`;return}delete sessionStorage.ktok;localStorage.ktok=r.token;ACC=r.me;render();startNotificationPolling()}
+async function afterAuth(r){if(!r.ok){if(r.err=='wait'&&r.wait)return startWait(r.wait,'a_er','a_btn');$('a_er').innerHTML=`<div class="nt r">${em(r.err)}${r.st!==undefined?' (HTTP '+r.st+')':''}</div>`;return}delete sessionStorage.ktok;localStorage.ktok=r.token;ACC=r.me;render();if(window._knPoll)clearInterval(window._knPoll);window._knPoll=setInterval(pollNotifications,30000)}
 async function doLogin(){afterAuth(await api('login',{id:$('a_id').value,password:$('a_pw').value}))}
-async function doReg(){const f=$('a_av').files[0],av=f?await avatar(f):'',data={username:$('a_un').value,name:$('a_nm').value,phone:$('a_ph').value,email:$('a_em').value,password:$('a_pw').value,avatar:av,ref:refIn(),vid:localStorage.kv||(localStorage.kv=Math.random().toString(36).slice(2)+Date.now().toString(36))};afterAuth(await api('register',data))}
-async function doRegVerify(){if(!REGP)return;const r=await api('register',{...REGP,otp:$('a_otp').value});if(!r.ok){$('a_er').innerHTML=`<div class="nt r">${em(r.err)}</div>`;return}REGP=null;afterAuth(r)}
-async function logout(){await api('logout',{token:tok()});delete sessionStorage.ktok;delete localStorage.ktok;ACC=null;AU='x';render()}
-function pbar(){const a=ACC.avatar?`<img class="av" src="${ACC.avatar}" alt="">`:`<span class="av">${esc((ACC.name||'?')[0])}</span>`;return `<div class="pbar">${a}<div><b id="pbn">${esc(ACC.name)}</b><small>@${esc(ACC.username)}</small></div><button class="btn g" onclick="enableNotifications();go('m');setTimeout(()=>myTab('nt'),0)">🔔${ACC.unread?' '+ACC.unread:''}</button><button class="btn g" onclick="logout()">${t('logout')}</button></div>`}
-function games(){if(!ACC)return accountEntry();
+async function doReg(){const f=$('a_av').files[0],av=f?await avatar(f):'';afterAuth(await api('register',{username:$('a_un').value,name:$('a_nm').value,phone:$('a_ph').value,email:$('a_em').value,password:$('a_pw').value,avatar:av,ref:refIn()}))}
+async function logout(){await api('logout',{token:tok()});delete sessionStorage.ktok;delete localStorage.ktok;ACC=null;render()}
+function pbar(){const a=ACC.avatar?`<img class="av" src="${ACC.avatar}" alt="">`:`<span class="av">${esc((ACC.name||'?')[0])}</span>`;return `<div class="pbar">${a}<div><b>${esc(ACC.name)}</b><small>@${esc(ACC.username)}</small></div><button class="btn g" onclick="logout()">${t('logout')}</button></div>`}
+function games(){if(!ACC)return authBox();
  const rw=REW.map(r=>`<div class="rc"><b>${t('sp').replace('{n}',fmt(r[1]))}</b><small>${fmt(r[0])} ${t('pn')}</small><div class="bar"><i style="width:${Math.min(100,ACC.points/r[0]*100)}%"></i></div><button class="btn" ${ACC.points>=r[0]?'':'disabled'} onclick="redeem(${r[0]},${r[1]})">${t('rq')}</button></div>`).join('');
  return `${pbar()}<div class="box" style="margin-top:12px"><h2>${t('gt')}</h2><div class="big" id="bp">⭐ ${fmt(ACC.points)}</div><p style="color:var(--mu);font-size:.85rem">${t('rwd')}</p><div class="rw">${rw}</div>
  <div class="gm">${G.map(g=>`<button class="gc" onclick="play('${g[3]}')"><span>${g[0]}</span><b>${t(g[1])}</b><small>${t(g[2])}</small></button>`).join('')}</div><div class="nt">${t('gnote')}</div></div>
@@ -550,7 +511,7 @@ function play(f){api('play',{token:tok()});window[f]();$('stg').scrollIntoView({
 async function done(p){stop();let m=t('lose'),g=0;if(p>0){const r=await api('award',{token:tok(),points:p});if(r.ok){ACC.points=r.points;g=1;m=t('win').replace('{n}',r.added)}else m=r.err=='cap'?t('cap'):em(r.err)}
  $('gr').textContent=m;$('gr').style.color=g?'var(--ok)':'var(--no)';refreshChip();if($('bp'))$('bp').textContent='⭐ '+fmt(ACC.points)}
 async function redeem(c,n){if(!confirm(t('cf').replace('{c}',c)))return;const r=await api('redeem',{token:tok(),cost:c});if(!r.ok)return alert(em(r.err));ACC.points=r.points;openWA(`سڵاو کورد ئەجێنسی، من ${c} پۆینتم بەکارهێنا بۆ سپۆنسەرێکی ${fmt(n)} دینار.\nیوسەرنەیم: ${ACC.username}`);render()}
-function refer(){if(!ACC)return accountEntry();
+function refer(){if(!ACC)return authBox();
  const link=location.href.split('?')[0].split('#')[0]+'?ref='+ACC.code,fr=ACC.friends||[],ord=fr.filter(x=>x.t=='order').length;
  const sh=`https://wa.me/?text=${encodeURIComponent('هاوڕێ، سپۆنسەرەکانت لای کورد ئەجێنسی بکە بە نرخی گونجاو 👇\n'+link)}`,cl=`https://wa.me/${WA}?text=${encodeURIComponent('سڵاو کورد ئەجێنسی، من '+ord+' هاوڕێم بانگێشت کردووە و سپۆنسەریان کردووە، دەمەوێت هەدیەی سپۆنسەرەکەم وەربگرم.\nیوسەرنەیم: '+ACC.username+'\nکۆدی بانگێشت: '+ACC.code)}`;
  return `${pbar()}<div class="box" style="margin-top:12px"><h2>🎁 ${t('rf1')}</h2><p style="color:var(--mu)">${t('rfd')}</p>
@@ -559,7 +520,6 @@ function refer(){if(!ACC)return accountEntry();
  <div class="fg"><label>${t('rfl')}</label><input type="text" readonly id="rl" value="${esc(link)}" dir="ltr" onclick="this.select()"></div>
  <div class="row s"><button class="btn" id="cb2" onclick="cpy()">${t('cp')}</button><a class="btn" target="_blank" rel="noopener" href="${sh}">${t('shr')}</a><a class="btn g" target="_blank" rel="noopener" href="${cl}">🎁 ${t('rfClaim')}</a></div><div class="nt">${t('rfn')}</div></div>
  <div class="box" style="margin-top:12px"><h3>${t('frT')} · ${t('frP').replace('{n}',ord)}</h3>${fr.length?`<div class="rvb">${fr.slice().reverse().map(x=>`<div class="rv"><span>${esc(x.n)}</span><b>${x.t=='order'?t('frS')+(x.p?' · '+esc(x.p):''):t('frJ')}</b></div>`).join('')}</div>`:`<p style="color:var(--mu)">${t('frN')}</p>`}</div>`}
-
 /* ---------- password wait, forgot ---------- */
 let WT=0;
 function startWait(sec,eid,bid){clearInterval(WT);const b=bid&&$(bid);if(b)b.disabled=true;const tick=()=>{const e=$(eid);if(e)e.innerHTML=`<div class="nt r">${t('waitN').replace('{n}',sec)}</div>`;if(sec--<=0){clearInterval(WT);const e2=$(eid);if(e2)e2.innerHTML='';const b2=bid&&$(bid);if(b2)b2.disabled=false}};tick();WT=setInterval(tick,1000)}
@@ -572,77 +532,47 @@ function forgotBox(){return `<div class="box"><h2>🔑 ${t('fgH')}</h2><p style=
  <div class="fg"><label>${t('fgCode')}</label><input type="text" id="f_cd" dir="ltr" inputmode="numeric"></div>
  <div class="fg"><label>${t('fgNew')}</label><div class="pwr"><input type="password" id="f_pw" dir="ltr"><button type="button" class="eye" onclick="eye('f_pw',this)">👁</button></div></div>
  <div class="row s"><button class="btn" onclick="doFgSet()">${t('fgSet')}</button></div><div id="f_er2"></div></div>`}
-async function doFgReq(){const id=$('f_id').value.trim();if(!id)return;const r=await api('fgreq',{id,vid:localStorage.kv||(localStorage.kv=Math.random().toString(36).slice(2)+Date.now().toString(36))});
+async function doFgReq(){const id=$('f_id').value.trim();if(!id)return;const r=await api('fgreq',{id});
  if(!r.ok){if(r.err=='wait'&&r.wait)return startWait(r.wait,'f_er','f_btn');$('f_er').innerHTML=`<div class="nt r">${em(r.err)}</div>`;return}
  FG.rid=r.rid;$('f_rid').value=r.rid;const m=`سڵاو کورد ئەجێنسی، پاسۆردی هەژمارەکەم بیرچووەتەوە.\nداواکاری: ${r.rid}\nیوسەرنەیم/ژمارە/ئیمەیڵ: ${id}`;
- $('f_er').innerHTML=r.email?`<div class="nt" style="border-color:var(--ok)">کۆدی OTP بۆ ئیمەیڵەکەت نێردرا. لە خانەی کۆدی وەرگیراو بینووسە.</div>`:`<div class="nt" style="border-color:var(--ok)">${t('fgOk1')} <b dir="ltr">${r.rid}</b><br>سنووری دوو کۆد لە ٢٤ کاتژمێر تێپەڕیوە؛ داواکارییەکەت بۆ ئەدمین نێردرا.</div><div class="row s"><a class="btn" target="_blank" rel="noopener" href="${waUrl(m)}">${t('fgWa')}</a></div>`}
+ $('f_er').innerHTML=`<div class="nt" style="border-color:var(--ok)">${t('fgOk1')} <b dir="ltr">${r.rid}</b></div><div class="row s"><a class="btn" target="_blank" rel="noopener" href="${waUrl(m)}">${t('fgWa')}</a></div>`}
 async function doFgSet(){const r=await api('fgset',{rid:$('f_rid').value,code:$('f_cd').value,pass:$('f_pw').value});
  if(r.ok){AU='l';FG.rid='';render();setTimeout(()=>{if($('a_er'))$('a_er').innerHTML=`<div class="nt" style="border-color:var(--ok)">${t('fgOk')}</div>`},50)}
  else if(r.err=='wait'&&r.wait)startWait(r.wait,'f_er2',null);else $('f_er2').innerHTML=`<div class="nt r">${em(r.err)}</div>`}
-
 /* ---------- customer data ---------- */
 const stT={new:'stN',ok:'stR',act:'stA',fin:'stF',x:'stX',ns:'stX'};
 const dt=x=>new Date(x).toLocaleString('en-GB',{dateStyle:'short',timeStyle:'short'});
-
-
-let MYT='home',MYD=null,MYQ='',MYPER=1;
-function mydata(){if(!ACC)return accountEntry();setTimeout(loadMy,0);return `${pbar()}<div class="box" style="margin-top:12px"><div class="atabs" id="mytabs"></div></div><div id="mybody"></div>`}
-async function doClaim(){const r=await api('claim',{token:tok(),code:$('cl_c').value});if(r.ok){$('cl_c').value='';$('cl_e').innerHTML='';MYT='spon';loadMy()}else $('cl_e').innerHTML=`<div class="nt r">${em(r.err)}</div>`}
-async function loadMy(){const r=await api('mydata',{token:tok()});if(!$('mybody'))return;if(!r.ok){$('mybody').innerHTML=`<div class="nt r">${em(r.err)}</div>`;return}showNotificationToasts(r.notes);if(ACC){ACC.unread=+r.unread||0;refreshChip()}MYD=r;drawMy()}
-function myTab(k){MYT=k;drawMy();if(k=='nt'&&tok())api('nread',{token:tok()}).then(()=>{if(ACC){ACC.unread=0;refreshChip()}})}
-function myPeriod(n){MYPER=n;drawMy()}
+let MYT='ord',MYD=null;
+function mydata(){if(!ACC)return authBox('myN');setTimeout(loadMy,0);return `${pbar()}<div class="box" style="margin-top:12px"><div class="atabs" id="mytabs"></div></div><div id="mybody"></div>`}
+async function doClaim(){const r=await api('claim',{token:tok(),code:$('cl_c').value});if(r.ok){$('cl_c').value='';$('cl_e').innerHTML='';MYT='ord';loadMy()}else $('cl_e').innerHTML=`<div class="nt r">${em(r.err)}</div>`}
+async function loadMy(){const r=await api('mydata',{token:tok()});if(!$('mybody'))return;if(!r.ok){$('mybody').innerHTML=`<div class="nt r">${em(r.err)}</div>`;return}if(ACC){ACC.unread=0;refreshChip()}MYD=r;drawMy();for(const n of (r.notes||[])){const id=n.at+'|'+n.st+'|'+(n.code||'');if(localStorage.getItem('kn:'+id))continue;localStorage.setItem('kn:'+id,'1');const box=document.createElement('div');box.className='toast';box.textContent=t('nt_'+n.st);document.body.appendChild(box);setTimeout(()=>box.remove(),6000);if('Notification' in window&&Notification.permission==='granted')new Notification('Kurd Agency',{body:t('nt_'+n.st)})}}
+function myTab(k){MYT=k;drawMy()}
+ async function saveProfile(){const r=await api('profileUpdate',{token:tok(),name:$('pf_name').value,email:$('pf_email').value,password:$('pf_pass').value,newPassword:$('pf_new').value});const e=$('pf_err');if(!r.ok){e.innerHTML=`<div class="nt r">${em(r.err)}</div>`;return}ACC=r.me;$('pf_pass').value='';$('pf_new').value='';e.innerHTML=`<div class="nt" style="border-color:var(--ok)">${t('pfOk')} ✓</div>`;refreshChip()}
 function tile(k,v){return `<div class="rc"><small>${t(k)}</small><b>${fmt(v)}</b></div>`}
-function statusSteps(st){const order=['new','ok','act','fin'],i=order.indexOf(st);return `<div class="statusSteps">${[['new','نێردرا'],['ok','پەسەندکرا'],['act','ئەکتیڤ'],['fin','تەواوبوو']].map((x,n)=>`<span class="${n<=(i<0?0:i)?'on':''}">${x[1]}</span>`).join('')}</div>`}
 function myCard(o,meta){const d=o.data;let body;
  if(!meta)body=`<div class="nt">${t('myOff')}</div>`;else if(!d)body=`<div class="nt">${t('myPend')}</div>`;
  else if(d.status=='ok'){const ex=[['mShr',d.shares],['mSav',d.saves],['mPgl',d.pageLikes],['mLnk',d.linkClicks],['mVid',d.videoViews],['mEng',d.engagement]].filter(z=>z[1]>0),all=Object.entries(d.acts||{}).map(([k,v])=>`<div class="rv"><span dir="ltr">${esc(k)}</span><b>${fmt(v)}</b></div>`).join('');
   body=`<div class="rw" style="grid-template-columns:repeat(2,1fr)">${tile('mReach',d.reach)}${tile('mImp',d.impressions)}${tile('mClk',d.clicks)}${tile('mMsg',d.messages)}${tile('mRea',d.reactions)}${tile('mCom',d.comments)}${ex.map(z=>tile(z[0],z[1])).join('')}</div>${all?`<details style="margin-top:8px"><summary style="cursor:pointer;color:var(--ac2)">${t('mAll')}</summary><div class="rvb" style="margin-top:6px">${all}</div></details>`:''}`}
  else body=`<div class="nt ${d.status=='error'?'r':''}">${t(d.status=='error'?'myErr':'myPend')}</div>`;
- return `<div class="box" style="margin-top:12px"><div class="rv" style="padding:0 0 8px"><b>${esc(o.pn)} · ${esc(o.pg)}</b><span dir="ltr">${esc(o.code||'')}</span></div><small style="color:var(--mu)">${dt(o.at)} · ${fmt(o.price)} IQD · ${t(stT[o.st]||'stN')}</small>${statusSteps(o.st)}${body}</div>`}
-function sponsorCard(o){return `<div class="box" style="margin-top:12px"><h3>${t('myT1')} · ${esc(o.pn||'')}</h3><div class="rw" style="grid-template-columns:repeat(2,1fr)"><div class="rc"><small>${t('mySponsorInfo')}</small><b>${esc(o.pk||'—')}</b></div>${tile('pr',fmt(o.price||0)+' IQD')}<div class="rc"><small>${t('dy')}</small><b>${esc((o.dy||1)+' '+t('dd'))}</b></div><div class="rc"><small>${t('stR')}</small><b>${t(stT[o.st]||'stN')}</b></div></div><small style="color:var(--mu)">${dt(o.at)}${o.pg?' · '+esc(o.pg):''}${o.code?' · '+esc(o.code):''}</small></div>`}
+ return `<div class="box" style="margin-top:12px"><div class="rv" style="padding:0 0 8px"><b>${esc(o.pn)} · ${esc(o.pg)}</b><span dir="ltr">${esc(o.code||'')}</span></div><small style="color:var(--mu)">${dt(o.at)} · ${fmt(o.price)} IQD · ${t(stT[o.st]||'stN')}</small>${body}</div>`}
 function drawMy(){const r=MYD,el=$('mybody');if(!r||!el)return;
- $('mytabs').innerHTML=[['home','myHome'],['data','myData'],['spon','myT1'],['sum','myT2'],['nt','myT3'],['add','myT4']].map(x=>`<button class="${MYT==x[0]?'on':''}" onclick="myTab('${x[0]}')">${t(x[1])}${x[0]=='nt'&&r.notes.length?' ('+r.notes.length+')':''}</button>`).join('');
- const q=MYQ.trim().toLowerCase(),real=r.orders.filter(o=>o.st!='ns'&&(!q||[o.code,o.pn,o.pg,o.st].some(v=>String(v||'').toLowerCase().includes(q)))),now=Date.now(),back=MYT!='home'?`<button class="back" onclick="myTab('home')">↩ ${t('myBack')}</button>`:'';let h=`<div class="fg"><input type="search" value="${esc(MYQ)}" placeholder="گەڕان لە داواکاری و داتا" oninput="MYQ=this.value;drawMy()"></div>`+back;
- if(MYT=='home')h+=`<div class="box" style="margin-top:12px"><h2>${t('myHome')}</h2><div class="g2"><button class="tier" onclick="myTab('data')"><span>${t('myData')}</span><b>›</b></button><button class="tier" onclick="myTab('spon')"><span>${t('myT1')}</span><b>›</b></button><button class="tier" onclick="myTab('sum')"><span>${t('myT2')}</span><b>›</b></button><button class="tier" onclick="myTab('nt')"><span>${t('myT3')}</span><b>${r.notes.length||''} ›</b></button><button class="tier" onclick="myTab('add')"><span>${t('myT4')}</span><b>›</b></button></div></div>`;
- if(MYT=='data')h+=real.length?real.map(o=>myCard(o,r.meta)).join(''):`<div class="box" style="margin-top:12px"><p style="color:var(--mu)">${t('myNone')}</p></div>`;
- if(MYT=='spon')h+=real.length?real.map(sponsorCard).join(''):`<div class="box" style="margin-top:12px"><p style="color:var(--mu)">${t('myNone')}</p></div>`;
- if(MYT=='sum'){const per=n=>{const A={cnt:0,iqd:0,msg:0,reach:0,imp:0,clk:0,lik:0,com:0};real.filter(o=>['ok','act','fin'].includes(o.st)&&now-o.at<n*864e5).forEach(o=>{A.cnt++;A.iqd+=o.price||0;const d=o.data;if(d&&d.status=='ok'){A.msg+=d.messages;A.reach+=d.reach;A.imp+=d.impressions;A.clk+=d.clicks;A.lik+=d.reactions;A.com+=d.comments}});return A};const card=(label,A)=>`<div class="box" style="margin-top:12px"><h3>${label}</h3><div class="rw" style="grid-template-columns:repeat(2,1fr)"><div class="rc"><small>${t('mySpent')}</small><b>${fmt(A.iqd)} IQD</b></div>${tile('oc',A.cnt)}${tile('mMsg',A.msg)}${tile('mReach',A.reach)}${tile('mImp',A.imp)}${tile('mClk',A.clk)}${tile('mRea',A.lik)}${tile('mCom',A.com)}</div></div>`;const labels={1:t('myDay'),7:t('wk'),30:t('mo')};h+=`<div class="row s"><button class="chip ${MYPER==1?'on':''}" onclick="myPeriod(1)">${t('myDay')}</button><button class="chip ${MYPER==7?'on':''}" onclick="myPeriod(7)">${t('wk')}</button><button class="chip ${MYPER==30?'on':''}" onclick="myPeriod(30)">${t('mo')}</button></div>`+card(labels[MYPER],per(MYPER))}
- if(MYT=='nt')h+=`<div class="box" style="margin-top:12px"><h3>🔔 ${t('ntH')}</h3>${r.notes.length?`<div class="rvb">${r.notes.map(n=>`<div class="rv"><span>${dt(n.at)}</span><b>${esc(n.pg||'')} · ${t('nt_'+n.st)}</b></div>`).join('')}</div>`:`<p style="color:var(--mu)">${t('ntNone')}</p>`}</div>`;
- if(MYT=='add')h+=`<div class="box" style="margin-top:12px"><label>${t('claimT')}</label><div class="pwr"><input type="text" id="cl_c" dir="ltr" placeholder="KA-XXXXXX" maxlength="12"><button class="btn" onclick="doClaim()">${t('claimB')}</button></div><div id="cl_e"></div></div>`;
+ $('mytabs').innerHTML=[['ord','myT1'],['sum','myT2'],['nt','myT3'],['add','myT4'],['profile','myT5']].map(x=>`<button class="${MYT==x[0]?'on':''}" onclick="myTab('${x[0]}')">${t(x[1])}${x[0]=='nt'&&r.notes.length?' ('+r.notes.length+')':''}</button>`).join('');
+ const real=r.orders.filter(o=>o.st!='ns'),now=Date.now();let h='';
+ if(MYT=='ord')h=real.length?real.map(o=>myCard(o,r.meta)).join(''):`<div class="box" style="margin-top:12px"><p style="color:var(--mu)">${t('myNone')}</p></div>`;
+ if(MYT=='sum'){const per=n=>{const A={cnt:0,iqd:0,msg:0,reach:0,imp:0,clk:0,lik:0,com:0};real.filter(o=>['ok','act','fin'].includes(o.st)&&now-o.at<n*864e5).forEach(o=>{A.cnt++;A.iqd+=o.price||0;const d=o.data;if(d&&d.status=='ok'){A.msg+=d.messages;A.reach+=d.reach;A.imp+=d.impressions;A.clk+=d.clicks;A.lik+=d.reactions;A.com+=d.comments}});return A};
+  const card=(k,A)=>`<div class="box" style="margin-top:12px"><h3>${t(k)}</h3><div class="rw" style="grid-template-columns:repeat(2,1fr)"><div class="rc"><small>${t('spent')}</small><b>${fmt(A.iqd)} IQD</b></div>${tile('oc',A.cnt)}${tile('mMsg',A.msg)}${tile('mReach',A.reach)}${tile('mImp',A.imp)}${tile('mClk',A.clk)}${tile('mRea',A.lik)}${tile('mCom',A.com)}</div></div>`;
+  h=card('wk',per(7))+card('mo',per(30))}
+ if(MYT=='nt')h=`<div class="box" style="margin-top:12px"><h3>🔔 ${t('ntH')}</h3>${r.notes.length?`<div class="rvb">${r.notes.map(n=>`<div class="rv"><span>${dt(n.at)}</span><b>${esc(n.pg||'')} · ${t('nt_'+n.st)}</b></div>`).join('')}</div>`:`<p style="color:var(--mu)">${t('ntNone')}</p>`}</div>`;
+ if(MYT=='profile')h=`<div class="box" style="margin-top:12px"><h3>${t('myT5')}</h3><div class="fg"><label>${t('pfName')}</label><input id="pf_name" type="text" maxlength="60" value="${esc(ACC.name)}"></div><div class="fg"><label>${t('pfEmail')}</label><input id="pf_email" type="email" maxlength="80" value="${esc(ACC.email||'')}"></div><div class="fg"><label>${t('pfPass')}</label><input id="pf_pass" type="password" autocomplete="current-password"></div><div class="fg"><label>${t('pfNew')}</label><input id="pf_new" type="password" autocomplete="new-password"></div><div id="pf_err"></div><button class="btn" onclick="saveProfile()">${t('pfSave')}</button></div>`;
+  if(MYT=='add')h=`<div class="box" style="margin-top:12px"><label>${t('claimT')}</label><div class="pwr"><input type="text" id="cl_c" dir="ltr" placeholder="KA-XXXXXX" maxlength="12"><button class="btn" onclick="doClaim()">${t('claimB')}</button></div><div id="cl_e"></div></div>`;
  el.innerHTML=h}
-/* ---------- profile ---------- */
-function pfShow(id,r){const e=$(id);if(!e)return;
- if(r.ok){if(r.me){ACC=r.me;refreshChip();const n=$('pbn');if(n)n.textContent=ACC.name}e.innerHTML=`<div class="nt" style="border-color:var(--ok)">${t('pfOk')}</div>`}
- else if(r.err=='wait'&&r.wait)startWait(r.wait,id,null);else e.innerHTML=`<div class="nt r">${r.err=='wrong'?t('pfWrong'):em(r.err)}</div>`}
-async function pfName(){pfShow('pf_e1',await api('pname',{token:tok(),name:$('pf_n').value}))}
-async function pfUser(){pfShow('pf_e4',await api('puser',{token:tok(),username:$('pf_u').value,password:$('pf_up').value}))}
-async function pfPhone(){pfShow('pf_e5',await api('pphone',{token:tok(),phone:$('pf_ph').value,password:$('pf_php').value}))}
-async function pfMail(){pfShow('pf_e2',await api('pmail',{token:tok(),email:$('pf_m').value,password:$('pf_mp').value}))}
-async function pfPass(){if($('pf_p1').value!==$('pf_p2').value){$('pf_e3').innerHTML=`<div class="nt r">${t('pfMis')}</div>`;return}pfShow('pf_e3',await api('ppass',{token:tok(),old:$('pf_po').value,pass:$('pf_p1').value}))}
-async function pfAvatar(){const f=$('pf_av').files[0];if(!f)return;pfShow('pf_e6',await api('pavatar',{token:tok(),avatar:await avatar(f)}))}
-async function loadSessions(){const e=$('sessionsBox');if(!e)return;const r=await api('sessions',{token:tok()});if(!r.ok){e.innerHTML='';return}e.innerHTML=`<h3>🔐 ئامێرەکانی چوونەژوورەوە</h3><div class="rvb">${(r.sessions||[]).map(s=>`<div class="rv"><span>${esc(s.label)} · ${dt(s.at)}</span><b>${s.current?'ئەم ئامێرە':'چالاک'}</b></div>`).join('')||`<p style="color:var(--mu)">هیچ سێشنێک نییە</p>`}</div><button class="btn g" onclick="logoutAllDevices()">دەرچوون لە هەموو ئامێرەکان</button>`}
-async function logoutAllDevices(){const r=await api('logoutAll',{token:tok()});if(r.ok){delete sessionStorage.ktok;delete localStorage.ktok;ACC=null;AU='x';go('home')}}
-async function deleteAccount(){if(!confirm('دڵنیایت؟ هەژمار و داواکارییەکانت بە هەمیشەیی دەسڕێنەوە.'))return;const r=await api('deleteAccount',{token:tok()});if(r.ok){delete sessionStorage.ktok;delete localStorage.ktok;ACC=null;AU='x';go('home')}else alert(em(r.err))}
-function accountEntry(){if(!['l','r','f'].includes(AU))AU='l';return authBox('need')}
-function registerView(){return `<div class="box"><h2>👤 ${t('au_r')}</h2><div class="fg"><label>${t('un')}</label><input type="text" id="a_un" dir="ltr" autocapitalize="none"></div><div class="fg"><label>${t('fullname')}</label><input type="text" id="a_nm"></div><div class="fg"><label>${t('phone')}</label><input type="tel" id="a_ph" dir="ltr"></div><div class="fg"><label>${t('email')}</label><input type="email" id="a_em" dir="ltr"></div><div class="fg"><label>${t('pw')}</label><div class="pwr"><input type="password" id="a_pw" dir="ltr"><button type="button" class="eye" onclick="eye('a_pw',this)">👁</button></div></div><div class="fg"><label>${t('av')}</label><input type="file" id="a_av" accept="image/*"></div><div id="a_er"></div><div class="row s"><button class="btn" id="a_btn" onclick="doReg()">${t('au_r')}</button><button class="btn g" onclick="V='prof';AU='x';render()">${t('bk')}</button></div></div>`}
-let PFSEC='menu';
-function pfSec(k){PFSEC=k;render()}
-function profView(){if(!ACC){if(['l','r','f'].includes(AU))return authBox('userLogin');return accountEntry()}const pw=id=>`<div class="pwr"><input type="password" id="${id}" dir="ltr"><button type="button" class="eye" onclick="eye('${id}',this)">👁</button></div>`,hr='<hr style="border:0;border-top:1px solid var(--bd);margin:18px 0">';
- setTimeout(loadSessions,0);let body='';
- if(PFSEC=='avatar')body=`<h3>🖼️ وێنەی پڕۆفایل</h3><div class="fg"><label>وێنەی نوێ هەڵبژێرە</label><input type="file" id="pf_av" accept="image/*"></div><button class="btn" onclick="pfAvatar()">${t('pfSave')}</button><div id="pf_e6"></div>`;
- if(PFSEC=='name')body=`<h3>✏️ گۆڕینی ناو و یوسەرنەیم</h3><div class="fg"><label>${t('pfName')}</label><input type="text" id="pf_n" maxlength="60" value="${esc(ACC.name)}"></div><button class="btn" onclick="pfName()">${t('pfSave')}</button><div id="pf_e1"></div>${hr}<div class="fg"><label>${t('pfUser')}</label><input type="text" id="pf_u" dir="ltr" maxlength="20" value="${esc(ACC.username)}"></div><div class="fg"><label>${t('pfCur')}</label>${pw('pf_up')}</div><button class="btn" onclick="pfUser()">${t('pfSave')}</button><div id="pf_e4"></div>`;
- if(PFSEC=='contact')body=`<h3>📞 گۆڕینی ژمارە و ئیمەیڵ</h3><div class="fg"><label>${t('phone')}</label><input type="tel" id="pf_ph" dir="ltr" value="${esc(ACC.phone||'')}"></div><div class="fg"><label>${t('pfCur')}</label>${pw('pf_php')}</div><button class="btn" onclick="pfPhone()">${t('pfSave')}</button><div id="pf_e5"></div>${hr}<div class="fg"><label>${t('email')}</label><input type="text" id="pf_m" dir="ltr" value="${esc(ACC.email||'')}"></div><div class="fg"><label>${t('pfCur')}</label>${pw('pf_mp')}</div><button class="btn" onclick="pfMail()">${t('pfSave')}</button><div id="pf_e2"></div>`;
- if(PFSEC=='password')body=`<h3>🔑 ${t('pfPass')}</h3><div class="fg"><label>${t('pfCur')}</label>${pw('pf_po')}</div><div class="fg"><label>${t('pfNew')}</label>${pw('pf_p1')}</div><div class="fg"><label>${t('pfNew2')}</label>${pw('pf_p2')}</div><button class="btn" onclick="pfPass()">${t('pfSave')}</button><div id="pf_e3"></div>`;
- if(PFSEC=='menu')body=`<p style="color:var(--mu);font-size:.85rem">${t('pfNote')}</p><div class="g2" style="margin-top:14px"><button class="tier" onclick="pfSec('avatar')">🖼️ وێنەی پڕۆفایل <b>›</b></button><button class="tier" onclick="pfSec('name')">✏️ ناو و یوسەرنەیم <b>›</b></button><button class="tier" onclick="pfSec('contact')">📞 ژمارە و ئیمەیڵ <b>›</b></button><button class="tier" onclick="pfSec('password')">🔑 ${t('pfPass')} <b>›</b></button></div>`;
- return `${pbar()}<div class="box" style="margin-top:12px"><h2>${t('prof')}</h2>${PFSEC!='menu'?`<button class="back" onclick="pfSec('menu')">↩ گەڕانەوە بۆ پڕۆفایل</button>`:''}${body}</div><div class="box" id="sessionsBox" style="margin-top:12px"></div><div class="box" style="margin-top:12px;border-color:var(--no)"><h3>⚠️ سڕینەوەی هەژمار</h3><p style="color:var(--mu)">هەژمار و داواکارییەکانت بە هەمیشەیی دەسڕدرێنەوە.</p><button class="btn r" onclick="deleteAccount()">سڕینەوەی هەژمار</button></div>`}
 /* ---------- more / install ---------- */
 let DP=null,MOREOPEN=false;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e});
 function toggleMore(){MOREOPEN=!MOREOPEN;renderMore()}
 function renderMore(){const b=$('mb'),p=$('more');if(!b)return;b.textContent=t('more')+(MOREOPEN?' ▴':' ▾');p.style.display=MOREOPEN?'flex':'none';
-  p.innerHTML=[['i','ni'],['q','fq'],['f','nf'],['p','np']].map(a=>`<button class="chip" onclick="MOREOPEN=false;go('${a[0]}')">${t(a[1])}</button>`).join('')+[['/privacy.html','priv'],['/terms.html','trm'],['/delete.html','del']].map(a=>`<a class="chip" style="text-decoration:none" href="${a[0]}" target="_blank" rel="noopener">${t(a[1])}</a>`).join('')}
-function install(){return `<div class="box"><h2>📲 ${t('nin')}</h2><p style="color:var(--mu)">${t('insD').replace("onclick=\"go('prof')","onclick=\"go('adminLogin')")}</p>${DP?`<div class="row s"><button class="btn" onclick="DP.prompt()">${t('insBtn')}</button></div>`:''}<h3 style="margin-top:14px">Android (Chrome)</h3>${t('insA')}<h3 style="margin-top:12px">iPhone (Safari)</h3>${t('insI')}</div>`}
-
+ p.innerHTML=[['i','ni'],['q','fq'],['f','nf'],['p','np'],['ins','nin']].map(a=>`<button class="chip" onclick="MOREOPEN=false;go('${a[0]}')">${t(a[1])}</button>`).join('')+[['/privacy.html','priv'],['/terms.html','trm'],['/delete.html','del']].map(a=>`<a class="chip" style="text-decoration:none" href="${a[0]}" target="_blank" rel="noopener">${t(a[1])}</a>`).join('')}
+function install(){return `<div class="box"><h2>📲 ${t('nin')}</h2><p style="color:var(--mu)">${t('insD')}</p>${DP?`<div class="row s"><button class="btn" onclick="DP.prompt()">${t('insBtn')}</button></div>`:''}<h3 style="margin-top:14px">Android (Chrome)</h3>${t('insA')}<h3 style="margin-top:12px">iPhone (Safari)</h3>${t('insI')}</div>`}
 /* ---------- new games ---------- */
 const KW=['کوردستان','سلێمانی','هەولێر','کەرکووک','پێشمەرگە','نەورۆز','هەور','ئاگر','دەریا','ڕووبار','کتێب','قەڵەم','ئەستێرە','باران','ڕێگا','ئازادی','ژیان','مانگ'];
 function wordtiles(){stop();$('gr').textContent='';let ok=0,lv=3,tm=90,fin=0,cur='',used=[];
@@ -689,9 +619,8 @@ function seqgame(){stop();$('gr').textContent='';let ok=0,lv=3,tm=45,fin=0;$('ga
  const nw=()=>{const q=mk();$('sq').textContent=q.s.join(' , ')+' , ?';$('so').innerHTML=q.o.map(v=>`<button class="btn g sb" data-v="${v}">${v}</button>`).join('');
   document.querySelectorAll('#so button').forEach(b=>b.onclick=()=>{if(fin)return;if(+b.dataset.v==q.ans)ok++;else{lv--;if(lv<=0){up();return end()}}up();nw()})};
  nw();up();window.tmr=setInterval(()=>{tm--;up();if(tm<=0)end()},1000)}
-
 /* ---------- admin ---------- */
-let ADM='',ADT='rec',AR=null,RNG=null,AV='gate',OF='conf',AQS='';
+let ADM='',ADT='rec',AR=null,RNG=null,AV='gate',OF='conf';
 const dstr=d=>d.toISOString().slice(0,10),iraqToday=()=>dstr(new Date(Date.now()+3*3600e3)),addDays=(s,n)=>dstr(new Date(Date.parse(s+'T00:00:00Z')+n*864e5)),dayStrOf=x=>dstr(new Date(x+3*3600e3));
 const GLK=()=>Date.now()-(+localStorage.kgl||0)<864e5,gt=()=>{const g=sessionStorage.kag;return g=='-'?'':g||''};
 function admin(){ADM=localStorage.katok||'';const bx=(h,b)=>`<div class="box"><h2>🔒 Admin</h2>${h}${b}</div>`;
@@ -706,7 +635,7 @@ async function adLogin(){const r=await api('alogin',{user:$('ad_u').value,passwo
  if(r.ok){localStorage.katok=r.token;render();return}
  if(r.err=='gate'){delete sessionStorage.kag;AV='gate';render();return}
  if(r.err=='wait'&&r.wait)return startWait(r.wait,'ad_e','ad_btn');
- let x=em(r.err)+(r.st!==undefined?' (HTTP '+r.st+')':'');if(r.err=='wrong'&&r.src)x+='<br>'+(r.u?'✓':'✗')+' ناوی بەکارهێنەر · '+(r.p?'✓':'✗')+' پاسۆرد · '+(r.src=='site'?'دوو پاسۆرد قبوڵ دەکرێن: ئەوەی (ADMIN_PASS) و ئەوەی لە ناو سایتەکە گۆڕدراوە':'تەنیا پاسۆردی (ADMIN_PASS) قبوڵ دەکرێت');
+ let x=em(r.err)+(r.st!==undefined?' (HTTP '+r.st+')':'');if(r.err=='wrong'&&r.src)x+='<br>'+(r.u?'✓':'✗')+' ناوی بەکارهێنەر · '+(r.p?'✓':'✗')+' پاسۆرد · '+(r.src=='site'?'دوو پاسۆرد قبوڵ دەکرێن: ئەوەی Vercel (ADMIN_PASS) و ئەوەی لە ناو سایتەکە گۆڕدراوە':'تەنیا پاسۆردی Vercel (ADMIN_PASS) قبوڵ دەکرێت');
  $('ad_e').innerHTML=`<div class="nt r">${x}</div>`}
 async function adRevert(){const r=await api('areset',{word:$('ad_w').value,revert:1,gate:gt()});
  if(r.ok){AV='login';render();setTimeout(()=>{if($('ad_e'))$('ad_e').innerHTML='<div class="nt" style="border-color:var(--ok)">گەڕایەوە بۆ پاسۆردی Vercel ✓</div>'},50)}
@@ -720,13 +649,9 @@ function rngSet(){const f=$('rf').value,t0=$('rt').value;if(f&&t0&&f<=t0){RNG={f
 async function adLoad(){if(!RNG)return;const r=await api('astats',{token:ADM,from:RNG.from,to:RNG.to}),el=$('ad');if(!el)return;
  if(!r.ok){if(r.err=='auth'){delete localStorage.katok;render();return}el.innerHTML=`<div class="box"><div class="nt r">${em(r.err)}${r.st!==undefined?' (HTTP '+r.st+')':''}</div></div>`;return}
  AR=r;adDraw()}
-function adTab(k){ADT=k;if(k=='acc'&&AR&&!Array.isArray(AR.users))return adLoad();adDraw()}
+function adTab(k){ADT=k;adDraw()}
 async function adSt(id,st){await api('ostatus',{token:ADM,id,st});adLoad()}
-async function adBan(username,seconds,unban){const msg=unban?'ئەم هەژمارە لە باند دەردەچێت؟':(seconds?'ئەم هەژمارە بۆ کاتی دیاریکراو باند بکرێت؟':'ئەم هەژمارە بۆ هەمیشە باند بکرێت؟');if(!confirm(msg))return;const r=await api('aban',{token:ADM,username,seconds,unban:!!unban});if(!r.ok)alert(em(r.err));else adLoad()}
 async function adCost(){const r=await api('asetcost',{token:ADM,cost:$('ad_c').value});if(r.ok)adLoad();else alert(em(r.err))}
-function exportOrdersCsv(){const rows=[['کات','پلاتفۆرم','پەیج','نرخ IQD','دۆخ','کۆد','هەژمار'],...(AR&&AR.orders||[]).map(o=>[dt(o.at),o.pn,o.pg,o.price,o.st,o.code,o.owner])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='kurd-agency-orders.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-function exportReportCsv(){const rows=[['بەش','کات','ناو/پلاتفۆرم','ئیمەیڵ/پەیج','بڕ','دۆخ','کۆد','داتا'],['هەژمار',...(AR&&AR.users||[]).flatMap(u=>[[dt(u.created),u.name,u.email,u.points,'','','']])],['داواکاری'],...(AR&&AR.orders||[]).map(o=>['داواکاری',dt(o.at),o.pn,o.pg,o.price,o.st,o.code,JSON.stringify(o.data||{})]),['ڕاپۆرتی ڕۆژانە'],...(AR&&AR.rows||[]).map(x=>['ڕۆژ',x.d,'', '',x.prof,'','',JSON.stringify(x)] )];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='kurd-agency-report.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-async function downloadBackup(){const r=await api('backup',{token:ADM});if(!r.ok)return alert(em(r.err));const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(r,null,2)],{type:'application/json'}));a.download='kurd-agency-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 async function adPass(){const r=await api('apass',{token:ADM,old:$('ap_o').value,pass:$('ap_n').value});$('ap_r').innerHTML=r.ok?'<div class="nt" style="border-color:var(--ok)">پاسۆرد گۆڕدرا ✓</div>':`<div class="nt r">${em(r.err)}</div>`}
 async function adCode(rid){const r=await api('agencode',{token:ADM,rid}),el=$('rq_'+rid);if(!el)return;if(!r.ok){el.innerHTML=`<span class="nt r">${em(r.err)}</span>`;return}
  const u=AR.resets.find(x=>x.rid==rid)||{};let p=String(u.phone||'');if(p[0]=='0')p='964'+p.slice(1);
@@ -748,14 +673,14 @@ function adDraw(){const r=AR,el=$('ad');if(!el||!r)return;
   body=`${grid}${c('سەرف کراو ($)','$'+(+sum('usd').toFixed(2)))}${c('قازانج (IQD)',fmt(prof))}${c('داهاتی FB/IG (IQD)',fmt(rev))}${c('ڕێژەی قازانج',rev?Math.round(prof/rev*100)+'%':'—')}${c('قازانجی داواکارییە نوێیەکان (پەسەند نەکراو)',fmt(pend))}${c('تێچووی $1',r.cost)}</div><p style="color:var(--mu);font-size:.8rem;margin:10px 0">تەنیا داواکارییە پەسەندکراوەکان (🔎 🟢 🏁) دەژمێردرێن. قازانجی چاوەڕێکراو = داواکارییەکانی ⏳.</p>${tb(['ڕۆژ','سەرف $','داهات IQD','قازانج IQD'],r.rows.slice().reverse().map(x=>`<tr><td>${x.d}</td><td>$${+x.usd.toFixed(2)}</td><td>${fmt(x.rev)}</td><td>${fmt(x.prof)}</td></tr>`))}`}
  if(ADT=='ord'){const cf=['ok','act','fin'],L=r.orders.filter(o=>inR(o)&&(OF=='conf'?cf.includes(o.st):OF=='all'||o.st==OF));
   body=`<div class="row s" style="margin:0 0 10px;align-items:center"><select style="width:auto" onchange="OF=this.value;adDraw()"><option value="conf" ${OF=='conf'?'selected':''}>سپۆنسەرکراو</option><option value="all" ${OF=='all'?'selected':''}>هەموو</option>${Object.keys(stl).map(k=>`<option value="${k}" ${OF==k?'selected':''}>${stl[k]}</option>`).join('')}</select><small>${L.length}</small></div>${tb(['کات','پلاتفۆرم','پەیج','پاکێج','ڕۆژ','IQD','$','قازانج','پارەدان','کۆدی داواکاری','هەژمار','بانگێشت','دۆخ'],L.map(o=>`<tr><td>${dt(o.at)}</td><td>${esc(o.pn)}</td><td>${esc(o.pg)}</td><td>${esc(o.pk)}</td><td>${esc(o.dy||'')}</td><td>${fmt(o.price)}</td><td>${o.usd==null?'':'$'+o.usd}</td><td>${o.profit==null?'':fmt(o.profit)}</td><td>${esc(o.pay)}</td><td>${o.code?`<b dir="ltr">${esc(o.code)}</b> <button class="chip" data-t="${esc(o.code+' '+o.pg)}" onclick="cpv(this)">📋</button>`:''}</td><td>${esc(o.owner||'')}</td><td>${esc(o.ref)}</td><td><select style="width:auto" onchange="adSt('${esc(o.id)}',this.value)">${Object.keys(stl).map(k=>`<option value="${k}" ${o.st==k?'selected':''}>${stl[k]}</option>`).join('')}</select></td></tr>`))}`}
-  if(ADT=='acc'){const users=Array.isArray(r.users)?r.users:[],q=String(AQS||'').trim().toLowerCase(),L=users.filter(u=>!q||[u.name,u.username,u.phone,u.email].some(v=>String(v||'').toLowerCase().includes(q)));body=`<div class="row s" style="align-items:center;margin:0 0 10px"><input id="acc_q" type="search" value="${esc(AQS)}" placeholder="گەڕان بە ناو، یوسەر، تەلەفۆن یان ئیمەیڵ" style="max-width:360px"><button class="btn" onclick="AQS=$('acc_q').value;adDraw()">گەڕان</button><button class="btn g" onclick="AQS='';adDraw()">پاککردنەوە</button><small>${L.length} / ${users.length}</small></div>`+tb(['','ناو','یوسەر','تەلەفۆن','ئیمەیڵ','پۆینت','بانگێشتکار','کات','باند'],L.map(u=>{const ban=u.ban,bs=ban?(ban.until?'تا '+dt(ban.until):'هەمیشەیی'):'';return `<tr><td>${u.avatar?`<img class="av" style="width:28px;height:28px" src="${u.avatar}" alt="">`:''}</td><td>${esc(u.name)}</td><td>@${esc(u.username)}</td><td>${esc(u.phone)}</td><td>${esc(u.email)}</td><td>${u.points}</td><td>${esc(u.by)}</td><td>${dt(u.created)}</td><td>${ban?`<small style="color:var(--no)">🚫 ${esc(bs)}</small><br><button class="chip" onclick="adBan('${esc(u.username)}',0,true)">دەربهێنە</button>`:`<button class="chip" onclick="adBan('${esc(u.username)}',3600,false)">١ کاتژمێر</button> <button class="chip" onclick="adBan('${esc(u.username)}',86400,false)">١ ڕۆژ</button> <button class="chip" onclick="adBan('${esc(u.username)}',604800,false)">٧ ڕۆژ</button> <button class="chip" onclick="adBan('${esc(u.username)}',0,false)">هەمیشە</button>`}</td></tr>`}))}
+ if(ADT=='acc')body=tb(['','ناو','یوسەر','تەلەفۆن','ئیمەیڵ','پۆینت','بانگێشتکار','کات'],r.users.map(u=>`<tr><td>${u.avatar?`<img class="av" style="width:28px;height:28px" src="${u.avatar}" alt="">`:''}</td><td>${esc(u.name)}</td><td>@${esc(u.username)}</td><td>${esc(u.phone)}</td><td>${esc(u.email)}</td><td>${u.points}</td><td>${esc(u.by)}</td><td>${dt(u.created)}</td></tr>`));
  if(ADT=='rq')body=r.resets.length?tb(['کات','داواکاری','ناو','یوسەر','تەلەفۆن','ئیمەیڵ','کۆد'],r.resets.map(x=>`<tr><td>${dt(x.at)}</td><td dir="ltr">${esc(x.rid)}</td><td>${esc(x.name)}</td><td>@${esc(x.u)}</td><td dir="ltr">${esc(x.phone)}</td><td>${esc(x.email)}</td><td><span id="rq_${esc(x.rid)}"><button class="chip" onclick="adCode('${esc(x.rid)}')">کۆد دروست بکە</button></span></td></tr>`))+'<p style="color:var(--mu);font-size:.8rem;margin-top:8px">ژمارەی وەتسئەپی ناردەر لەگەڵ ژمارەی هەژمارەکە بەراورد بکە، پاشان کۆدەکە بنێرە.</p>':'<p style="color:var(--mu)">هیچ داواکارییەک نییە.</p>';
  if(ADT=='red')body=r.reds.length?tb(['کات','یوسەر','پۆینت','سپۆنسەر IQD'],r.reds.map(x=>`<tr><td>${dt(x.at)}</td><td>@${esc(x.u)}</td><td>${x.cost}</td><td>${fmt(x.iqd)}</td></tr>`)):'—';
  if(ADT=='set')body=`<div class="fg"><label>تێچووی ڕاستەقینەی هەر $1 بۆ تۆ (IQD)</label><div class="pwr"><input type="number" step="any" id="ad_c" dir="ltr" value="${r.cost}"><button class="btn" onclick="adCost()">Save</button></div></div>
   <hr style="border:0;border-top:1px solid var(--bd);margin:14px 0"><h3>گۆڕینی پاسۆرد</h3><div class="fg"><label>پاسۆردی ئێستا</label><input type="password" id="ap_o" dir="ltr"></div><div class="fg"><label>پاسۆردی نوێ (٨+)</label><input type="password" id="ap_n" dir="ltr"></div><button class="btn" onclick="adPass()">گۆڕین</button><div id="ap_r"></div>
   <div class="nt">📌 بۆ دیتنی داتا لەلایەن کڕیار: ناوی کەمپەینی Meta دەبێت «کۆدی داواکاری»ی تێدا بێت، بۆ نموونە <b dir="ltr">KA-7F3K2M Ali Shop</b>. لە تابی داواکارییەکان دوگمەی 📋 ناوەکە کۆپی دەکات.</div><div class="row s"><button class="btn g" onclick="adLogout()">${t('logout')}</button></div>`;
  const rb=['ov','ord','fin'].includes(ADT)?`<div class="row s" style="margin:10px 0 0;align-items:center"><button class="chip" onclick="rng('t')">ئەمڕۆ</button><button class="chip" onclick="rng('w')">٧ ڕۆژ</button><button class="chip" onclick="rng('m')">٣٠ ڕۆژ</button><button class="chip" onclick="rng('mm')">ئەم مانگە</button><input type="date" id="rf" value="${RNG.from}"><input type="date" id="rt" value="${RNG.to}"><button class="btn" onclick="rngSet()">پیشاندان</button></div>`:'';
- el.innerHTML=`${verBad}<div class="box"><div class="atabs">${tabs.map(x=>`<button class="${ADT==x[0]?'on':''}" onclick="adTab('${x[0]}')">${x[1]}</button>`).join('')}<button onclick="adLoad()">⟳</button></div><div class="row s">${['ord','acc','fin','ov'].includes(ADT)?'<button class="btn" onclick="exportReportCsv()">⬇️ ڕاپۆرتی CSV</button>':''}<button class="btn g" onclick="downloadBackup()">💾 Backup</button></div>${rb}</div><div class="box" style="margin-top:12px">${body}</div>`}
+ el.innerHTML=`${verBad}<div class="box"><div class="atabs">${tabs.map(x=>`<button class="${ADT==x[0]?'on':''}" onclick="adTab('${x[0]}')">${x[1]}</button>`).join('')}<button onclick="adLoad()">⟳</button></div>${rb}</div><div class="box" style="margin-top:12px">${body}</div>`}
 /* ---------- Services, Payment & Info ---------- */
 function srv(){return [1,2,3].map(i=>`<div class="sv"><h3>${t('sv'+i)}</h3><p style="color:var(--mu)">${t('sv'+i+'d')}</p><div class="row s"><button class="btn" onclick="window.open('https://wa.me/${WA}?text='+encodeURIComponent('${T['sv'+i][0]}'))">${t('ask')}</button></div></div>`).join('')}
 function payTab(){const c={FIB:'#0d8bd6',FASTPAY:'#e11d48',QCARD:'#f59e0b',ASIAPAY:'#dc2626'};
@@ -767,7 +692,6 @@ function info(){const a=(h,n)=>`<a class="btn g" style="text-decoration:none" ta
  <div class="row s"><button class="btn" onclick="window.open('https://wa.me/${WA}?text='+encodeURIComponent('سڵاو کورد ئەجێنسی، دەمەوێت CVی خۆم بنێرم بۆ داواکاری کار.'))">${t('cv')}</button>
  ${a('https://www.tiktok.com/@kurd.agency','TikTok')}${a('https://www.facebook.com/share/1CAmPqe2Pj/','Facebook')}${a('https://www.instagram.com/aryann.tech','Instagram')}${a('https://snapchat.com/t/54mPJKNh','Snapchat')}</div>
  `}
-
 $('hl').src=LOGO;document.querySelector('link[rel=icon]').href=ICON;
 if(localStorage.kt=='light'){document.documentElement.dataset.theme='light';$('th').textContent='🌙'}
 render();track();boot();
@@ -775,4 +699,269 @@ setInterval(async()=>{if(ACC&&tok()){const r=await api('me',{token:tok()});if(r.
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
 </script>
 </body>
-</html>
+</html>       ئەمە کۆدی inex,html                                                                                                 // Vercel Serverless Function: /api/x  (accounts, points, referrals, orders, notifications, admin)
+// Needs: Redis (Vercel > Storage > Upstash Redis) and env vars ADMIN_USER, ADMIN_PASS.
+// Optional: ADMIN_GATE (secret word before admin login), ADMIN_RESET (secret word to reset admin password),
+//           META_TOKEN + META_AD_ACCOUNT (Meta insights), META_API_VERSION.
+const crypto = require('crypto');
+const URL_ = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const TOK = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+const DAILY = 100, REW = [1000, 1500, 2000], VER = 4, YEAR = 31536000;
+const DEF_COST = 1542.77, GV = process.env.META_API_VERSION || 'v21.0';
+const H = { Authorization: 'Bearer ' + TOK };
+async function rc(...a) { const r = await fetch(URL_, { method: 'POST', headers: H, body: JSON.stringify(a) }); const j = await r.json(); if (j.error) throw new Error(j.error); return j.result; }
+async function rp(c) { const r = await fetch(URL_ + '/pipeline', { method: 'POST', headers: H, body: JSON.stringify(c) }); return (await r.json()).map(x => x.result); }
+const rnd = n => crypto.randomBytes(n).toString('hex');
+const hash = (p, s) => crypto.scryptSync(p, s, 32).toString('hex');
+const sha = s => crypto.createHash('sha256').update(String(s)).digest('hex');
+const day = (o = 0) => new Date(Date.now() + 3 * 3600e3 - o * 864e5).toISOString().slice(0, 10);
+const dayOf = t => new Date(t + 3 * 3600e3).toISOString().slice(0, 10);
+const S = (x, n) => String(x == null ? '' : x).slice(0, n);
+const nph = p => { let d = String(p || '').replace(/\D/g, ''); if (d.startsWith('964') && d.length >= 12) d = '0' + d.slice(3); return d; };
+const err = e => ({ ok: 0, err: e });
+const waitErr = s => ({ ok: 0, err: 'wait', wait: s });
+const J = x => { try { return JSON.parse(x); } catch (e) { return null; } };
+const ipOf = req => S(((req.headers && req.headers['x-forwarded-for']) || '').split(',')[0], 45) || '0';
+const same = (a, b) => crypto.timingSafeEqual(crypto.createHash('sha256').update(String(a)).digest(), crypto.createHash('sha256').update(String(b)).digest());
+const env = k => String(process.env[k] || '').trim();
+const isC = s => ['ok', 'act', 'fin'].includes(s);
+const sess = async u => { const t = rnd(24); await rc('SET', 's:' + t, u, 'EX', YEAR); return t; };
+const auth = async t => { if (!t) return null; const k = 's:' + S(t, 80), u = await rc('GET', k); if (u) await rc('EXPIRE', k, YEAR); return u; };
+async function locked(k) { const t = await rc('TTL', 'lk:' + k); return t > 0 ? t : 0; }
+async function failed(k) { const f = await rc('INCR', 'lf:' + k); await rc('EXPIRE', 'lf:' + k, 3600); if (f % 5 === 0) { const s = f >= 15 ? 600 : f >= 10 ? 60 : 10; await rc('SET', 'lk:' + k, '1', 'EX', s); return s; } return 0; }
+async function adminPassOk(pw) {
+  const AP = env('ADMIN_PASS'); if (!AP) return null;
+  if (same(pw, AP)) return true;                       // password from Vercel
+  const ov = J(await rc('GET', 'adm:pass'));            // password changed inside the site
+  if (ov) { const [s, h] = ov.h.split(':'); if (same(hash(pw, s), h)) return true; }
+  return false;
+}
+const admUsers = () => env('ADMIN_USER').toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
+const gateOk = async t => !env('ADMIN_GATE') || !!(t && await rc('GET', 'ag:' + S(t, 40)));
+async function profile(u) {
+  const [pts, fr, nu] = await rp([['GET', 'pt:' + u.username], ['LRANGE', 'fr:' + u.username, 0, 99], ['GET', 'ntu:' + u.username]]);
+  return { username: u.username, name: u.name, email: u.email, avatar: u.avatar, code: u.code, points: +pts || 0, unread: +nu || 0, friends: (fr || []).map(J).filter(Boolean) };
+}
+async function metaData(code, AD, TK) {
+  const ck = 'mc:' + code, c = await rc('GET', ck); if (c) return JSON.parse(c);
+  const q = new URLSearchParams({ level: 'campaign', fields: 'campaign_name,reach,impressions,clicks,actions', date_preset: 'maximum', limit: '50', filtering: JSON.stringify([{ field: 'campaign.name', operator: 'CONTAIN', value: code }]), access_token: TK });
+  let d;
+  try {
+    const r = await fetch('https://graph.facebook.com/' + GV + '/' + (AD.startsWith('act_') ? AD : 'act_' + AD) + '/insights?' + q), j = await r.json();
+    if (!r.ok || j.error) d = { status: 'error' };
+    else if (!(j.data || []).length) d = { status: 'pending' };
+    else {
+      d = { status: 'ok', reach: 0, impressions: 0, clicks: 0, messages: 0, reactions: 0, comments: 0, shares: 0, saves: 0, pageLikes: 0, engagement: 0, linkClicks: 0, videoViews: 0, acts: {} };
+      for (const w of j.data) {
+        d.reach += +w.reach || 0; d.impressions += +w.impressions || 0; d.clicks += +w.clicks || 0;
+        const A = t => +((w.actions || []).find(z => z.action_type === t) || {}).value || 0;
+        d.messages += A('onsite_conversion.messaging_conversation_started_7d') || +(((w.actions || []).find(z => /messaging_conversation_started/.test(z.action_type)) || {}).value) || 0;
+        d.reactions += A('post_reaction'); d.comments += A('comment');
+        d.shares += A('post'); d.saves += A('onsite_conversion.post_save'); d.pageLikes += A('like'); d.engagement += A('post_engagement'); d.linkClicks += A('link_click'); d.videoViews += A('video_view');
+        for (const z of (w.actions || [])) if (Object.keys(d.acts).length < 40 || d.acts[z.action_type] != null) d.acts[z.action_type] = (d.acts[z.action_type] || 0) + (+z.value || 0);
+      }
+    }
+  } catch (e) { d = { status: 'error' }; }
+  await rc('SET', ck, JSON.stringify(d), 'EX', d.status === 'error' ? 60 : 600);
+  return d;
+}
+function dayList(from, to) {
+  const ok = s => /^\d{4}-\d{2}-\d{2}$/.test(s || '');
+  let e = ok(to) ? Date.parse(to + 'T00:00:00Z') : Date.parse(day() + 'T00:00:00Z'), s0 = ok(from) ? Date.parse(from + 'T00:00:00Z') : e - 29 * 864e5;
+  if (isNaN(e) || isNaN(s0) || s0 > e) { e = Date.parse(day() + 'T00:00:00Z'); s0 = e - 29 * 864e5; }
+  if ((e - s0) / 864e5 > 91) s0 = e - 91 * 864e5;
+  const out = []; for (let t = s0; t <= e; t += 864e5) out.push(new Date(t).toISOString().slice(0, 10)); return out;
+}
+module.exports = async (req, res) => {
+  if (req.method !== 'POST') return res.status(405).json({ ok: 0 });
+  if (!URL_ || !TOK) return res.status(200).json(err('nodb'));
+  try { return res.status(200).json(await handle(req.body || {}, req)); } catch (e) { return res.status(200).json(err('srv')); }
+};
+async function lookup(id) {
+  let un = id;
+  if (id.includes('@')) un = await rc('GET', 'em:' + id); else if (/^[+\d\s]{9,}$/.test(id)) un = await rc('GET', 'ph:' + nph(id));
+  const raw = un && await rc('GET', 'u:' + S(un, 20)); return raw && raw !== 'x' ? J(raw) : null;
+}
+async function handle(b, req) {
+  const a = b.a, ip = ipOf(req);
+  if (a === 'track') { const k = 'vis:' + day(); await rp([['PFADD', k, S(b.vid, 40)], ['EXPIRE', k, 3456000]]); return { ok: 1 }; }
+  if (a === 'register') {
+    const un = S(b.username, 20).toLowerCase().trim(), name = S(b.name, 60).trim(), ph = nph(b.phone), em = S(b.email, 80).toLowerCase().trim(), pw = String(b.password || '');
+    const av = /^data:image\/jpeg;base64,[A-Za-z0-9+/=]{20,40000}$/.test(b.avatar || '') ? b.avatar : '';
+    if (!/^[a-z0-9_.]{3,20}$/.test(un) || /admin|root|kurdagency|support|owner/.test(un) || name.length < 2 || ph.length < 9 || ph.length > 15 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em) || pw.length < 6 || pw.length > 64) return err('bad');
+    if (!(await rc('SETNX', 'u:' + un, 'x'))) return err('taken');
+    if (!(await rc('SETNX', 'ph:' + ph, un))) { await rc('DEL', 'u:' + un); return err('taken'); }
+    if (!(await rc('SETNX', 'em:' + em, un))) { await rp([['DEL', 'u:' + un], ['DEL', 'ph:' + ph]]); return err('taken'); }
+    let code; do { code = 'KA' + rnd(3).toUpperCase(); } while (!(await rc('SETNX', 'rc:' + code, un)));
+    const salt = rnd(8), u = { username: un, name, phone: ph, email: em, pass: salt + ':' + hash(pw, salt), avatar: av, code, created: Date.now(), by: '' };
+    const rf = S(b.ref, 12).replace(/[^A-Za-z0-9]/g, '');
+    if (rf) { const o = await rc('GET', 'rc:' + rf); if (o && o !== un) { u.by = o; await rc('RPUSH', 'fr:' + o, JSON.stringify({ n: name, u: un, t: 'signup', at: Date.now() })); } }
+    await rp([['SET', 'u:' + un, JSON.stringify(u)], ['SADD', 'users', un]]);
+    return { ok: 1, token: await sess(un), me: await profile(u) };
+  }
+  if (a === 'login') {
+    const id = S(b.id, 80).toLowerCase().trim();
+    if (admUsers().includes(id)) return err('adm');
+    const gi = 'lgi:' + ip; if ((await rc('INCR', gi)) > 60) { await rc('EXPIRE', gi, 600); return waitErr(60); } await rc('EXPIRE', gi, 600);
+    const lk = id.slice(0, 40), lw = await locked(lk); if (lw) return waitErr(lw);
+    const u = await lookup(id);
+    if (!u) { const s = await failed(lk); return s ? waitErr(s) : err('wrong'); }
+    const [s0, h0] = u.pass.split(':');
+    if (!same(hash(String(b.password || ''), s0), h0)) { const s = await failed(lk); return s ? waitErr(s) : err('wrong'); }
+    await rp([['DEL', 'lf:' + lk], ['DEL', 'lk:' + lk]]);
+    return { ok: 1, token: await sess(u.username), me: await profile(u) };
+  }
+  if (a === 'fgreq') {
+    const fk = 'fg:' + ip; if ((await rc('INCR', fk)) > 8) { await rc('EXPIRE', fk, 3600); return waitErr(300); } await rc('EXPIRE', fk, 3600);
+    const u = await lookup(S(b.id, 80).toLowerCase().trim()), rid = 'RS' + rnd(3).toUpperCase();
+    if (u) await rp([['SET', 'rq:' + rid, JSON.stringify({ u: u.username, at: Date.now() }), 'EX', 172800], ['LPUSH', 'rqs', rid], ['LTRIM', 'rqs', 0, 99]]);
+    return { ok: 1, rid };
+  }
+  if (a === 'fgset') {
+    const rid = S(b.rid, 12).toUpperCase().trim(), pw = String(b.pass || ''); if (pw.length < 6 || pw.length > 64) return err('bad');
+    const ak = 'ra:' + rid; if ((await rc('INCR', ak)) > 5) { await rc('EXPIRE', ak, 3600); return waitErr(300); } await rc('EXPIRE', ak, 3600);
+    const code = await rc('GET', 'rcode:' + rid), rq = J(await rc('GET', 'rq:' + rid));
+    if (!code || !rq || !same(String(b.code || '').trim(), code)) return err('wrong');
+    const u = J(await rc('GET', 'u:' + rq.u)); if (!u) return err('wrong');
+    const salt = rnd(8); u.pass = salt + ':' + hash(pw, salt);
+    await rp([['SET', 'u:' + u.username, JSON.stringify(u)], ['DEL', 'rcode:' + rid], ['DEL', 'rq:' + rid]]);
+    return { ok: 1 };
+  }
+  if (a === 'agate') {
+    const G = env('ADMIN_GATE'); if (!G) return { ok: 1, token: '' };
+    const dk = 'gd:' + S(b.vid, 40) + ':' + ip; if (await rc('GET', dk)) return err('locked');
+    const gi = 'gi:' + ip; if ((await rc('INCR', gi)) > 20) { await rc('EXPIRE', gi, 3600); return err('locked'); } await rc('EXPIRE', gi, 3600);
+    if (!same(S(b.word, 60).trim().toLowerCase(), G.toLowerCase())) { await rc('SET', dk, '1', 'EX', 86400); return err('locked'); }
+    const t = rnd(16); await rc('SET', 'ag:' + t, '1', 'EX', 900); return { ok: 1, token: t };
+  }
+  if (a === 'alogin') {
+    if (!(await gateOk(b.gate))) return err('gate');
+    const k = 'a:' + ip, lw = await locked(k); if (lw) return waitErr(lw);
+    const AUs = admUsers(), pk = await adminPassOk(String(b.password || '').trim());
+    if (!AUs.length || pk === null) return err('noadmin');
+    const uu = S(b.user, 80).trim().toLowerCase(), okU = AUs.some(u => same(uu, u));
+    if (!(okU && pk)) {
+      const s = await failed(k); if (s) return waitErr(s);
+      const w = err('wrong');
+      if (env('ADMIN_GATE')) { const ov = J(await rc('GET', 'adm:pass')); w.u = okU; w.p = !!pk; w.src = ov ? 'site' : 'env'; }
+      return w;
+    }
+    await rp([['DEL', 'lf:' + k], ['DEL', 'lk:' + k]]);
+    const t = rnd(24); await rc('SET', 'as:' + t, '1', 'EX', YEAR); return { ok: 1, token: t };
+  }
+  if (a === 'areset') {
+    if (!(await gateOk(b.gate))) return err('gate');
+    const RW = env('ADMIN_RESET'), AP = env('ADMIN_PASS'); if (!RW || !AP) return err('noreset');
+    const rk = 'rs:' + ip; if ((await rc('INCR', rk)) > 5) { await rc('EXPIRE', rk, 3600); return waitErr(600); } await rc('EXPIRE', rk, 3600);
+    if (!same(S(b.word, 60).trim().toLowerCase(), RW.toLowerCase())) return err('wrong');
+    if (b.revert) { await rc('DEL', 'adm:pass'); return { ok: 1 }; }
+    const pw = String(b.pass || '').trim(); if (pw.length < 8 || pw.length > 64) return err('bad');
+    const salt = rnd(8); await rc('SET', 'adm:pass', JSON.stringify({ h: salt + ':' + hash(pw, salt) })); return { ok: 1 };
+  }
+  if (a === 'order') {
+    const o = b.o || {}, P = ['fb', 'ig', 'sc', 'tb', 'tp', 'tl'], price = Math.round(+o.price);
+    if (!P.includes(o.p) || !(price >= 1000 && price <= 10000000)) return err('bad');
+    const ol = 'ol:' + ip; if ((await rc('INCR', ol)) > 8) return err('wait'); await rc('EXPIRE', ol, 60);
+    const id = Date.now().toString(36) + rnd(2), d = day(), meta = o.p === 'fb' || o.p === 'ig', cfg = meta ? (+(await rc('GET', 'cfg:cost')) || DEF_COST) : 0, usd = meta ? +(price / 2000).toFixed(2) : null;
+    const code = meta && /^KA-[A-Z0-9]{6}$/.test(o.code || '') ? o.code : '', owner = meta && b.token ? ((await auth(b.token)) || '') : '';
+    const r = { id, at: Date.now(), p: o.p, pn: S(o.pn, 40), pk: S(o.pk, 80), price, usd, cost: cfg > 0 ? cfg : null, profit: cfg > 0 ? Math.round(price - usd * cfg) : null, pg: S(o.pg, 100), bz: S(o.bz, 100), lk: S(o.lk, 300), tg: S(o.tg, 100), gd: S(o.gd, 30), ag: S(o.ag, 60), dy: meta ? String(Math.min(Math.max(1, parseInt(o.dy) || 1), Math.max(1, Math.floor(price / 4000)))) : S(o.dy, 10), pay: S(o.pay, 20), ref: S(o.ref, 12).replace(/[^A-Za-z0-9]/g, ''), code, owner, st: 'new' };
+    await rp([['SET', 'ord:' + id, JSON.stringify(r)], ['LPUSH', 'orders', id], ['INCRBY', 'tot:all', price], ['INCR', 'cnt:all'], ['INCRBY', 'tot:d:' + d, price], ['INCR', 'cnt:d:' + d], ['INCRBY', 'tot:p:' + o.p, price]]);
+    if (code) await rc('SET', 'oc:' + code, id, 'NX');
+    if (owner) await rc('RPUSH', 'uo:' + owner, id);
+    if (r.ref) { const ow = await rc('GET', 'rc:' + r.ref); if (ow) await rc('RPUSH', 'fr:' + ow, JSON.stringify({ n: r.pg, t: 'order', p: r.pn, at: Date.now() })); }
+    return { ok: 1 };
+  }
+  if (['astats', 'ostatus', 'asetcost', 'agencode', 'apass'].includes(a)) {
+    const tk = 'as:' + S(b.token, 80); if ((await rc('GET', tk)) !== '1') return err('auth'); await rc('EXPIRE', tk, YEAR);
+    if (a === 'apass') {
+      const AP = env('ADMIN_PASS'), np = String(b.pass || '').trim(); if (!AP) return err('noadmin'); if (np.length < 8 || np.length > 64) return err('bad');
+      if (!(await adminPassOk(String(b.old || '').trim()))) return err('wrong');
+      const salt = rnd(8); await rc('SET', 'adm:pass', JSON.stringify({ h: salt + ':' + hash(np, salt) })); return { ok: 1 };
+    }
+    if (a === 'agencode') {
+      const rid = S(b.rid, 12).toUpperCase().trim(), rq = J(await rc('GET', 'rq:' + rid)); if (!rq) return err('nocode');
+      const code = String(crypto.randomInt(100000, 1000000)); await rp([['SET', 'rcode:' + rid, code, 'EX', 3600], ['DEL', 'ra:' + rid]]); return { ok: 1, code };
+    }
+    if (a === 'asetcost') { const c = +b.cost; if (!(c >= 0 && c <= 5000)) return err('bad'); await rc('SET', 'cfg:cost', String(+c.toFixed(2))); return { ok: 1 }; }
+    if (a === 'ostatus') {
+      const raw = await rc('GET', 'ord:' + S(b.id, 30)); if (!raw) return err('bad');
+      const o = JSON.parse(raw), st = ['new', 'ok', 'act', 'fin', 'x', 'ns'].includes(b.st) ? b.st : 'new', d0 = dayOf(o.at);
+      if (!isC(o.st) && isC(st)) {
+        await rc('INCRBY', 'tot:ok', o.price); await rp([['INCR', 'ccnt:d:' + d0], ['INCRBY', 'ctot:d:' + d0, o.price]]); o.cc = 1;
+        if (o.usd) {
+          const cfg = +(await rc('GET', 'cfg:cost')) || DEF_COST; if (o.cost == null && cfg > 0) o.cost = cfg;
+          o.profit = o.cost > 0 ? Math.round(o.price - o.usd * o.cost) : null; o.cu = Math.round(o.usd * 100); o.cp = o.profit || 0;
+          await rp([['INCRBY', 'usdc:d:' + d0, o.cu], ['INCRBY', 'prof:d:' + d0, o.cp], ['INCRBY', 'revc:d:' + d0, o.price]]);
+        }
+      }
+      if (isC(o.st) && !isC(st)) {
+        await rc('DECRBY', 'tot:ok', o.price); if (o.cc) { await rp([['DECRBY', 'ccnt:d:' + d0, 1], ['DECRBY', 'ctot:d:' + d0, o.price]]); o.cc = null; }
+        if (o.cu != null) { await rp([['DECRBY', 'usdc:d:' + d0, o.cu], ['DECRBY', 'prof:d:' + d0, o.cp || 0], ['DECRBY', 'revc:d:' + d0, o.price]]); o.cu = null; o.cp = null; }
+      }
+      if (o.st !== st && o.owner && st !== 'new' && st !== 'ns') await rp([['LPUSH', 'nt:' + o.owner, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st })], ['LTRIM', 'nt:' + o.owner, 0, 49], ['INCR', 'ntu:' + o.owner]]);
+      o.st = st; await rc('SET', 'ord:' + o.id, JSON.stringify(o)); return { ok: 1 };
+    }
+    const rg = dayList(b.from, b.to);
+    const cmds = [['SCARD', 'users'], ['GET', 'tot:all'], ['GET', 'cnt:all'], ['GET', 'tot:ok'], ['LRANGE', 'orders', 0, 299], ['SMEMBERS', 'users'], ['LRANGE', 'red', 0, 59], ['LRANGE', 'rqs', 0, 49], ['GET', 'cfg:cost']];
+    const f0 = cmds.length; rg.forEach(d => cmds.push(['PFCOUNT', 'vis:' + d], ['PFCOUNT', 'ply:' + d], ['GET', 'cnt:d:' + d], ['GET', 'tot:d:' + d], ['GET', 'usdc:d:' + d], ['GET', 'prof:d:' + d], ['GET', 'revc:d:' + d], ['GET', 'ccnt:d:' + d], ['GET', 'ctot:d:' + d]));
+    const r = await rp(cmds), ids = r[4] || [], un = (r[5] || []).slice(-300), rids = r[7] || [];
+    const [ords, us, pts, rqs] = await Promise.all([ids.length ? rc('MGET', ...ids.map(i => 'ord:' + i)) : [], un.length ? rc('MGET', ...un.map(u => 'u:' + u)) : [], un.length ? rc('MGET', ...un.map(u => 'pt:' + u)) : [], rids.length ? rc('MGET', ...rids.map(i => 'rq:' + i)) : []]);
+    const users = (us || []).map((x, i) => { const u = x && x !== 'x' ? J(x) : null; return u && { username: u.username, name: u.name, phone: u.phone, email: u.email, avatar: u.avatar, by: u.by, created: u.created, points: +pts[i] || 0 }; }).filter(Boolean).reverse();
+    const byU = {}; users.forEach(u => byU[u.username] = u);
+    const resets = rids.map((rid, i) => { const q = J(rqs[i]); const u = q && byU[q.u]; return q && u ? { rid, u: u.username, name: u.name, phone: u.phone, email: u.email, at: q.at } : null; }).filter(Boolean);
+    return { ok: 1, ver: VER, accounts: +r[0] || 0, totAll: +r[1] || 0, cntAll: +r[2] || 0, totOk: +r[3] || 0, cost: +r[8] || DEF_COST,
+      orders: (ords || []).map(J).filter(Boolean), reds: (r[6] || []).map(J).filter(Boolean), users, resets,
+      rows: rg.map((d, i) => { const k = f0 + i * 9; return { d, v: +r[k] || 0, p: +r[k + 1] || 0, n: +r[k + 2] || 0, t: +r[k + 3] || 0, usd: (+r[k + 4] || 0) / 100, prof: +r[k + 5] || 0, rev: +r[k + 6] || 0, cn: +r[k + 7] || 0, ct: +r[k + 8] || 0 }; }) };
+  }
+  const un = await auth(b.token); if (!un) return err('auth');
+  if (a === 'me') { const raw = await rc('GET', 'u:' + un); return { ok: 1, me: await profile(JSON.parse(raw)) }; }
+  if (a === 'profileUpdate') {
+    const u = J(await rc('GET', 'u:' + un)); if (!u) return err('auth');
+    const old = String(b.password || ''), np = String(b.newPassword || ''), name = S(b.name, 60).trim(), email = S(b.email, 80).toLowerCase().trim();
+    if (name.length < 2 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || (np && (np.length < 6 || np.length > 64))) return err('bad');
+    const [salt, digest] = u.pass.split(':'); if (!same(hash(old, salt), digest)) return err('wrong');
+    if (email !== u.email) { const owner = await rc('GET', 'em:' + email); if (owner && owner !== un) return err('taken'); await rp([['DEL', 'em:' + u.email], ['SET', 'em:' + email, un]]); u.email = email; }
+    u.name = name; if (np) { const ns = rnd(8); u.pass = ns + ':' + hash(np, ns); }
+    await rc('SET', 'u:' + un, JSON.stringify(u)); return { ok: 1, me: await profile(u) };
+  }
+  if (a === 'logout') { await rc('DEL', 's:' + S(b.token, 80)); return { ok: 1 }; }
+  if (a === 'mydata') {
+    const ids = (await rc('LRANGE', 'uo:' + un, 0, 49)) || [];
+    const recs = ids.length ? (await rc('MGET', ...ids.map(i => 'ord:' + i))).map(J).filter(Boolean).reverse() : [];
+    const AD = env('META_AD_ACCOUNT'), TK = env('META_TOKEN');
+    const rows = await Promise.all(recs.map(async (o, i) => ({ id: o.id, at: o.at, code: o.code, pn: o.pn, pg: o.pg, price: o.price, usd: o.usd, st: o.st,
+      data: AD && TK && o.code && o.st !== 'x' && o.st !== 'ns' && i < 15 ? await metaData(o.code, AD, TK) : null })));
+    const nl = ((await rc('LRANGE', 'nt:' + un, 0, 19)) || []).map(J).filter(Boolean); await rc('SET', 'ntu:' + un, '0');
+    return { ok: 1, meta: !!(AD && TK), orders: rows, notes: nl };
+  }
+  if (a === 'claim') {
+    const code = S(b.code, 12).toUpperCase().trim(), ck = 'cl:' + un;
+    if ((await rc('INCR', ck)) > 10) return err('wait'); await rc('EXPIRE', ck, 3600);
+    if (!/^KA-[A-Z0-9]{6}$/.test(code)) return err('nocode');
+    const id = await rc('GET', 'oc:' + code), o = id && J(await rc('GET', 'ord:' + id)); if (!o) return err('nocode');
+    if (o.owner && o.owner !== un) return err('owned');
+    if (!o.owner) { o.owner = un; await rp([['SET', 'ord:' + o.id, JSON.stringify(o)], ['RPUSH', 'uo:' + un, o.id]]); }
+    return { ok: 1 };
+  }
+  if (a === 'play') { const k = 'ply:' + day(); await rp([['PFADD', k, un], ['EXPIRE', k, 3456000]]); return { ok: 1 }; }
+  if (a === 'award') {
+    const p = Math.floor(+b.points); if (!(p >= 1 && p <= 20)) return err('bad');
+    if (!(await rc('SET', 'al:' + un, '1', 'EX', 15, 'NX'))) return err('wait');
+    const k = 'pd:' + un + ':' + day(), used = +(await rc('GET', k)) || 0, add = Math.min(p, DAILY - used);
+    if (add <= 0) return err('cap');
+    await rp([['INCRBY', k, add], ['EXPIRE', k, 172800]]);
+    return { ok: 1, added: add, points: await rc('INCRBY', 'pt:' + un, add) };
+  }
+  if (a === 'redeem') {
+    const c = +b.cost; if (!REW.includes(c)) return err('bad');
+    const bal = +(await rc('GET', 'pt:' + un)) || 0; if (bal < c) return err('low');
+    const left = await rc('DECRBY', 'pt:' + un, c); if (left < 0) { await rc('INCRBY', 'pt:' + un, c); return err('low'); }
+    await rc('LPUSH', 'red', JSON.stringify({ u: un, cost: c, iqd: c * 10, at: Date.now() }));
+    return { ok: 1, points: left };
+  }
+  return err('bad');
+}     ئەمەش کۆدی X · JS     شتی ترم بۆ زیاد بکە
+ئێمە وتمان بۆ سپۆنسەری فەیسبوک و ئینستا گرام بۆ هەر دۆلارێک دوو هەزارە 
+ئینجا ئەمەوێت ڕۆژەکانی سپۆنسەرم بە پێی دۆلارەکان بۆ ڕێک بخەیت 
+بۆ هەرر دوو دۆلارێک ١ ڕۆژ سپۆنسەرە بۆ نمونە کەسێک بای ٢٠٠٠٠ سپۆنسەر ئەکات  واتا ١٠$ ئەو ١٠$ لە یەک ڕۆژ هەتا ٥ ڕۆژ بتوانێت دیاری بکات 
+بەس بۆ نمونە ژمارەکە تاکە بای ١٤،٠٠٠ سپۆنسەر ئەکات واتا ٧$ تۆ حیسابی جوتی بۆ بکە واتا هەتا ٣ ڕۆژ کەسێک بای ١٠٠،٠٠٠ سپۆنسەر ئەکات واتا ٥٠$  لە یەک ڕۆژەوە هەتا ٢٥ ڕۆژ بتوانێت دیاری بکات هیوادارم تێ بگەیت بۆ هەر ٢$ سپۆنسەرێک یەکسانە بە ١ ڕۆژ  ئاوا ڕێکی بخە بۆم زۆر بە جوانی   بەس بە بێ ئەوەی گۆڕانکاری لە هیچ شتێکی تر بکریت
