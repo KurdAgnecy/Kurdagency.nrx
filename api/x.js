@@ -223,7 +223,7 @@ async function handle(b, req) {
     if (owner) {
       await rp([
         ['RPUSH', 'uo:' + owner, id],
-        ['LPUSH', 'nt:' + owner, JSON.stringify({ at: Date.now(), code: r.code, pg: r.pg, pn: r.pn, st: 'ok' })],
+        ['LPUSH', 'nt:' + owner, JSON.stringify({ at: Date.now(), code: r.code, pg: r.pg, pn: r.pn, st: 'received' })],
         ['LTRIM', 'nt:' + owner, 0, 49],
         ['INCR', 'ntu:' + owner]
       ]);
@@ -276,6 +276,7 @@ async function handle(b, req) {
         await rc('DECRBY', 'tot:ok', o.price); if (o.cc) { await rp([['DECRBY', 'ccnt:d:' + d0, 1], ['DECRBY', 'ctot:d:' + d0, o.price]]); o.cc = null; }
         if (o.cu != null) { await rp([['DECRBY', 'usdc:d:' + d0, o.cu], ['DECRBY', 'prof:d:' + d0, o.cp || 0], ['DECRBY', 'revc:d:' + d0, o.price]]); o.cu = null; o.cp = null; }
       }
+      if (o.st !== st && o.owner && ['ok', 'act', 'fin', 'x', 'ns'].includes(st)) await rp([['LPUSH', 'nt:' + o.owner, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st })], ['LTRIM', 'nt:' + o.owner, 0, 49], ['INCR', 'ntu:' + o.owner]]);
       o.st = st; await rc('SET', 'ord:' + o.id, JSON.stringify(o)); return { ok: 1 };
     }
     const rg = dayList(b.from, b.to);
@@ -292,11 +293,10 @@ async function handle(b, req) {
       rows: rg.map((d, i) => { const k = f0 + i * 9; return { d, v: +r[k] || 0, p: +r[k + 1] || 0, n: +r[k + 2] || 0, t: +r[k + 3] || 0, usd: (+r[k + 4] || 0) / 100, prof: +r[k + 5] || 0, rev: +r[k + 6] || 0, cn: +r[k + 7] || 0, ct: +r[k + 8] || 0 }; }) };
   }
   const un = await auth(b.token); if (!un) return err('auth');
+  if (a === 'nread') { await rc('SET', 'ntu:' + un, '0'); return { ok: 1 }; }
   if (a === 'notifications') {
-    const hidden = ['new', 'ok', 'act', 'fin', 'x', 'ns'];
-    const notes = ((await rc('LRANGE', 'nt:' + un, 0, 49)) || []).map(J).filter(Boolean).filter(n => !hidden.includes(n.st));
+    const notes = ((await rc('LRANGE', 'nt:' + un, 0, 49)) || []).map(J).filter(Boolean);
     const unread = +(await rc('GET', 'ntu:' + un)) || 0;
-    await rc('SET', 'ntu:' + un, '0');
     return { ok: 1, unread, notes };
   }
   if (a === 'sessions' || a === 'logoutAll') {
@@ -319,13 +319,20 @@ async function handle(b, req) {
       let data = o.data || null;
       if (AD && TK && o.code && o.st !== 'x' && o.st !== 'ns' && i < 15) {
         const fresh = await metaData(o.code, AD, TK); data = fresh || data;
-        if (fresh && fresh.status === 'ok' && JSON.stringify(o.data || null) !== JSON.stringify(fresh)) { o.data = fresh; await rc('SET', 'ord:' + o.id, JSON.stringify(o)); }
+        if (fresh && fresh.status === 'ok') {
+          const changed = JSON.stringify(o.data || null) !== JSON.stringify(fresh); o.data = fresh;
+          const firstActive = o.owner && await rc('SETNX', 'meta:act:' + o.id, '1');
+          if (firstActive) {
+            o.st = 'act';
+            await rp([['LPUSH', 'nt:' + o.owner, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st: 'act' })], ['LTRIM', 'nt:' + o.owner, 0, 49], ['INCR', 'ntu:' + o.owner]]);
+          }
+          if (changed || firstActive) await rc('SET', 'ord:' + o.id, JSON.stringify(o));
+        }
       }
       return { id: o.id, at: o.at, code: o.code, pn: o.pn, pg: o.pg, price: o.price, usd: o.usd, st: o.st, data };
     }));
-    const hidden = ['new', 'ok', 'act', 'fin', 'x', 'ns'];
-    const nl = ((await rc('LRANGE', 'nt:' + un, 0, 49)) || []).map(J).filter(Boolean).filter(n => !hidden.includes(n.st)); await rc('SET', 'ntu:' + un, '0');
-    return { ok: 1, meta: !!(AD && TK), orders: rows, notes: nl };
+    const nl = ((await rc('LRANGE', 'nt:' + un, 0, 49)) || []).map(J).filter(Boolean), unread = +(await rc('GET', 'ntu:' + un)) || 0;
+    return { ok: 1, meta: !!(AD && TK), orders: rows, notes: nl, unread };
   }
   if (a === 'claim') {
     const code = S(b.code, 12).toUpperCase().trim(), ck = 'cl:' + un;
@@ -338,7 +345,7 @@ async function handle(b, req) {
       await rp([
         ['SET', 'ord:' + o.id, JSON.stringify(o)],
         ['RPUSH', 'uo:' + un, o.id],
-        ['LPUSH', 'nt:' + un, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st: 'ok' })],
+        ['LPUSH', 'nt:' + un, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st: 'received' })],
         ['LTRIM', 'nt:' + un, 0, 49],
         ['INCR', 'ntu:' + un]
       ]);
@@ -349,10 +356,29 @@ async function handle(b, req) {
     }
     return { ok: 1 };
   }
-  if (['pname', 'pmail', 'ppass'].includes(a)) {
+  if (['pname', 'puser', 'pphone', 'pmail', 'ppass', 'pavatar'].includes(a)) {
     const pk = 'pf:' + un; if ((await rc('INCR', pk)) > 30) { await rc('EXPIRE', pk, 3600); return waitErr(300); } await rc('EXPIRE', pk, 3600);
     const u = J(await rc('GET', 'u:' + un)); if (!u) return err('auth');
+    if (a === 'pavatar') { const av = String(b.avatar || ''); if (!/^data:image\/jpeg;base64,[A-Za-z0-9+/=]{20,40000}$/.test(av)) return err('bad'); u.avatar = av; await rc('SET', 'u:' + un, JSON.stringify(u)); return { ok: 1, me: await profile(u) }; }
     if (a === 'pname') { const nm = S(b.name, 60).trim(); if (nm.length < 2) return err('bad'); u.name = nm; await rc('SET', 'u:' + un, JSON.stringify(u)); return { ok: 1, me: await profile(u) }; }
+    if (a === 'pphone') {
+      const ph = nph(b.phone); if (ph.length < 9 || ph.length > 15 || ph === u.phone) return err('bad');
+      if (await rc('GET', 'ph:' + ph)) return err('taken');
+      const cur = String(b.password || ''), [sp, hp] = u.pass.split(':'); if (!same(hash(cur, sp), hp)) return err('wrong');
+      await rp([['DEL', 'ph:' + u.phone], ['SET', 'ph:' + ph, un]]); u.phone = ph; await rc('SET', 'u:' + un, JSON.stringify(u)); return { ok: 1, me: await profile(u) };
+    }
+    if (a === 'puser') {
+      const nu = S(b.username, 20).toLowerCase().trim();
+      if (!/^[a-z0-9_.]{3,20}$/.test(nu) || /admin|root|kurdagency|support|owner/.test(nu) || nu === un) return err('bad');
+      if (await rc('GET', 'u:' + nu)) return err('taken');
+      const cur = String(b.password || ''), [su, hu] = u.pass.split(':'); if (!same(hash(cur, su), hu)) return err('wrong');
+      const ids = (await rc('LRANGE', 'uo:' + un, 0, 4999)) || [];
+      const cmds = [['SET', 'u:' + nu, JSON.stringify({ ...u, username: nu })], ['DEL', 'u:' + un], ['SREM', 'users', un], ['SADD', 'users', nu], ['DEL', 'uo:' + un], ['DEL', 's:' + S(b.token, 80)], ['SET', 's:' + S(b.token, 80), nu, 'EX', YEAR]];
+      if (ids.length) cmds.push(['RPUSH', 'uo:' + nu, ...ids]);
+      const ords = ids.length ? (await rc('MGET', ...ids.map(i => 'ord:' + i))).map(J).filter(Boolean) : [];
+      ords.forEach(o => { o.owner = nu; cmds.push(['SET', 'ord:' + o.id, JSON.stringify(o)]); });
+      await rp(cmds); return { ok: 1, me: await profile({ ...u, username: nu }) };
+    }
     const lk = 'p:' + un, lw = await locked(lk); if (lw) return waitErr(lw);
     const cur = String(a === 'pmail' ? b.password : b.old || ''), [s0, h0] = u.pass.split(':');
     if (!same(hash(cur, s0), h0)) { const s = await failed(lk); return s ? waitErr(s) : err('wrong'); }
