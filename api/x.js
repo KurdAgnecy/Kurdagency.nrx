@@ -24,12 +24,6 @@ const J = x => { try { return JSON.parse(x); } catch (e) { return null; } };
 const ipOf = req => S(((req.headers && req.headers['x-forwarded-for']) || '').split(',')[0], 45) || '0';
 const same = (a, b) => crypto.timingSafeEqual(crypto.createHash('sha256').update(String(a)).digest(), crypto.createHash('sha256').update(String(b)).digest());
 const env = k => String(process.env[k] || '').trim();
-async function sendOtpEmail(to, code) {
-  const key = env('RESEND_API_KEY'), from = env('RESEND_FROM') || 'onboarding@resend.dev';
-  if (!key) return false;
-  const r = await fetch('https://api.resend.com/emails', { method: 'POST', headers: { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' }, body: JSON.stringify({ from, to: [to], subject: 'کۆدی پشتڕاستکردنەوەی Kurd Agency', html: `<div dir="rtl"><h2>Kurd Agency</h2><p>کۆدی پشتڕاستکردنەوەی دروستکردنی هەژمارەکەت:</p><p style="font-size:28px;font-weight:bold;letter-spacing:6px">${code}</p><p>ئەم کۆدە تەنها ١٠ خولەک کار دەکات.</p></div>` }) });
-  return r.ok;
-}
 async function siteNotice(u) {
   if (!u || !(await rc('SETNX', 'site:notice:' + u, SITE_NOTICE))) return;
   await rp([['LPUSH', 'nt:' + u, JSON.stringify({ at: Date.now(), st: 'site' })], ['LTRIM', 'nt:' + u, 0, 49], ['INCR', 'ntu:' + u]]);
