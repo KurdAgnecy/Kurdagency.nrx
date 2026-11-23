@@ -125,17 +125,9 @@ async function handle(b, req) {
     const un = S(b.username, 20).toLowerCase().trim(), name = S(b.name, 60).trim(), ph = nph(b.phone), em = S(b.email, 80).toLowerCase().trim(), pw = String(b.password || ''), av = /^data:image\/jpeg;base64,[A-Za-z0-9+/=]{20,40000}$/.test(b.avatar || '') ? b.avatar : '';
     if (!/^[a-z0-9_.]{3,20}$/.test(un) || /admin|root|kurdagency|support|owner/.test(un) || name.length < 2 || ph.length < 9 || ph.length > 15 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em) || pw.length < 6 || pw.length > 64) return err('bad');
     if (await rc('GET', 'u:' + un) || await rc('GET', 'em:' + em) || await rc('GET', 'ph:' + ph)) return err('taken');
-    const rk = 'reg24:' + sha(S(b.vid, 80) || ip), cnt = await rc('INCR', rk); if (cnt === 1) await rc('EXPIRE', rk, 86400); if (cnt > 2) return waitErr(await rc('TTL', rk));
-    const rid = 'RO' + rnd(5).toUpperCase(), code = String(crypto.randomInt(100000, 1000000));
-    await rc('SET', 'rop:' + rid, JSON.stringify({ username: un, name, phone: ph, email: em, password: pw, avatar: av, ref: S(b.ref, 12), code }), 'EX', 600);
-    if (!await sendOtpEmail(em, code)) { await rc('DEL', 'rop:' + rid); return err('emailcfg'); }
-    return { ok: 1, rid };
+    return handle({ ...b, a: 'register' }, req);
   }
   if (a === 'register') {
-    const pending = b.rid && J(await rc('GET', 'rop:' + S(b.rid, 20)));
-    if (!pending || !same(String(b.otp || ''), pending.code)) return err('otpbad');
-    await rc('DEL', 'rop:' + S(b.rid, 20));
-    b = { ...pending, ...b };
     const un = S(b.username, 20).toLowerCase().trim(), name = S(b.name, 60).trim(), ph = nph(b.phone), em = S(b.email, 80).toLowerCase().trim(), pw = String(b.password || '');
     const av = /^data:image\/jpeg;base64,[A-Za-z0-9+/=]{20,40000}$/.test(b.avatar || '') ? b.avatar : '';
     if (!/^[a-z0-9_.]{3,20}$/.test(un) || /admin|root|kurdagency|support|owner/.test(un) || name.length < 2 || ph.length < 9 || ph.length > 15 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em) || pw.length < 6 || pw.length > 64) return err('bad');
@@ -165,12 +157,6 @@ async function handle(b, req) {
   if (a === 'fgreq') {
     const id = S(b.id, 80).toLowerCase().trim(), u = await lookup(id), rid = 'RS' + rnd(3).toUpperCase(), vid = S(b.vid, 80) || ip, cap = 'fg24:' + sha(vid);
     const count = await rc('INCR', cap); if (count === 1) await rc('EXPIRE', cap, 86400);
-    if (u && count <= 2) {
-      const code = String(crypto.randomInt(100000, 1000000));
-      await rc('SET', 'rq:' + rid, JSON.stringify({ u: u.username, at: Date.now(), code, email: true }), 'EX', 172800);
-      if (!await sendOtpEmail(u.email, code)) { await rc('DEL', 'rq:' + rid); return err('emailcfg'); }
-      return { ok: 1, rid, email: true };
-    }
     if (u) await rc('SET', 'rq:' + rid, JSON.stringify({ u: u.username, at: Date.now(), manual: true }), 'EX', 172800);
     await rp([['LPUSH', 'rqs', rid], ['LTRIM', 'rqs', 0, 99]]);
     return { ok: 1, rid, manual: true };
@@ -325,6 +311,11 @@ async function handle(b, req) {
       let data = o.data || null;
       if (AD && TK && o.code && o.st !== 'x' && o.st !== 'ns' && i < 15) {
         const fresh = await metaData(o.code, AD, TK); data = fresh || data;
+        if (fresh && fresh.status === 'pending' && o.st === 'act' && o.owner) {
+          o.st = 'fin';
+          await rp([['LPUSH', 'nt:' + o.owner, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st: 'fin' })], ['LTRIM', 'nt:' + o.owner, 0, 49], ['INCR', 'ntu:' + o.owner]]);
+          await rc('SET', 'ord:' + o.id, JSON.stringify(o));
+        }
         if (fresh && fresh.status === 'ok') {
           const changed = JSON.stringify(o.data || null) !== JSON.stringify(fresh); o.data = fresh;
           const firstActive = o.owner && await rc('SETNX', 'meta:act:' + o.id, '1');
