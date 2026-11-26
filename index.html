@@ -18,11 +18,11 @@
 body{background:var(--bg);color:var(--tx);font-family:"Noto Sans Arabic","Segoe UI",Tahoma,sans-serif;line-height:1.65;min-height:100vh}
 h1,h2,h3,.kf{font-family:"Noto Kufi Arabic","Noto Sans Arabic",sans-serif}
 button,input,select{font:inherit;color:inherit}
-header{position:sticky;top:0;z-index:20;background:var(--bar);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:9px 14px;box-shadow:var(--sh)}
+header{position:sticky;top:0;z-index:20;background:var(--bar);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:9px 14px;box-shadow:var(--sh);direction:rtl}
 header #acct,header #hm{position:absolute;top:5px;height:38px;z-index:2}header #hm{left:8px;padding:4px 9px}header #acct{left:56px;min-width:48px;padding:3px 7px}header #hl{margin-inline-end:auto}
 header img{height:34px;display:block}.ads{background:var(--ac);color:#fff;font-weight:800;font-size:.7rem;padding:2px 8px;border-radius:6px;direction:ltr;margin-inline-end:auto}
 .chip{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:6px 11px;font-size:.85rem;cursor:pointer;font-weight:700}.chip.on{background:var(--ac);color:#fff;border-color:var(--ac)}
-.acct{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:48px;line-height:1.05}.acct span{font-size:1.05rem;color:#a855f7}.acct small{font-size:.58rem;color:var(--mu);font-weight:800}.acctAvatar{width:22px;height:22px;border-radius:50%;object-fit:cover;border:2px solid #a855f7}
+.acct{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:52px;line-height:1.05}.acct span{font-size:1.05rem;color:#a855f7}.acct small{font-size:.58rem;color:var(--mu);font-weight:800}.acct em{font-style:normal;font-size:.58rem;color:#fbbf24;font-weight:900;direction:ltr}.acctAvatar{width:22px;height:22px;border-radius:50%;object-fit:cover;border:2px solid #a855f7}
 nav{display:flex;gap:6px;padding:10px 14px;overflow-x:auto;max-width:1000px;margin:0 auto}
 nav button{background:var(--card);border:1px solid var(--bd);border-radius:999px;padding:8px 16px;font-weight:700;color:var(--mu);cursor:pointer;white-space:nowrap}
 nav button.on{background:var(--ac);border-color:var(--ac);color:#fff}
@@ -141,13 +141,16 @@ input[type=date]{background:var(--in);border:1px solid var(--bd);border-radius:1
 .audbox{margin:4px 0 14px;border:1px solid var(--bd);border-radius:10px;background:var(--in);padding:7px 10px}.audbox summary{cursor:pointer;font-weight:800;color:var(--ac2);font-size:.82rem}.audlist{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.auditem{display:flex;align-items:center;gap:4px;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:4px 6px;font-size:.72rem}.auditem button{border:0;background:none;color:inherit;cursor:pointer;padding:2px 4px}.auditem .del{color:var(--no)}.audsave{margin:2px 0 12px}.audsave .btn{font-size:.76rem;padding:7px 11px}.finger{display:inline-block;margin-inline-start:5px;font-size:1.15rem;animation:fingerTap 1s ease-in-out infinite;transform-origin:bottom center}@keyframes fingerTap{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(3px) rotate(-8deg)}}
 @media(max-width:600px){header{padding:7px 8px;gap:5px}header img{height:28px;max-width:150px}.chip{padding:5px 8px;font-size:.78rem}#pt{padding-inline:7px}.acct{min-width:48px;padding:5px 7px}.acctAvatar{width:22px;height:22px}#hm{margin-inline-start:0}main{padding-inline:8px}.box{padding:14px;border-radius:14px}.hero{padding:16px 12px}.homeGrid{gap:8px}.homeCard{padding:15px 8px}.steps button{font-size:.68rem}.btn{padding:10px 14px}.hmenu{top:54px;inset-inline:8px;justify-content:space-between}input,select,textarea{font-size:16px!important}}
 @media(max-width:420px){header{padding:5px 6px;gap:4px;min-height:46px}header img{height:22px;max-width:105px}.chip{padding:4px 6px;font-size:.7rem}.acct{min-width:42px}.acct span{font-size:1.08rem}.acct small{font-size:.58rem}#pt{font-size:.68rem}main{padding:4px 6px 40px}.box{padding:11px;border-radius:12px}.homeGrid{gap:6px}.homeCard{padding:12px 5px;border-radius:14px}.homeCard i{width:44px;height:44px;font-size:1.5rem;border-radius:13px;margin-bottom:6px}.homeCard b{font-size:.78rem}.homeCard small{font-size:.62rem}.landingHero{padding:18px 10px;border-radius:16px}.landingHero h1{font-size:1rem}h2{font-size:.95rem}.navw nav{padding:7px 8px}.navw nav button{padding:6px 11px;font-size:.72rem}.hmenu{top:48px;padding:8px;gap:5px}}
+/* Compact single-line landing banner */
+.landingHero{border-radius:20px!important;padding:22px 16px!important;margin-bottom:16px!important}
+.landingHero h1{font-size:clamp(.72rem,2.2vw,1.15rem)!important;white-space:nowrap;margin-bottom:5px!important;letter-spacing:-.02em}
+.landingHero p{font-size:.88rem}
 </style>
 </head>
 <body>
 <header>
  <img id="hl" alt="Kurd Agency">
- <span class="chip" id="pt" onclick="go('g')"></span>
- <button class="chip acct" id="acct" onclick="go('prof')" title="Account"><span>👤</span><small>هەژمار</small></button>
+ <button class="chip acct" id="acct" onclick="go('prof')" title="Account"><span>👤</span><small>هەژمار</small><em id="ap"></em></button>
  <button class="chip" id="hm" onclick="toggleHeaderMenu()" aria-expanded="false" aria-controls="hmenu">☰</button>
 </header>
 <div id="hmenu" class="hmenu" hidden><span class="ads">ADS</span><select class="chip" id="lg" onchange="setLang(this.value)"><option value="ku">کوردی</option><option value="en">English</option><option value="ar">العربية</option></select><button class="chip" id="th" onclick="theme()">☀️</button><button class="chip" id="hnotify" onclick="openNotifications()" style="display:none">🔔 <span id="hnc"></span></button><a class="chip" href="mailto:info@kurdagency.site">✉️ Contact</a></div>
@@ -166,8 +169,8 @@ const refIn=()=>localStorage.kri||'';
 let lang=localStorage.kl||'ku',V='home',PREV='home',pts=+localStorage.kp||0,S;
 const LI={ku:0,en:1,ar:2};
 const T={
-nc:['دروستکردنی کەمپەین','Create Campaign','إنشاء حملة'],ng:['یاری بکە و ببەرەوە','Play & Win','العب واربح'],ns:['خزمەتگوزاریەکانی تر','Other Services','خدمات أخرى'],ni:['زانیاری','Info','معلومات'],np:['ڕێگاکانی پارەدان','Payment Methods','طرق الدفع'],
-hero:['ڕیکلامی سۆشیاڵ میدیا بە شێوازێکی پڕۆفیشناڵ','Professional social media advertising','إعلانات احترافية للسوشيال ميديا'],heroS:['پلاتفۆرمەکەت هەڵبژێرە، بودجە دیاری بکە و کەمپەینەکەت لە چەند هەنگاوێکدا بنێرە.','Pick a platform, set a budget and send your campaign in a few steps.','اختر المنصة وحدد الميزانية وأرسل حملتك بخطوات بسيطة.'],
+nc:['سپۆنسەری نوێ','New Sponsorship','رعاية جديدة'],ng:['یاری بکە و ببەرەوە','Play & Win','العب واربح'],ns:['خزمەتگوزاریەکانی تر','Other Services','خدمات أخرى'],ni:['زانیاری','Info','معلومات'],np:['ڕێگاکانی پارەدان','Payment Methods','طرق الدفع'],homeTitle:['سەرکەوتنی کارەکەت لێرەیە','Grow your business here','طوّر عملك هنا'],homeHint:['بۆ بینینی بەشەکە کرتە بکە','Click to view this section','اضغط لعرض هذا القسم'],ncHint:['بۆ سپۆنسەر کردن کرتە بکە','Click to sponsor','اضغط للرعاية'],
+hero:['سپۆنسەری سۆشیاڵ میدیا بە شێوازێکی پڕۆفیشناڵ','Professional social media sponsorship','رعاية احترافية لوسائل التواصل الاجتماعي'],heroS:['هەموو خزمەتگوزارییەکان لە یەک شوێن','All services in one place','كل الخدمات في مكان واحد'],
 s1:['پلاتفۆرم','Platform','المنصة'],s2:['بودجە','Budget','الميزانية'],s3:['ئۆدیێنس و ئاد','Audience & Ad','الجمهور والإعلان'],s4:['پیاچوونەوە','Review','المراجعة'],
 p_fb:['سپۆنسەری فەیسبووک','Facebook Ads','إعلانات فيسبوك'],p_ig:['سپۆنسەری ئینستاگرام','Instagram Ads','إعلانات إنستغرام'],p_sc:['سپۆنسەری سناپچات','Snapchat Ads','إعلانات سناب شات'],p_tb:['تیکتۆک (بزنس)','TikTok (Business)','تيك توك (بزنس)'],p_tp:['تیکتۆک (شەخسی)','TikTok (Personal)','تيك توك (شخصي)'],p_tl:['لایکی تیکتۆک','TikTok Likes','لايكات تيك توك'],
 choose:['پلاتفۆرمی کەمپەینەکەت هەڵبژێرە','Choose your campaign platform','اختر منصة حملتك'],
@@ -277,7 +280,7 @@ fb:{bg:'#1877f2',fg:'#fff',g:'fb',m:10000,u:'v',k:'فەیسبووک',f:'pg lk bz
 ig:{bg:'linear-gradient(45deg,#f09433,#dc2743 50%,#bc1888)',fg:'#fff',g:'ig',m:10000,u:'v',k:'ئینستاگرام',f:'pg lk bz ct gd ag dy',r:[[10000,2500,8000],[15000,3750,13000],[20000,5000,17000],[25000,6250,22000],[30000,7500,27000]]},
 sc:{bg:'#fffc00',fg:'#fff',g:'sc',m:25000,u:'v',k:'سناپچات',f:'pg bz ct gd ag',r:[[25000,20000,50000],[30000,24000,60000],[35000,28000,70000],[40000,32000,80000],[45000,36000,90000],[50000,40000,100000]]},
 tb:{bg:'#000;box-shadow:-2px -2px 0 #00f2fe,2px 2px 0 #fe0979',fg:'#fff',g:'tt',m:15000,u:'v',k:'تیکتۆک بزنس',f:'pg bz au gd ag cm',r:[[15000,15000,30000],[25000,30000,40000],[35000,40000,60000],[45000,60000,90000],[55000,90000,110000],[65000,110000,160000]]},
-tp:{bg:'#000;box-shadow:-2px -2px 0 #00f2fe,2px 2px 0 #fe0979',fg:'#fff',g:'tt',m:12000,u:'v',k:'تیکتۆک شەخسی',f:'pg bz au gd ag',r:[[12000,15000,30000],[17000,30000,50000],[20000,50000,80000],[25000,80000,130000],[45000,130000,250000]]},
+tp:{bg:'#000;box-shadow:-2px -2px 0 #00f2fe,2px 2px 0 #fe0979',fg:'#fff',g:'tt',m:12000,u:'v',k:'تیکتۆک شەخسی',f:'pg au gd ag',r:[[12000,15000,30000],[17000,30000,50000],[20000,50000,80000],[25000,80000,130000],[45000,130000,250000]]},
 tl:{bg:'linear-gradient(45deg,#fe0979,#00c2d1)',fg:'#fff',g:'ht',m:2500,u:'l',k:'زیادکردنی لایکی تیکتۆک',f:'pg lk',d:[1,2,3,4,6],r:[[2500,650,2000],[5000,1250,4000],[7000,1800,6000],[9000,2200,8000],[13000,3600,12000]]}
 };
 const ico=k=>`<i class="lg" style="background:${D[k].bg}"><svg viewBox="0 0 24 24" fill="${D[k].fg}"${k=='sc'?' stroke="#000" stroke-width="1.3" stroke-linejoin="round"':''}><path d="${SV[D[k].g]}"/></svg></i>`;
@@ -307,7 +310,7 @@ const appUrl=location.pathname+location.search;
 history.replaceState({v:V,root:true},'',appUrl+'#'+V);
 history.pushState({v:V,root:true},'',appUrl+'#'+V);
 window.addEventListener('popstate',e=>{const v=e.state&&e.state.v||'home';go(v,true)});
-function landing(){const cards=[['c','nc','📣'],['m','nmy','📊'],['s','ns','🛠️'],['r','nr','🎁'],['g','ng','🎮'],['ins','nin','📲']];return `<div class="landing"><div class="landingHero"><h1>${t('hero')}</h1><p>هەموو خزمەتگوزارییەکان لە یەک شوێن</p></div><h2>سەرکەوتنی کارەکەت لێرەیە</h2><div class="homeGrid">${cards.map(x=>`<button class="homeCard" onclick="go('${x[0]}')"><i>${x[2]}</i><b>${t(x[1])}</b><small>بۆ بینینی بەشەکە کرتە بکە</small></button>`).join('')}</div></div>`}
+function landing(){const cards=[['c','nc','📣','ncHint'],['m','nmy','📊','homeHint'],['s','ns','🛠️','homeHint'],['r','nr','🎁','homeHint'],['g','ng','🎮','homeHint'],['ins','nin','📲','homeHint']];return `<div class="landing"><div class="landingHero"><h1>${t('hero')}</h1><p>${t('heroS')}</p></div><h2>${t('homeTitle')}</h2><div class="homeGrid">${cards.map(x=>`<button class="homeCard" onclick="go('${x[0]}')"><i>${x[2]}</i><b>${t(x[1])}</b><small>${t(x[3])}</small></button>`).join('')}</div></div>`}
 function render(){
  const d=document.documentElement;d.lang=lang;d.dir=lang=='en'?'ltr':'rtl';$('lg').value=lang;
   refreshChip();
@@ -395,14 +398,14 @@ function st4(){
  return `<h2>${t('s4')}</h2><div class="rvb">${rows().map(r=>`<div class="rv"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}</div>
  ${isMeta()?trackBox():''}
  ${notes()}<label class="ck"><input type="checkbox" ${S.ok?'checked':''} onchange="S.ok=this.checked;chk()"> ${t('ag2')} <span class="finger" aria-hidden="true">☝️</span></label>
- <div class="row"><button class="btn g" type="button" onclick="campHome()">⟲ ${t('home')}</button><button id="sd" class="btn" onclick="sent()" disabled>${t('send')}</button></div>`}
+ <div class="row"><button id="sd" class="btn" onclick="sent()" disabled>${t('send')}</button></div>`}
 function sum(){const el=$('sm');if(!el||!S.p)return;const ok=okPr();
  el.innerHTML=`<div class="sm">${ico(S.p)}<span>${t('p_'+S.p)}</span></div><dl><dt>${t('pr')}</dt><dd><span>${ok?fmt(S.pr)+' IQD':'—'}</span></dd>${S.f.dy&&D[S.p].f.includes('dy')?`<dt>${t('dy')}</dt><dd>${S.f.dy} ${t('dd')}</dd>`:''}</dl><div class="est">${t('es')}<b>${ok?estH(S.p,S.pr):'—'}</b>${ok?usdL():''}</div>`}
 function msg(){const d=D[S.p],f=S.f;
  let m=`سڵاو کورد ئەجێنسی، دەمەوێت داواکاریەکی نوێ بکەم:\nپلاتفۆرم: ${d.k}\nپاکێج: ${estT(S.p,S.pr,'ku')}\nنرخ: ${fmt(S.pr)} IQD`+(isMeta()?`\nبڕی سپۆنسەر: ${usdT(S.pr)}`:'');
  if(d.f.includes('dy'))m+=`\nماوەی سپۆنسەر: ${f.dy||1} ڕۆژ`;
  if(S.p=='tl'){m+=`\n---------\nناوی داواکار یان پەیج: ${f.pg}\nلینکی پۆست: ${f.lk}`}
- else{m+=`\n---------\nناوی پەیج: ${f.pg}`;if(f.lk)m+=`\nلینکی پۆست: ${f.lk}`;m+=`\nجۆری کار: ${f.bz}`;
+ else{m+=`\n---------\nناوی پەیج: ${f.pg}`;if(f.lk)m+=`\nلینکی پۆست: ${f.lk}`;if(f.bz)m+=`\nجۆری کار: ${f.bz}`;
   if(f.cm)m+=`\nپەیوەندی کڕیار لە ڕێگەی: ${f.cm} (${f.cd})`;
   m+=f.au?`\nبینەر: ${f.au}`:`\nشارەکان: ${f.ct}`;
   m+=`\nڕەگەز: ${f.gd}\nتەمەن: ${f.ag.join('، ')}`}
@@ -530,7 +533,7 @@ async function api(a,d){try{const r=await fetch('/api/x',{method:'POST',headers:
 const EM={gate:['وشەی نهێنی پێویستە','Secret word required','الكلمة السرية مطلوبة'],locked:['ئەم بەشە قوفڵ کرا','This section is locked','تم قفل هذا القسم'],noreset:['ADMIN_RESET لە Vercel دانەنراوە','ADMIN_RESET is not set in Vercel','ADMIN_RESET غير مضبوط'],nocode:['کۆدەکە نەدۆزرایەوە','Code not found','الرمز غير موجود'],owned:['ئەم کۆدە بۆ هەژمارێکی تر بەستراوەتەوە','This code belongs to another account','هذا الرمز مرتبط بحساب آخر'],noadmin:['ADMIN_USER یان ADMIN_PASS لە Vercel دانەنراوە یان Redeploy نەکراوە','ADMIN_USER or ADMIN_PASS is not set in Vercel, or not redeployed','ADMIN_USER أو ADMIN_PASS غير مضبوط في Vercel أو لم تتم إعادة النشر'],adm:['ئەمە فۆڕمی ئەدمینە . ئەدمین لە بەشی «دابەزاندنی بەرنامە» لەسەر وشەی «کورد» دەچێتە ژوورەوە..','This is the player login. The admin signs in only with the 🔒 icon at the top.','هذا دخول اللاعبين. المدير يدخل فقط من أيقونة 🔒 في الأعلى.'],nokey:['کلیلی API ڕێکنەخراوە (ANTHROPIC_API_KEY)','API key is not set (ANTHROPIC_API_KEY)','مفتاح API غير مهيأ (ANTHROPIC_API_KEY)'],cap2:['سنووری تێستی ئەمڕۆ پڕبووەتەوە، سبەی هەوڵبدەرەوە','Today\'s check limit is reached, try tomorrow','تم بلوغ حد الفحص اليوم، حاول غدا'],api:['پشکنین سەرکەوتوو نەبوو (کرێدیتی API یان کلیلەکە بپشکنە)','The check failed (verify the API key and credits)','فشل الفحص (تحقق من المفتاح والرصيد)'],bad:['زانیارییەکان هەڵەن یان تەواو نین','Invalid or incomplete data','بيانات غير صحيحة أو ناقصة'],taken:['ئەم ناو، ژمارە یان ئیمەیڵە پێشتر بەکارهاتووە','Username, phone or email already used','الاسم أو الرقم أو البريد مستخدم'],wrong:['زانیاری چوونەژوورەوە هەڵەیە','Wrong login details','بيانات الدخول خاطئة'],wait:['زۆر هەوڵت دا، کەمێک چاوەڕێ بکە','Too many tries, wait a bit','محاولات كثيرة، انتظر قليلا'],nf:['فایلی api/x.js لەم سایتەدا نەدۆزرایەوە. لە GitHub دڵنیا ببەوە لە ناو پۆشەی api دایە، پاشان Redeploy بکە','api/x.js was not found on this site. Make sure it is inside the api folder on GitHub, then redeploy','لم يتم العثور على api/x.js. تأكد أنه داخل مجلد api في GitHub ثم أعد النشر'],net:['پەیوەندی بە سێرڤەرەوە نییە','Cannot reach the server','لا يوجد اتصال بالخادم'],nodb:['داتابەیس ڕێکنەخراوە','Database not set up','قاعدة البيانات غير مهيأة'],low:['پۆینتت بەس نییە','Not enough points','النقاط غير كافية'],auth:['دووبارە بچۆرەوە ژوورەوە','Please log in again','سجل الدخول مجددا']};
  EM.banned=['ئەم هەژمارەیە باند کراوە','This account is banned','هذا الحساب محظور'];
  const em=e=>(EM[e]||EM.net)[LI[lang]];
-const refreshChip=()=>{const p=$('pt');if(p){p.style.display=ACC?'':'none';p.textContent=ACC?'⭐ '+fmt(ACC.points):''}const b=$('bl');if(b){b.style.display=ACC?'':'none';b.textContent='🔔'+(ACC&&ACC.unread?' '+ACC.unread:'')}const hn=$('hnotify');if(hn){hn.style.display=ACC?'':'none';const c=$('hnc');if(c)c.textContent=ACC&&ACC.unread?' '+ACC.unread:''}const ac=$('acct');if(ac)ac.innerHTML=ACC&&ACC.avatar?`<img class="acctAvatar" src="${ACC.avatar}" alt=""><small>هەژمار</small>`:'<span>👤</span><small>هەژمار</small>'};
+const refreshChip=()=>{const p=$('pt');if(p)p.style.display='none';const b=$('bl');if(b){b.style.display=ACC?'':'none';b.textContent='🔔'+(ACC&&ACC.unread?' '+ACC.unread:'')}const hn=$('hnotify');if(hn){hn.style.display=ACC?'':'none';const c=$('hnc');if(c)c.textContent=ACC&&ACC.unread?' '+ACC.unread:''}const ac=$('acct');if(ac)ac.innerHTML=ACC&&ACC.avatar?`<img class="acctAvatar" src="${ACC.avatar}" alt=""><small>هەژمار</small><em id="ap">⭐ ${fmt(ACC.points||0)}</em>`:`<span>👤</span><small>هەژمار</small><em id="ap">${ACC?'⭐ '+fmt(ACC.points||0):''}</em>`};
 T.nt_received=['داواکاریەکەت نێردرا','Your request was sent','تم إرسال طلبك'];
 T.nt_site=['وێبسایتەکە نوێ کرایەوە و ئاسانتر کرا','The website was updated and made easier to use','تم تحديث الموقع وجعله أسهل للاستخدام'];
 let NTP=0;
@@ -647,7 +650,7 @@ let DP=null,MOREOPEN=false;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e});
 function toggleMore(){MOREOPEN=!MOREOPEN;renderMore()}
 function renderMore(){const b=$('mb'),p=$('more');if(!b)return;b.textContent=t('more')+(MOREOPEN?' ▴':' ▾');p.style.display=MOREOPEN?'flex':'none';
-  p.innerHTML=[['i','ni'],['q','fq'],['f','nf'],['p','np']].map(a=>`<button class="chip" onclick="MOREOPEN=false;go('${a[0]}')">${t(a[1])}</button>`).join('')+[['/privacy.html','priv'],['/terms.html','trm'],['/delete.html','del']].map(a=>`<a class="chip" style="text-decoration:none" href="${a[0]}" target="_blank" rel="noopener">${t(a[1])}</a>`).join('')}
+  p.innerHTML=[['i','ni'],['q','fq'],['f','nf'],['p','np']].map(a=>`<button class="chip" onclick="MOREOPEN=false;go('${a[0]}')">${t(a[1])}</button>`).join('')+[['privacy.html','priv'],['terms.html','trm'],['delete.html','del']].map(a=>`<a class="chip" style="text-decoration:none" href="${a[0]}" target="_blank" rel="noopener">${t(a[1])}</a>`).join('')}
 function install(){return `<div class="box"><h2>📲 ${t('nin')}</h2><p style="color:var(--mu)">${t('insD').replace("onclick=\"go('prof')","onclick=\"go('adminLogin')")}</p>${DP?`<div class="row s"><button class="btn" onclick="DP.prompt()">${t('insBtn')}</button></div>`:''}<h3 style="margin-top:14px">Android (Chrome)</h3>${t('insA')}<h3 style="margin-top:12px">iPhone (Safari)</h3>${t('insI')}</div>`}
 
 /* ---------- new games ---------- */
