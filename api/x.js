@@ -305,7 +305,8 @@ async function handle(b, req) {
       let data = o.data || null;
       if (AD && TK && o.code && o.st !== 'x' && o.st !== 'ns' && i < 15) {
         const fresh = await metaData(o.code, AD, TK); data = fresh || data;
-        if (fresh && fresh.status === 'pending' && o.st === 'act' && o.owner) {
+        const endAt = Number(o.at || 0) + Math.max(1, parseInt(o.dy, 10) || 1) * 86400000;
+        if (fresh && fresh.status === 'pending' && o.st === 'act' && o.owner && Date.now() >= endAt) {
           o.st = 'fin';
           await rp([['LPUSH', 'nt:' + o.owner, JSON.stringify({ at: Date.now(), code: o.code, pg: o.pg, pn: o.pn, st: 'fin' })], ['LTRIM', 'nt:' + o.owner, 0, 49], ['INCR', 'ntu:' + o.owner]]);
           await rc('SET', 'ord:' + o.id, JSON.stringify(o));
