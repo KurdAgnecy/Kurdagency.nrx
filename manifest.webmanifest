@@ -12,9 +12,15 @@
   "background_color": "#0b2638",
   "icons": [
     {
-      "src": "/kurd.jpg",
-      "sizes": "192x192 512x512 1280x1280",
-      "type": "image/jpeg",
+      "src": "/kurd-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/kurd-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]
